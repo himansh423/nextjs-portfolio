@@ -4,9 +4,10 @@ html,
 body {
   box-sizing: border-box;
   background-color: #f7f7f8;
+  overflow-x: hidden;
 }
 
 body {
-  margin-left: 80px;
-  margin-right: 80px;
+  margin-left: 100px;
+  margin-right: 100px;
 }

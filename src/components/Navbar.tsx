@@ -1,5 +1,7 @@
 import { borderColor, fontColor } from "@/library/constants/colors";
+import { Github, Twitter } from "lucide-react";
 import Link from "next/link";
+import { CiLinkedin } from "react-icons/ci";
 
 const Navbar = () => {
   return (
@@ -11,7 +13,10 @@ const Navbar = () => {
       <div
         className={`navigations absolute w-[400px] h-[37px] left-1/2 -translate-x-1/2 flex gap-4 rounded-[30px] border-[1px]   text-[14px]  ${borderColor.primary} text-[14px] px-4 justify-center items-center font-medium`}
       >
-        <Link href="/" className={`${fontColor.primary} hover:${fontColor.primary} transition-all`}>
+        <Link
+          href="/"
+          className={`${fontColor.primary} hover:${fontColor.primary} transition-all`}
+        >
           Home
         </Link>
         <Link
@@ -46,7 +51,17 @@ const Navbar = () => {
         </Link>
       </div>
 
-      <div className="Links w-[103px] h-[36px] bg-red-600"></div>
+      <div className="Links w-[103px] rounded-[30px] h-[37px] bg-[#3c3c3f] flex items-center gap-2 justify-center">
+        <div className="text-gray-300">
+          <Twitter size={20}/>
+        </div>
+        <div className="text-gray-300">
+        <CiLinkedin size={22} />
+        </div>
+        <div className="text-gray-300">
+          <Github size={20}/>
+        </div>
+      </div>
     </nav>
   );
 };
