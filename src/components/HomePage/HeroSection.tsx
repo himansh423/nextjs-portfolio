@@ -1,34 +1,14 @@
 import { borderColor, fontColor } from "@/library/constants/colors";
 import Image from "next/image";
 import profileImg from "../../../public/Profile.jpg";
-import { Racing_Sans_One } from "next/font/google";
-import { motion } from "framer-motion";
 import PhotoGallery from "./PhotoCards";
+import { racingSans } from "@/library/constants/fonts";
 
-const racingSans = Racing_Sans_One({
-  subsets: ["latin"],
-  weight: "400",
-});
 
-const Card = ({ tilt }: { tilt: number }) => {
-  return (
-    <motion.div
-      className="w-[220px] h-[220px] bg-gradient-to-br from-amber-400 to-yellow-500 rounded-lg shadow-lg cursor-pointer"
-      style={{ rotate: tilt }}
-      whileHover={{ scale: 1.1, rotate: 0 }}
-      drag
-      dragElastic={0.2}
-      dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
-      onDragEnd={(event, info) => {
-        // After drag ends, return to original rotation
-        (event.target as HTMLElement).style.rotate = `${tilt}deg`;
-      }}
-    />
-  );
-};
+
 const HeroSection = () => {
   return (
-    <div className="flex-1 flex flex-col">
+    <div className="w-full flex flex-col">
       {/* profile Box */}
       <div
         className={`w-full h-[250px] flex justify-center items-center border-b-[1px] ${borderColor.primary}`}
@@ -76,12 +56,7 @@ const HeroSection = () => {
 
       {/* Images Box */}
 
-      <div >
-        {/* <div className={`w-[220px] h-[220px] rotate-24 bg-amber-400`}></div>
-         <div className={`w-[220px] h-[220px] bg-red-500`}></div>
-         <div className={`w-[220px] h-[220px] bg-blue-500`}></div>
-         <div className={`w-[220px] h-[220px] bg-teal-500`}></div>
-         <div className={`w-[220px] h-[220px] bg-violet-500`}></div> */}
+      <div>
         <PhotoGallery />
       </div>
     </div>

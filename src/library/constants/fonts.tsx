@@ -1,4 +1,6 @@
+import { Racing_Sans_One } from "next/font/google";
 
-
-export const fonts = {
-}
+export const racingSans = Racing_Sans_One({
+  subsets: ["latin"],
+  weight: "400",
+});

@@ -8,6 +8,7 @@ import cardImg2 from "../../../public/cardimg2.jpg";
 import cardImg3 from "../../../public/cardimg3.jpg";
 import cardImg4 from "../../../public/cardimg4.jpg";
 import cardImg5 from "../../../public/cardimg5.jpg";
+import { borderColor } from "@/library/constants/colors";
 
 export default function PhotoGallery() {
   const containerRef = useRef(null);
@@ -22,7 +23,7 @@ export default function PhotoGallery() {
   
   return (
     <div
-      className="w-full h-[500px] flex items-center justify-center overflow-hidden"
+      className={`w-full h-[500px] flex items-center justify-center overflow-hidden border-b-[1px] ${borderColor.primary}`}
       ref={containerRef}
     >
       <div className="relative w-full max-w-6xl h-[400px] flex items-center justify-center">
