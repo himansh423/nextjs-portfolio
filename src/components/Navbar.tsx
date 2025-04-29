@@ -52,13 +52,13 @@ const Navbar = () => {
       </div>
 
       <div className="Links w-[103px] rounded-[30px] h-[37px] bg-[#3c3c3f] flex items-center gap-2 justify-center">
-        <div className="text-gray-300">
+        <div className="text-gray-300 hover:text-white">
           <Twitter size={20}/>
         </div>
-        <div className="text-gray-300">
+        <div className="text-gray-300 hover:text-white">
         <CiLinkedin size={22} />
         </div>
-        <div className="text-gray-300">
+        <div className="text-gray-300 hover:text-white">
           <Github size={20}/>
         </div>
       </div>

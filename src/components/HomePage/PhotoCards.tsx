@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useRef } from "react";
-import { motion, useMotionValue, useSpring } from "framer-motion";
+import { useState, useRef, useEffect } from "react";
+import { motion, useMotionValue, useSpring, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import cardImg1 from "../../../public/cardimg1.jpg";
 import cardImg2 from "../../../public/cardimg2.jpg";
@@ -12,6 +12,7 @@ import { borderColor } from "@/library/constants/colors";
 
 export default function PhotoGallery() {
   const containerRef = useRef(null);
+  const [isInitialAnimation, setIsInitialAnimation] = useState(true);
   
   const images = [
     cardImg1.src,
@@ -20,6 +21,14 @@ export default function PhotoGallery() {
     cardImg4.src,
     cardImg5.src,
   ];
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsInitialAnimation(false);
+    }, 1000); 
+
+    return () => clearTimeout(timer);
+  }, []);
   
   return (
     <div
@@ -27,22 +36,24 @@ export default function PhotoGallery() {
       ref={containerRef}
     >
       <div className="relative w-full max-w-6xl h-[400px] flex items-center justify-center">
-        {images.map((src, index) => (
-          <PhotoCard
-            key={index}
-            src={src}
-            index={index}
-            total={images.length}
-            containerRef={containerRef}
-          />
-        ))}
+        <AnimatePresence>
+          {images.map((src, index) => (
+            <PhotoCard
+              key={index}
+              src={src}
+              index={index}
+              total={images.length}
+              containerRef={containerRef}
+              isInitialAnimation={isInitialAnimation}
+            />
+          ))}
+        </AnimatePresence>
       </div>
     </div>
   );
 }
 
-function PhotoCard({ src, index, total, containerRef }: any) {
- 
+function PhotoCard({ src, index, total, containerRef, isInitialAnimation }:any) {
   const positions = [
     { x: -450, rotation: -6 },  
     { x: -225, rotation: -2 },  
@@ -55,9 +66,9 @@ function PhotoCard({ src, index, total, containerRef }: any) {
   const baseX = pos.x;
   const baseRotation = pos.rotation;
   
-  const x = useMotionValue(baseX);
+  const x = useMotionValue(isInitialAnimation ? 0 : baseX);
   const y = useMotionValue(0);
-  const rotation = useMotionValue(baseRotation);
+  const rotation = useMotionValue(isInitialAnimation ? 0 : baseRotation);
   
   const springConfig = { damping: 30, stiffness: 350 };
   const xSpring = useSpring(x, springConfig);
@@ -65,6 +76,17 @@ function PhotoCard({ src, index, total, containerRef }: any) {
   const rotationSpring = useSpring(rotation, springConfig);
   
   const [isDragging, setIsDragging] = useState(false);
+
+  useEffect(() => {
+    if (!isInitialAnimation) {
+      const delay = index * 100;
+      
+      setTimeout(() => {
+        x.set(baseX);
+        rotation.set(baseRotation);
+      }, delay);
+    }
+  }, [isInitialAnimation, baseX, baseRotation, index, x, rotation]);
   
   return (
     <motion.div
@@ -73,19 +95,27 @@ function PhotoCard({ src, index, total, containerRef }: any) {
         x: xSpring,
         y: ySpring,
         rotate: rotationSpring,
-        zIndex: isDragging ? 50 : index + 1,
+        zIndex: isDragging ? 50 : isInitialAnimation ? (total - index) : index + 1,
         left: "50%",
         transformOrigin: "center center",
       }}
-      drag
+      initial={{ 
+        scale: isInitialAnimation ? 0.95 : 1,
+        y: isInitialAnimation ? -10 * index : 0
+      }}
+      animate={{ 
+        scale: isDragging ? 1.08 : 1,
+        y: isInitialAnimation ? -10 * index : 0
+      }}
+      drag={!isInitialAnimation}
       dragConstraints={containerRef}
       dragElastic={0.15}
       dragTransition={{ bounceStiffness: 350, bounceDamping: 25 }}
-      whileHover={{
+      whileHover={!isInitialAnimation ? {
         scale: 1.05,
         zIndex: total + 5,
         transition: { duration: 0.2 },
-      }}
+      } : {}}
       whileDrag={{
         scale: 1.08,
         zIndex: total + 10,
@@ -107,7 +137,7 @@ function PhotoCard({ src, index, total, containerRef }: any) {
           borderRadius: "18px",
           boxShadow: "0 10px 25px rgba(0,0,0,0.08)",
           backgroundColor: "#f5f5f5",
-          transform: `translateX(-50%)`,
+          transform: "translateX(-50%)",
         }}
       >
         <Image
