@@ -171,13 +171,14 @@ const AboutSection = () => {
             <div className="absolute w-[200px] z-10 h-full bottom-[26px] left-0 bg-gradient-to-r from-white via-white/8 to-transparent" />
             <div className="absolute w-[200px] h-full bottom-[26px] right-0 bg-gradient-to-r from-transparent z-10  via-white/8 to-white" />
             {/* side blurs */}
-            {/* profile Image */}
+
             <div className="flex items-center  justify-center flex-shrink-0 relative  ">
+              {/* profile Image */}
               <div
-                className={` -translate-x-[50%]  left-[50%] absolute  w-[120px] h-[120px] border-[1px]  rounded-full ${borderColor.primary} flex items-center justify-center`}
+                className={` -translate-x-[50%]  left-[50%] absolute z-10 w-[120px] h-[120px] border-[1px]  rounded-full ${borderColor.primary} flex items-center justify-center`}
               >
                 <div
-                  className={`w-[100px]  h-[100px] border-[1px]  rounded-full ${borderColor.primary} relative overflow-hidden`}
+                  className={`w-[100px]  h-[100px] border-[1px]  rounded-full ${borderColor.primary} relative overflow-hidden shadow-inner`}
                 >
                   <Image
                     src={"/Profile.jpg"}
@@ -189,36 +190,112 @@ const AboutSection = () => {
               </div>
               {/* profile image */}
               <div
-                className={`w-[190px] h-[190px] border-[1px]  rounded-full ${borderColor.primary} flex items-center justify-center `}
+                className={`w-[190px] h-[190px] border-[1px]  rounded-full ${borderColor.primary} flex items-center justify-center relative `}
               >
+                {/* small connections div */}
+                <div
+                  className={`w-[35px] h-[35px]  rounded-full absolute -translate-x-[50%]  left-[50%]  top-[-10px] flex justify-center items-center ${borderColor.primary} border-[1px]`}
+                >
+                  <div
+                    className={`w-[30px] shadow-inner h-[30px] rounded-full border-[1px] ${borderColor.primary} relative overflow-hidden`}
+                  >
+                    <Image
+                      src={"/Profile.jpg"}
+                      alt="profileImage"
+                      layout="fill"
+                      objectFit="cover"
+                    />
+                  </div>
+                </div>
+                {/* small connections div */}
                 <div
                   className={`w-[170px] bg-[#E9EAF1] shadow-inner h-[170px] border-[1px]  rounded-full ${borderColor.primary}`}
                 ></div>
               </div>
               <div
-                className={`w-[190px] h-[190px] border-[1px]  rounded-full ${borderColor.primary} flex items-center justify-center`}
+                className={`w-[190px] h-[190px] border-[1px]  rounded-full ${borderColor.primary} flex items-center justify-center relative `}
               >
+                {/* small connections div */}
+                <div
+                  className={`w-[50px] h-[50px]  rounded-full absolute   left-0 bottom-[20px] flex justify-center items-center ${borderColor.primary} border-[1px] `}
+                >
+                  <div
+                    className={`w-[40px] shadow-inner h-[40px] rounded-full border-[1px] ${borderColor.primary} relative overflow-hidden`}
+                  >
+                    <Image
+                      src={"/Profile.jpg"}
+                      alt="profileImage"
+                      layout="fill"
+                      objectFit="cover"
+                    />
+                  </div>
+                </div>
+                <div
+                  className={`w-[60px] h-[60px]  rounded-full absolute   right-[50px] top-[-10px] flex justify-center items-center ${borderColor.primary} border-[1px] `}
+                >
+                  <div
+                    className={`w-[50px] shadow-inner h-[50px] rounded-full border-[1px] ${borderColor.primary} relative overflow-hidden`}
+                  >
+                    <Image
+                      src={"/Profile.jpg"}
+                      alt="profileImage"
+                      layout="fill"
+                      objectFit="cover"
+                    />
+                  </div>
+                </div>
+                {/* small connections div */}
                 <div
                   className={`w-[170px] bg-[#E9EAF1] shadow-inner h-[170px] border-[1px]  rounded-full ${borderColor.primary}`}
                 ></div>
               </div>{" "}
               <div
-                className={`w-[190px] h-[190px] border-[1px]  rounded-full ${borderColor.primary} flex items-center justify-center`}
+                className={`w-[190px] h-[190px] border-[1px]  rounded-full ${borderColor.primary} flex items-center justify-center relative`}
               >
+                {/* small connections div */}
+                <div className={`w-[70px] h-[70px]  rounded-full absolute   right-0 bottom-[20px]  flex justify-center items-center ${borderColor.primary} border-[1px]  `}>
+                <div
+                    className={`w-[60px] shadow-inner h-[60px] rounded-full border-[1px] ${borderColor.primary} relative overflow-hidden`}
+                  >
+                    <Image
+                      src={"/Profile.jpg"}
+                      alt="profileImage"
+                      layout="fill"
+                      objectFit="cover"
+                    />
+                  </div>
+                </div>
+                {/* small connections div */}
                 <div
                   className={`w-[170px] h-[170px] border-[1px] bg-[#E9EAF1] shadow-inner rounded-full ${borderColor.primary}`}
                 ></div>
               </div>
               <div
-                className={`w-[190px] h-[190px] border-[1px]  rounded-full ${borderColor.primary} flex items-center justify-center`}
+                className={`w-[190px] h-[190px] border-[1px]  rounded-full ${borderColor.primary} flex items-center justify-center relative`}
               >
+                {/* small connections div */}
+                <div className={`w-[40px] h-[40px]  rounded-full absolute   left-0 top-[20px] flex justify-center items-center ${borderColor.primary} border-[1px]  `}>
+                <div
+                    className={`w-[35px] shadow-inner h-[35px] rounded-full border-[1px] ${borderColor.primary} relative overflow-hidden`}
+                  >
+                    <Image
+                      src={"/Profile.jpg"}
+                      alt="profileImage"
+                      layout="fill"
+                      objectFit="cover"
+                    />
+                  </div>
+                </div>
+                {/* small connections div */}
                 <div
                   className={`w-[170px] h-[170px] border-[1px] bg-[#E9EAF1] shadow-inner  rounded-full ${borderColor.primary}`}
                 ></div>
               </div>{" "}
             </div>
             <div className="w-full flex flex-col  items-center">
-            <p className={`text-[#000000] mb-[8px] font-semibold`}>Connections</p>
+              <p className={`text-[#000000] mb-[8px] font-semibold`}>
+                Connections
+              </p>
               <p className={`${fontColor.secondry}`}>
                 Check out my favorite tech and spots around the globe.
               </p>
