@@ -12,7 +12,7 @@ const page = () => {
           backgroundSize: "contain",
         }}
       ></div>
-      <div className="flex-1 flex flex-col">
+      <div className="flex-1 flex flex-col overflow-hidden">
         <HeroSection />
         <AboutSection />
       </div>

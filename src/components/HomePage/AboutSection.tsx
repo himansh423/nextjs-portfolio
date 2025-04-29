@@ -19,7 +19,7 @@ const AboutSection = () => {
       {/* about grid */}
       {/* parent div */}
       <div
-        className={`w-full flex justify-between gap-2 items-center mt-20 border-y-[1px] ${borderColor.primary} `}
+        className={`w-full overflow-hidden flex justify-between gap-2 items-center mt-20 border-y-[1px] ${borderColor.primary} `}
       >
         {/* child div1 */}
         <div className="w-[40%] flex flex-col gap-2">
@@ -161,10 +161,70 @@ const AboutSection = () => {
           </div>
         </div>
         {/* child div2 */}
-        <div className="w-[60%] flex flex-col gap-2">
+        <div className="w-[60%] relative flex flex-col gap-2 items-center overflow-hidden">
+          {/* div2 -child div(i) */}
+
           <div
-            className={`w-full h-[300px] rounded-2xl  border-[1px] ${borderColor.primary} bg-[#ffffff] shadow-gray-300`}
-          ></div>
+            className={`w-full h-[300px] rounded-2xl overflow-hidden   border-[1px] ${borderColor.primary} relative flex flex-col items-center py-[20px] bg-[#ffffff] shadow-gray-300`}
+          >
+            {/* side blurs */}
+            <div className="absolute w-[200px] z-10 h-full bottom-[26px] left-0 bg-gradient-to-r from-white via-white/8 to-transparent" />
+            <div className="absolute w-[200px] h-full bottom-[26px] right-0 bg-gradient-to-r from-transparent z-10  via-white/8 to-white" />
+            {/* side blurs */}
+            {/* profile Image */}
+            <div className="flex items-center  justify-center flex-shrink-0 relative  ">
+              <div
+                className={` -translate-x-[50%]  left-[50%] absolute  w-[120px] h-[120px] border-[1px]  rounded-full ${borderColor.primary} flex items-center justify-center`}
+              >
+                <div
+                  className={`w-[100px]  h-[100px] border-[1px]  rounded-full ${borderColor.primary} relative overflow-hidden`}
+                >
+                  <Image
+                    src={"/Profile.jpg"}
+                    alt="profileImage"
+                    layout="fill"
+                    objectFit="cover"
+                  />
+                </div>
+              </div>
+              {/* profile image */}
+              <div
+                className={`w-[190px] h-[190px] border-[1px]  rounded-full ${borderColor.primary} flex items-center justify-center `}
+              >
+                <div
+                  className={`w-[170px] bg-[#E9EAF1] shadow-inner h-[170px] border-[1px]  rounded-full ${borderColor.primary}`}
+                ></div>
+              </div>
+              <div
+                className={`w-[190px] h-[190px] border-[1px]  rounded-full ${borderColor.primary} flex items-center justify-center`}
+              >
+                <div
+                  className={`w-[170px] bg-[#E9EAF1] shadow-inner h-[170px] border-[1px]  rounded-full ${borderColor.primary}`}
+                ></div>
+              </div>{" "}
+              <div
+                className={`w-[190px] h-[190px] border-[1px]  rounded-full ${borderColor.primary} flex items-center justify-center`}
+              >
+                <div
+                  className={`w-[170px] h-[170px] border-[1px] bg-[#E9EAF1] shadow-inner rounded-full ${borderColor.primary}`}
+                ></div>
+              </div>
+              <div
+                className={`w-[190px] h-[190px] border-[1px]  rounded-full ${borderColor.primary} flex items-center justify-center`}
+              >
+                <div
+                  className={`w-[170px] h-[170px] border-[1px] bg-[#E9EAF1] shadow-inner  rounded-full ${borderColor.primary}`}
+                ></div>
+              </div>{" "}
+            </div>
+            <div className="w-full flex flex-col  items-center">
+            <p className={`text-[#000000] mb-[8px] font-semibold`}>Connections</p>
+              <p className={`${fontColor.secondry}`}>
+                Check out my favorite tech and spots around the globe.
+              </p>
+            </div>
+          </div>
+          {/* div2 -child div(ii) */}
           <div
             className={`w-full h-[220px] rounded-2xl  border-[1px] ${borderColor.primary} bg-[#ffffff] shadow-gray-300`}
           ></div>
