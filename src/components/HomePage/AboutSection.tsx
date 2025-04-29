@@ -1,8 +1,19 @@
+"use client";
 import { borderColor, fontColor } from "@/library/constants/colors";
 import { racingSans } from "@/library/constants/fonts";
 import Image from "next/image";
+import { motion } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@/redux/store";
+import { homeAboutActions } from "@/redux/homeAboutSlice";
 
 const AboutSection = () => {
+  const { isAboutHovering } = useSelector(
+    (store: RootState) => store.homeAbout
+  );
+  const dispatch = useDispatch();
+
   return (
     <div>
       <div
@@ -13,7 +24,17 @@ const AboutSection = () => {
       <div
         className={`w-full border-y-[1px]  text-center ${fontColor.primary} text-[36px] font-semibold ${borderColor.primary} mt-7 px-[340px] ${racingSans.className} leading-[40px]`}
       >
-        <p>Here's what sets me apart and makes me unique</p>
+        <motion.p
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{
+            duration: 0.5,
+            delay: 0.5,
+            ease: "easeOut",
+          }}
+        >
+          Here's what sets me apart and makes me unique
+        </motion.p>
       </div>
 
       {/* about grid */}
@@ -23,11 +44,17 @@ const AboutSection = () => {
       >
         {/* child div1 */}
         <div className="w-[40%] flex flex-col gap-2">
-          {/* div1 - child div(i) */}
-          <div
-            className={`w-full h-[220px] rounded-2xl border-[1px] ${borderColor.primary} bg-[#ffffff] shadow-gray-300 flex justify-between p-[24px]  relative overflow-hidden`}
+          {/* div1 - child div(i)*/}
+          <motion.div
+            onHoverStart={() =>
+              dispatch(homeAboutActions.setIsAboutHovering(true))
+            }
+            onHoverEnd={() =>
+              dispatch(homeAboutActions.setIsAboutHovering(false))
+            }
+            className={`w-full h-[220px] rounded-2xl border-[1px] ${borderColor.primary}   shadow-gray-300 flex bg-[#ffffff] justify-between p-[24px] cursor-pointer relative overflow-hidden`}
           >
-            <div className=" flex flex-col text-[16px] w-[230px]">
+            <div className="flex flex-col text-[16px] w-[230px]">
               <p className={`text-[#000000] mb-[16px] font-semibold`}>
                 Learn more about me
               </p>
@@ -36,18 +63,28 @@ const AboutSection = () => {
                 <p>I'm Himanshu, a Experienced Full Stack Developer.</p>
               </div>
             </div>
-            <div className="flex-1  flex justify-center text-center relative">
+            <div className="flex-1 flex justify-center text-center relative">
               {/* backDiv */}
-              <div
+              <motion.div
+                animate={{
+                  borderColor: isAboutHovering ? "#4F46E5" : "",
+                  transition: { duration: 0.6 },
+                }}
                 className={`w-[185px] rounded-xl h-[290px] border-[1px] flex items-center justify-center ${borderColor.primary}`}
               >
                 <div
                   className={`w-[165px] border-[1px] rounded-lg h-[270px] bg-[#E9EAF1]  ${borderColor.primary}`}
                 ></div>
-              </div>
+              </motion.div>
               {/* imgDiv - overlay */}
-              <div
-                className={`w-[185px] rounded-xl h-[290px] border-[1px] flex items-center justify-center ${borderColor.primary} absolute  translate-x-[-50%]  left-[50%] top-0 rotate-12 overflow-hidden`}
+              <motion.div
+                animate={{
+                  rotate: isAboutHovering ? 8 : 12,
+                  y: isAboutHovering ? -5 : 0,
+                  scale: isAboutHovering ? 1.05 : 1,
+                  transition: { duration: 0.3, ease: "easeOut" },
+                }}
+                className={`w-[185px] rounded-xl h-[290px] border-[1px] flex items-center justify-center ${borderColor.primary} absolute  translate-x-[-50%]  left-[50%] top-0  overflow-hidden`}
               >
                 {" "}
                 <div className="w-full h-full relative overflow-hidden">
@@ -58,9 +95,34 @@ const AboutSection = () => {
                     objectFit="cover"
                   />
                 </div>
-              </div>
+              </motion.div>
             </div>
-          </div>
+            {/* arrow  */}
+            <motion.div
+              animate={{
+                display: isAboutHovering ? "flex" : "hidden",
+                opacity: isAboutHovering ? 1 : 0,
+                y: isAboutHovering ? 0 : 10,
+                transition: { duration: 0.3 },
+              }}
+              className="absolute hidden  items-center justify-center w-[40px] h-[40px] rounded-full bottom-[10px] right-[10px] bg-[#C7D2FE] z-30"
+            >
+              <ArrowUpRight className="text-[#4F46E5]" />
+            </motion.div>
+            {/* arrow  */}
+
+            {/* bluish overlay with gradient */}
+            <motion.div
+              animate={{
+                display: isAboutHovering ? "flex" : "hidden",
+                opacity: isAboutHovering ? 1 : 0,
+
+                transition: { duration: 0.3 },
+              }}
+              className="absolute  w-full h-[100px] bottom-0 left-0 bg-gradient-to-br from-transparent via-[#EEF2FF]/6 to-[#C7D2FE]"
+            />
+            {/* bluish overlay with gradient */}
+          </motion.div>
           {/* div1 - child div(ii) */}
           <div
             className={`w-full h-[300px] rounded-2xl  border-[1px] ${borderColor.primary} bg-[#ffffff] shadow-gray-300 py-[24px] flex flex-col justify-between overflow-hidden relative`}
@@ -165,7 +227,7 @@ const AboutSection = () => {
           {/* div2 -child div(i) */}
 
           <div
-            className={`w-full h-[300px] rounded-2xl overflow-hidden   border-[1px] ${borderColor.primary} relative flex flex-col items-center py-[20px] bg-[#ffffff] shadow-gray-300`}
+            className={`w-full h-[300px] rounded-2xl overflow-hidden border-[1px] ${borderColor.primary} relative flex flex-col items-center py-[20px] bg-[#ffffff] shadow-gray-300`}
           >
             {/* side blurs */}
             <div className="absolute w-[200px] z-10 h-full bottom-[26px] left-0 bg-gradient-to-r from-white via-white/8 to-transparent" />
@@ -253,8 +315,10 @@ const AboutSection = () => {
                 className={`w-[190px] h-[190px] border-[1px]  rounded-full ${borderColor.primary} flex items-center justify-center relative`}
               >
                 {/* small connections div */}
-                <div className={`w-[70px] h-[70px]  rounded-full absolute   right-0 bottom-[20px]  flex justify-center items-center ${borderColor.primary} border-[1px]  `}>
                 <div
+                  className={`w-[70px] h-[70px]  rounded-full absolute   right-0 bottom-[20px]  flex justify-center items-center ${borderColor.primary} border-[1px]  `}
+                >
+                  <div
                     className={`w-[60px] shadow-inner h-[60px] rounded-full border-[1px] ${borderColor.primary} relative overflow-hidden`}
                   >
                     <Image
@@ -274,8 +338,10 @@ const AboutSection = () => {
                 className={`w-[190px] h-[190px] border-[1px]  rounded-full ${borderColor.primary} flex items-center justify-center relative`}
               >
                 {/* small connections div */}
-                <div className={`w-[40px] h-[40px]  rounded-full absolute   left-0 top-[20px] flex justify-center items-center ${borderColor.primary} border-[1px]  `}>
                 <div
+                  className={`w-[40px] h-[40px]  rounded-full absolute   left-0 top-[20px] flex justify-center items-center ${borderColor.primary} border-[1px]  `}
+                >
+                  <div
                     className={`w-[35px] shadow-inner h-[35px] rounded-full border-[1px] ${borderColor.primary} relative overflow-hidden`}
                   >
                     <Image
