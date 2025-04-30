@@ -9,7 +9,7 @@ import { RootState } from "@/redux/store";
 import { homeAboutActions } from "@/redux/homeAboutSlice";
 
 const AboutSection = () => {
-  const { isAboutHovering } = useSelector(
+  const { isAboutHovering, isTechBoxHovering } = useSelector(
     (store: RootState) => store.homeAbout
   );
   const dispatch = useDispatch();
@@ -124,8 +124,14 @@ const AboutSection = () => {
             {/* bluish overlay with gradient */}
           </motion.div>
           {/* div1 - child div(ii) */}
-          <div
-            className={`w-full h-[300px] rounded-2xl  border-[1px] ${borderColor.primary} bg-[#ffffff] shadow-gray-300 py-[24px] flex flex-col justify-between overflow-hidden relative`}
+          <motion.div
+            onHoverStart={() =>
+              dispatch(homeAboutActions.setIsTechBoxHovering(true))
+            }
+            onHoverEnd={() =>
+              dispatch(homeAboutActions.setIsTechBoxHovering(false))
+            }
+            className={`w-full h-[300px] rounded-2xl  border-[1px] ${borderColor.primary} bg-[#ffffff] shadow-gray-300 py-[24px] flex flex-col justify-between cursor-pointer overflow-hidden relative`}
           >
             <div className={` flex flex-col items-center text-[16px]`}>
               <p className={`text-[#000000] mb-[8px] font-semibold`}>Techbox</p>
@@ -133,8 +139,14 @@ const AboutSection = () => {
                 Check out my favorite tech and spots around the globe.
               </p>
             </div>
-            <div className="flex w-full items-center justify-center gap-3  overflow-hidden">
-              <div
+            <div className="flex w-full h-[150px] items-end justify-center gap-3  overflow-hidden">
+              <motion.div
+                animate={{
+                  y: isTechBoxHovering ? -20 : 0,
+
+                  borderColor: isTechBoxHovering ? "#4F46E5" : "",
+                  transition: { duration: 0.3 },
+                }}
                 className={`w-[120px] h-[120px] flex-shrink-0 rounded-[20px] border-[1px] ${borderColor.primary} flex justify-center items-center`}
               >
                 <div
@@ -149,8 +161,14 @@ const AboutSection = () => {
                     />
                   </div>
                 </div>
-              </div>{" "}
-              <div
+              </motion.div>{" "}
+              <motion.div
+                animate={{
+                  y: isTechBoxHovering ? -20 : 0,
+
+                  borderColor: isTechBoxHovering ? "#4F46E5" : "",
+                  transition: { ease: "easeIn", duration: 0.3 },
+                }}
                 className={`w-[120px] h-[120px] flex-shrink-0 rounded-[20px] border-[1px] ${borderColor.primary} flex justify-center items-center`}
               >
                 <div
@@ -165,9 +183,15 @@ const AboutSection = () => {
                     />
                   </div>
                 </div>
-              </div>
+              </motion.div>
               {/* center div */}
-              <div
+              <motion.div
+                animate={{
+                  y: isTechBoxHovering ? -20 : 0,
+
+                  borderColor: isTechBoxHovering ? "#4F46E5" : "",
+                  transition: { ease: "easeIn", duration: 0.1 },
+                }}
                 className={`w-[130px] h-[130px] flex-shrink-0 rounded-[20px] border-[1px] ${borderColor.primary} flex justify-center items-center`}
               >
                 <div
@@ -182,9 +206,15 @@ const AboutSection = () => {
                     />
                   </div>
                 </div>
-              </div>
+              </motion.div>
               {/* center div */}
-              <div
+              <motion.div
+                animate={{
+                  y: isTechBoxHovering ? -20 : 0,
+
+                  borderColor: isTechBoxHovering ? "#4F46E5" : "",
+                  transition: { ease: "easeIn", duration: 0.3 },
+                }}
                 className={`w-[120px] h-[120px] flex-shrink-0 rounded-[20px] border-[1px] ${borderColor.primary} flex justify-center items-center`}
               >
                 <div
@@ -199,8 +229,14 @@ const AboutSection = () => {
                     />
                   </div>
                 </div>
-              </div>
-              <div
+              </motion.div>
+              <motion.div
+                animate={{
+                  y: isTechBoxHovering ? -20 : 0,
+
+                  borderColor: isTechBoxHovering ? "#4F46E5" : "",
+                  transition: { ease: "easeIn", duration: 0.3 },
+                }}
                 className={`w-[120px] h-[120px] flex-shrink-0 rounded-[20px] border-[1px] ${borderColor.primary} flex justify-center items-center`}
               >
                 <div
@@ -215,12 +251,36 @@ const AboutSection = () => {
                     />
                   </div>
                 </div>
-              </div>{" "}
+              </motion.div>{" "}
             </div>
 
             <div className="absolute w-[80px] h-full bottom-[26px] left-0 bg-gradient-to-r from-white via-white/20 to-transparent" />
             <div className="absolute w-[80px] h-full bottom-[26px] right-0 bg-gradient-to-r from-transparent  via-white/20 to-white" />
-          </div>
+            {/* arrow  */}
+            <motion.div
+              animate={{
+                display: isTechBoxHovering ? "flex" : "hidden",
+                opacity: isTechBoxHovering ? 1 : 0,
+                y: isTechBoxHovering ? 0 : 10,
+                transition: { duration: 0.3 },
+              }}
+              className="absolute hidden  items-center justify-center w-[40px] h-[40px] rounded-full bottom-[10px] right-[10px] bg-[#C7D2FE] z-30"
+            >
+              <ArrowUpRight className="text-[#4F46E5]" />
+            </motion.div>
+            {/* arrow  */}
+
+            {/* bluish overlay with gradient */}
+            <motion.div
+              animate={{
+                display: isTechBoxHovering ? "flex" : "hidden",
+                opacity: isTechBoxHovering ? 1 : 0,
+                transition: { duration: 0.3 },
+              }}
+              className="absolute  w-full h-[100px] bottom-0 left-0 bg-gradient-to-br from-transparent via-[#EEF2FF]/6 to-[#C7D2FE]"
+            />
+            {/* bluish overlay with gradient */}
+          </motion.div>
         </div>
         {/* child div2 */}
         <div className="w-[60%] relative flex flex-col gap-2 items-center overflow-hidden">

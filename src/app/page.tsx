@@ -1,6 +1,7 @@
 import HeroSection from "@/components/HomePage/HeroSection";
 import sideLines from "../../public/sideLines.jpg";
 import AboutSection from "@/components/HomePage/AboutSection";
+import BlogSection from "@/components/HomePage/BlogSection";
 
 const page = () => {
   return (
@@ -15,6 +16,7 @@ const page = () => {
       <div className="flex-1 flex flex-col overflow-hidden">
         <HeroSection />
         <AboutSection />
+        <BlogSection/>
       </div>
 
       <div
