@@ -9,10 +9,47 @@ import { RootState } from "@/redux/store";
 import { homeAboutActions } from "@/redux/homeAboutSlice";
 
 const AboutSection = () => {
-  const { isAboutHovering, isTechBoxHovering, isConnectionBoxHovering } =
-    useSelector((store: RootState) => store.homeAbout);
+  const {
+    isAboutHovering,
+    isTechBoxHovering,
+    isConnectionBoxHovering,
+    isCallBoxHovering,
+  } = useSelector((store: RootState) => store.homeAbout);
   const dispatch = useDispatch();
-
+  const calenderElements = [
+    "SUN",
+    "MON",
+    "TUE",
+    "WED",
+    "THU",
+    "FRI",
+    "SAT",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+    "10",
+    "11",
+    "13",
+    "14",
+    "15",
+    "16",
+    "17",
+    "18",
+    "19",
+    "20",
+    "21",
+    "22",
+    "23",
+    "24",
+    "25",
+    "26",
+  ];
   return (
     <div>
       <div
@@ -491,9 +528,94 @@ const AboutSection = () => {
             {/* bluish overlay with gradient */}
           </motion.div>
           {/* div2 -child div(ii) */}
-          <div
-            className={`w-full h-[220px] rounded-2xl  border-[1px] ${borderColor.primary} bg-[#ffffff] shadow-gray-300`}
-          ></div>
+          <motion.div
+            onHoverStart={() =>
+              dispatch(homeAboutActions.setIsCallBoxHovering(true))
+            }
+            onHoverEnd={() =>
+              dispatch(homeAboutActions.setIsCallBoxHovering(false))
+            }
+            className={`w-full h-[220px] rounded-2xl  border-[1px] ${borderColor.primary} bg-[#ffffff] shadow-gray-300  flex justify-between pl-[24px]  cursor-pointer relative overflow-hidden`}
+          >
+            <div className="flex flex-col text-[16px] py-5 w-[180px]">
+              <p className={`text-[#000000] mb-[16px] font-semibold`}>
+                Book a call with me
+              </p>
+              <div className={`${fontColor.secondry}`}>
+                <p>
+                  I'd love to chat even
+                  <br />
+                  if there is no agenda!
+                </p>
+              </div>
+            </div>
+            <div className="flex-1 flex items-end justify-end text-center relative flex-shrink-0  ">
+              <motion.div
+                animate={{
+                  borderColor: isCallBoxHovering ? "#4F46E5" : "",
+                  scale: isCallBoxHovering ? 1.1 : 1,
+                  transition: { duration: 0.3 },
+                }}
+                className={`w-[490px] h-[190px] border-t-[1px]
+              border-l-[1px] rounded-tl-[20px] flex items-end justify-end ${borderColor.primary} flex-shrink-0`}
+              >
+                <div
+                  className={`w-[480px] h-[180px] border-t-[1px]
+              border-l-[1px] rounded-tl-[10px] ${borderColor.primary} shadow-inner overflow-hidden bg-[#E9EAF1] flex flex-col flex-shrink-0 `}
+                >
+                  <div className="w-full h-[40px] px-[10px] flex items-center justify-start gap-2.5 flex-shrink-0">
+                    <p
+                      className={`${fontColor.secondry} font-semibold text-[14px]`}
+                    >
+                      April, 2025
+                    </p>
+                    <span className="h-1 w-1 rounded-full bg-[#a5aeb8]"></span>
+                    <p className={`  text-[#a5aeb8] text-[12px]`}>
+                      30 minute call
+                    </p>
+                  </div>
+                  <div className="flex-1  pl-[20px]  grid grid-cols-7 grid-rows-5 gap-2 px-4">
+                    {calenderElements.map((item, index) => {
+                      return (
+                        <div
+                          key={index}
+                          className={`col-span-1 row-span-1 flex h-8 w-8 items-center justify-center 
+                              text-[#a5aeb8] text-[12px] font-semibold
+                            `}
+                        >
+                          <p>{item}</p>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+            {/* arrow  */}
+            <motion.div
+              animate={{
+                display: isCallBoxHovering ? "flex" : "hidden",
+                opacity: isCallBoxHovering ? 1 : 0,
+                y: isCallBoxHovering ? 0 : 10,
+                transition: { duration: 0.3 },
+              }}
+              className="absolute hidden  items-center justify-center w-[40px] h-[40px] rounded-full bottom-[10px] right-[10px] bg-[#C7D2FE] z-40"
+            >
+              <ArrowUpRight className="text-[#4F46E5]" />
+            </motion.div>
+            {/* arrow  */}
+
+            {/* bluish overlay with gradient */}
+            <motion.div
+              animate={{
+                display: isCallBoxHovering ? "flex" : "hidden",
+                opacity: isCallBoxHovering ? 1 : 0,
+                transition: { duration: 0.3 },
+              }}
+              className="absolute w-full h-[100px] bottom-0 left-0 bg-gradient-to-br from-transparent via-[#EEF2FF]/3 to-[#C7D2FE] z-30"
+            />
+            {/* bluish overlay with gradient */}
+          </motion.div>
         </div>
       </div>
     </div>

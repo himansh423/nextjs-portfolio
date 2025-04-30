@@ -4,12 +4,14 @@ interface HomeAboutState {
   isAboutHovering: boolean;
   isTechBoxHovering: boolean;
   isConnectionBoxHovering: boolean;
+  isCallBoxHovering: boolean;
 }
 
 const initialState: HomeAboutState = {
   isAboutHovering: false,
   isTechBoxHovering: false,
   isConnectionBoxHovering: false,
+  isCallBoxHovering: false,
 };
 
 const homeAboutSlice = createSlice({
@@ -24,6 +26,9 @@ const homeAboutSlice = createSlice({
     },
     setIsConnectionBoxHovering: (state, action) => {
       state.isConnectionBoxHovering = action.payload;
+    },
+    setIsCallBoxHovering: (state, action) => {
+      state.isCallBoxHovering = action.payload;
     },
   },
 });
