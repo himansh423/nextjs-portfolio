@@ -9,9 +9,8 @@ import { RootState } from "@/redux/store";
 import { homeAboutActions } from "@/redux/homeAboutSlice";
 
 const AboutSection = () => {
-  const { isAboutHovering, isTechBoxHovering } = useSelector(
-    (store: RootState) => store.homeAbout
-  );
+  const { isAboutHovering, isTechBoxHovering, isConnectionBoxHovering } =
+    useSelector((store: RootState) => store.homeAbout);
   const dispatch = useDispatch();
 
   return (
@@ -145,7 +144,7 @@ const AboutSection = () => {
                   y: isTechBoxHovering ? -20 : 0,
 
                   borderColor: isTechBoxHovering ? "#4F46E5" : "",
-                  transition: { duration: 0.3 },
+                  transition: { duration: 0.6 },
                 }}
                 className={`w-[120px] h-[120px] flex-shrink-0 rounded-[20px] border-[1px] ${borderColor.primary} flex justify-center items-center`}
               >
@@ -190,7 +189,7 @@ const AboutSection = () => {
                   y: isTechBoxHovering ? -20 : 0,
 
                   borderColor: isTechBoxHovering ? "#4F46E5" : "",
-                  transition: { ease: "easeIn", duration: 0.1 },
+                  transition: { ease: "easeIn", duration: 0.4 },
                 }}
                 className={`w-[130px] h-[130px] flex-shrink-0 rounded-[20px] border-[1px] ${borderColor.primary} flex justify-center items-center`}
               >
@@ -213,7 +212,7 @@ const AboutSection = () => {
                   y: isTechBoxHovering ? -20 : 0,
 
                   borderColor: isTechBoxHovering ? "#4F46E5" : "",
-                  transition: { ease: "easeIn", duration: 0.3 },
+                  transition: { ease: "easeIn", duration: 0.6 },
                 }}
                 className={`w-[120px] h-[120px] flex-shrink-0 rounded-[20px] border-[1px] ${borderColor.primary} flex justify-center items-center`}
               >
@@ -235,7 +234,7 @@ const AboutSection = () => {
                   y: isTechBoxHovering ? -20 : 0,
 
                   borderColor: isTechBoxHovering ? "#4F46E5" : "",
-                  transition: { ease: "easeIn", duration: 0.3 },
+                  transition: { ease: "easeIn", duration: 0.6 },
                 }}
                 className={`w-[120px] h-[120px] flex-shrink-0 rounded-[20px] border-[1px] ${borderColor.primary} flex justify-center items-center`}
               >
@@ -277,7 +276,7 @@ const AboutSection = () => {
                 opacity: isTechBoxHovering ? 1 : 0,
                 transition: { duration: 0.3 },
               }}
-              className="absolute  w-full h-[100px] bottom-0 left-0 bg-gradient-to-br from-transparent via-[#EEF2FF]/6 to-[#C7D2FE]"
+              className="absolute w-full h-[100px] bottom-0 left-0 bg-gradient-to-br from-transparent via-[#EEF2FF]/6 to-[#C7D2FE]"
             />
             {/* bluish overlay with gradient */}
           </motion.div>
@@ -286,8 +285,14 @@ const AboutSection = () => {
         <div className="w-[60%] relative flex flex-col gap-2 items-center overflow-hidden">
           {/* div2 -child div(i) */}
 
-          <div
-            className={`w-full h-[300px] rounded-2xl overflow-hidden border-[1px] ${borderColor.primary} relative flex flex-col items-center py-[20px] bg-[#ffffff] shadow-gray-300`}
+          <motion.div
+            onHoverStart={() =>
+              dispatch(homeAboutActions.setIsConnectionBoxHovering(true))
+            }
+            onHoverEnd={() =>
+              dispatch(homeAboutActions.setIsConnectionBoxHovering(false))
+            }
+            className={`w-full h-[300px] rounded-2xl overflow-hidden border-[1px] ${borderColor.primary} relative flex flex-col items-center py-[20px] bg-[#ffffff] shadow-gray-300 cursor-pointer`}
           >
             {/* side blurs */}
             <div className="absolute w-[200px] z-10 h-full bottom-[26px] left-0 bg-gradient-to-r from-white via-white/8 to-transparent" />
@@ -296,7 +301,11 @@ const AboutSection = () => {
 
             <div className="flex items-center  justify-center flex-shrink-0 relative  ">
               {/* profile Image */}
-              <div
+              <motion.div
+                animate={{
+                  borderColor: isConnectionBoxHovering ? "#4F46E5" : "",
+                  transition: { duration: 0.3 },
+                }}
                 className={` -translate-x-[50%]  left-[50%] absolute z-10 w-[120px] h-[120px] border-[1px]  rounded-full ${borderColor.primary} flex items-center justify-center`}
               >
                 <div
@@ -309,13 +318,19 @@ const AboutSection = () => {
                     objectFit="cover"
                   />
                 </div>
-              </div>
+              </motion.div>
               {/* profile image */}
               <div
                 className={`w-[190px] h-[190px] border-[1px]  rounded-full ${borderColor.primary} flex items-center justify-center relative `}
               >
                 {/* small connections div */}
-                <div
+                <motion.div
+                  animate={{
+                    y: isConnectionBoxHovering ? 0 : -100,
+                    opacity: isConnectionBoxHovering ? 1 : 0,
+
+                    transition: { duration: 0.1 },
+                  }}
                   className={`w-[35px] h-[35px]  rounded-full absolute -translate-x-[50%]  left-[50%]  top-[-10px] flex justify-center items-center ${borderColor.primary} border-[1px]`}
                 >
                   <div
@@ -328,7 +343,7 @@ const AboutSection = () => {
                       objectFit="cover"
                     />
                   </div>
-                </div>
+                </motion.div>
                 {/* small connections div */}
                 <div
                   className={`w-[170px] bg-[#E9EAF1] shadow-inner h-[170px] border-[1px]  rounded-full ${borderColor.primary}`}
@@ -338,7 +353,13 @@ const AboutSection = () => {
                 className={`w-[190px] h-[190px] border-[1px]  rounded-full ${borderColor.primary} flex items-center justify-center relative `}
               >
                 {/* small connections div */}
-                <div
+                <motion.div
+                  animate={{
+                    y: isConnectionBoxHovering ? 0 : 100,
+                    opacity: isConnectionBoxHovering ? 1 : 0,
+
+                    transition: { duration: 0.4 },
+                  }}
                   className={`w-[50px] h-[50px]  rounded-full absolute   left-0 bottom-[20px] flex justify-center items-center ${borderColor.primary} border-[1px] `}
                 >
                   <div
@@ -351,8 +372,14 @@ const AboutSection = () => {
                       objectFit="cover"
                     />
                   </div>
-                </div>
-                <div
+                </motion.div>
+                <motion.div
+                  animate={{
+                    y: isConnectionBoxHovering ? 0 : -100,
+                    opacity: isConnectionBoxHovering ? 1 : 0,
+
+                    transition: { duration: 0.2 },
+                  }}
                   className={`w-[60px] h-[60px]  rounded-full absolute   right-[50px] top-[-10px] flex justify-center items-center ${borderColor.primary} border-[1px] `}
                 >
                   <div
@@ -365,7 +392,7 @@ const AboutSection = () => {
                       objectFit="cover"
                     />
                   </div>
-                </div>
+                </motion.div>
                 {/* small connections div */}
                 <div
                   className={`w-[170px] bg-[#E9EAF1] shadow-inner h-[170px] border-[1px]  rounded-full ${borderColor.primary}`}
@@ -375,7 +402,13 @@ const AboutSection = () => {
                 className={`w-[190px] h-[190px] border-[1px]  rounded-full ${borderColor.primary} flex items-center justify-center relative`}
               >
                 {/* small connections div */}
-                <div
+                <motion.div
+                  animate={{
+                    y: isConnectionBoxHovering ? 0 : 100,
+                    opacity: isConnectionBoxHovering ? 1 : 0,
+
+                    transition: { duration: 0.5 },
+                  }}
                   className={`w-[70px] h-[70px]  rounded-full absolute   right-0 bottom-[20px]  flex justify-center items-center ${borderColor.primary} border-[1px]  `}
                 >
                   <div
@@ -388,7 +421,7 @@ const AboutSection = () => {
                       objectFit="cover"
                     />
                   </div>
-                </div>
+                </motion.div>
                 {/* small connections div */}
                 <div
                   className={`w-[170px] h-[170px] border-[1px] bg-[#E9EAF1] shadow-inner rounded-full ${borderColor.primary}`}
@@ -398,7 +431,13 @@ const AboutSection = () => {
                 className={`w-[190px] h-[190px] border-[1px]  rounded-full ${borderColor.primary} flex items-center justify-center relative`}
               >
                 {/* small connections div */}
-                <div
+                <motion.div
+                  animate={{
+                    y: isConnectionBoxHovering ? 0 : -100,
+                    opacity: isConnectionBoxHovering ? 1 : 0,
+
+                    transition: { duration: 0.3 },
+                  }}
                   className={`w-[40px] h-[40px]  rounded-full absolute   left-0 top-[20px] flex justify-center items-center ${borderColor.primary} border-[1px]  `}
                 >
                   <div
@@ -411,7 +450,7 @@ const AboutSection = () => {
                       objectFit="cover"
                     />
                   </div>
-                </div>
+                </motion.div>
                 {/* small connections div */}
                 <div
                   className={`w-[170px] h-[170px] border-[1px] bg-[#E9EAF1] shadow-inner  rounded-full ${borderColor.primary}`}
@@ -426,7 +465,31 @@ const AboutSection = () => {
                 Check out my favorite tech and spots around the globe.
               </p>
             </div>
-          </div>
+            {/* arrow  */}
+            <motion.div
+              animate={{
+                display: isConnectionBoxHovering ? "flex" : "hidden",
+                opacity: isConnectionBoxHovering ? 1 : 0,
+                y: isConnectionBoxHovering ? 0 : 10,
+                transition: { duration: 0.3 },
+              }}
+              className="absolute hidden  items-center justify-center w-[40px] h-[40px] rounded-full bottom-[10px] right-[10px] bg-[#C7D2FE] z-40"
+            >
+              <ArrowUpRight className="text-[#4F46E5]" />
+            </motion.div>
+            {/* arrow  */}
+
+            {/* bluish overlay with gradient */}
+            <motion.div
+              animate={{
+                display: isConnectionBoxHovering ? "flex" : "hidden",
+                opacity: isConnectionBoxHovering ? 1 : 0,
+                transition: { duration: 0.3 },
+              }}
+              className="absolute w-full h-[100px] bottom-0 left-0 bg-gradient-to-br from-transparent via-[#EEF2FF]/3 to-[#C7D2FE] z-30"
+            />
+            {/* bluish overlay with gradient */}
+          </motion.div>
           {/* div2 -child div(ii) */}
           <div
             className={`w-full h-[220px] rounded-2xl  border-[1px] ${borderColor.primary} bg-[#ffffff] shadow-gray-300`}

@@ -3,11 +3,13 @@ import { createSlice } from "@reduxjs/toolkit";
 interface HomeAboutState {
   isAboutHovering: boolean;
   isTechBoxHovering: boolean;
+  isConnectionBoxHovering: boolean;
 }
 
 const initialState: HomeAboutState = {
   isAboutHovering: false,
   isTechBoxHovering: false,
+  isConnectionBoxHovering: false,
 };
 
 const homeAboutSlice = createSlice({
@@ -19,6 +21,9 @@ const homeAboutSlice = createSlice({
     },
     setIsTechBoxHovering: (state, action) => {
       state.isTechBoxHovering = action.payload;
+    },
+    setIsConnectionBoxHovering: (state, action) => {
+      state.isConnectionBoxHovering = action.payload;
     },
   },
 });
