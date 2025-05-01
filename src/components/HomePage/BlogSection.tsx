@@ -31,7 +31,7 @@ const BlogSection = () => {
         className={`w-full h-[515px] border-y-[1px] ${borderColor.primary} mt-18 flex justify-between items-center gap-2`}
       >
         <div
-          className={`w-1/3 h-full  px-2 py-2 flex flex-col items-center rounded-3xl ${borderColor.primary} border-[1px]`}
+          className={`w-1/3 h-full  px-2 py-2 flex flex-col items-center rounded-3xl ${borderColor.primary} border-[1px] bg-[#FFFFFF] `}
         >
           <div
             className={`w-full h-[225px]  rounded-2xl ${borderColor.primary} border-[1px] relative overflow-hidden`}
@@ -53,7 +53,7 @@ const BlogSection = () => {
           </div>
         </div>
         <div
-          className={`w-1/3 h-full  px-2 py-2 flex flex-col items-center rounded-3xl ${borderColor.primary} border-[1px]`}
+          className={`w-1/3 h-full bg-[#FFFFFF]  px-2 py-2 flex flex-col items-center rounded-3xl ${borderColor.primary} border-[1px]`}
         >
           <div
             className={`w-full h-[225px]  rounded-2xl ${borderColor.primary} border-[1px] relative overflow-hidden`}
@@ -73,9 +73,9 @@ const BlogSection = () => {
               </p>
             </div>
           </div>
-        </div>        
+        </div>
         <div
-          className={`w-1/3 h-full  px-2 py-2 flex flex-col items-center rounded-3xl ${borderColor.primary} border-[1px]`}
+          className={`w-1/3 h-full bg-[#FFFFFF]  px-2 py-2 flex flex-col items-center rounded-3xl ${borderColor.primary} border-[1px]`}
         >
           <div
             className={`w-full h-[225px]  rounded-2xl ${borderColor.primary} border-[1px] relative overflow-hidden`}
@@ -95,7 +95,8 @@ const BlogSection = () => {
               </p>
             </div>
           </div>
-        </div>      </div>
+        </div>{" "}
+      </div>
     </div>
   );
 };

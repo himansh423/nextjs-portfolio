@@ -2,6 +2,7 @@ import HeroSection from "@/components/HomePage/HeroSection";
 import sideLines from "../../public/sideLines.jpg";
 import AboutSection from "@/components/HomePage/AboutSection";
 import BlogSection from "@/components/HomePage/BlogSection";
+import MySite from "@/components/HomePage/MySite";
 
 const page = () => {
   return (
@@ -17,6 +18,7 @@ const page = () => {
         <HeroSection />
         <AboutSection />
         <BlogSection/>
+        <MySite/>
       </div>
 
       <div
