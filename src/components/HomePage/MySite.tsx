@@ -1,8 +1,16 @@
 "use client";
 import { borderColor, fontColor } from "@/library/constants/colors";
 import { racingSans } from "@/library/constants/fonts";
+import { homeMySiteActions } from "@/redux/homeMySiteSlice";
+import { RootState } from "@/redux/store";
 import { motion } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
+import { useDispatch, useSelector } from "react-redux";
 const MySite = () => {
+  const { isChangelogBoxHovering } = useSelector(
+    (store: RootState) => store.homeMySite
+  );
+  const dispatch = useDispatch();
   return (
     <div className="w-full min-h-screen mt-14">
       <div
@@ -28,11 +36,26 @@ const MySite = () => {
       <div
         className={`w-full h-[276px] ${borderColor.primary} border-y-[1px] mt-18 flex justify-between items-center gap-2`}
       >
-        <div
+        <motion.div
+          onHoverStart={() =>
+            dispatch(homeMySiteActions.setIsChangeLogBoxHovering(true))
+          }
+          onHoverEnd={() =>
+            dispatch(homeMySiteActions.setIsChangeLogBoxHovering(false))
+          }
           className={`w-1/3 h-full  overflow-hidden   rounded-3xl ${borderColor.primary} border-[1px] relative`}
         >
-          <div className="absolute w-full h-full z-20 bg-gradient-to-tr from-[#ffffff] via-[#ffffff]/20 to-transparent overflow-hidden "></div>
-          <div className="backgroundWithTags w-full h-full relative overflow-hidden bg-[#FFFFFF]">
+          {/* changelog background */}
+          <motion.div
+            animate={{
+              y: isChangelogBoxHovering ? -30 : 0,
+              transition: {
+                duration: 0.3,
+                ease: "easeOut",
+              },
+            }}
+            className="backgroundWithTags w-full h-[120%] relative overflow-hidden bg-[#FFFFFF]"
+          >
             {/* center line */}
             <div className="absolute z-10 w-[10px] h-full bg-gray-400 -translate-x-[50%] left-[50%]"></div>
             {/* center line */}
@@ -78,8 +101,58 @@ const MySite = () => {
             </div>
 
             {/* tags */}
+          </motion.div>
+          {/* changelog background */}
+          {/* overlay */}
+          <div
+            className="absolute top-0
+          left-0 w-full h-full z-20 bg-gradient-to-tr from-[#ffffff] via-[#ffffff]/20 to-transparent overflow-hidden "
+          ></div>
+          {/* overlay */}
+          {/* changelog text */}
+          <div
+            className={`w-full h-full absolute top-0 left-0 z-30 bg-transparent flex justify-start items-end px-6 py-6`}
+          >
+            <div className="flex flex-col gap-2">
+              <p className={`${fontColor.primary} text-[16px] font-semibold`}>
+                Changelog
+              </p>
+              <p className={`${fontColor.secondry} text-[16px]`}>
+                Here's what's new on <br />
+                my site
+              </p>
+            </div>
           </div>
-        </div>
+          {/* changelog text */}
+
+          {/* bluish overlay */}
+          {/* arrow  */}
+          <motion.div
+            animate={{
+              display: isChangelogBoxHovering ? "flex" : "hidden",
+              opacity: isChangelogBoxHovering ? 1 : 0,
+              y: isChangelogBoxHovering ? 0 : 10,
+              transition: { duration: 0.3 },
+            }}
+            className="absolute hidden  items-center justify-center w-[40px] h-[40px] rounded-full bottom-[20px] right-[15px] bg-[#C7D2FE] z-30"
+          >
+            <ArrowUpRight className="text-[#4F46E5]" />
+          </motion.div>
+          {/* arrow  */}
+
+          {/* bluish overlay with gradient */}
+          <motion.div
+            animate={{
+              display: isChangelogBoxHovering ? "flex" : "hidden",
+              opacity: isChangelogBoxHovering ? 1 : 0,
+
+              transition: { duration: 0.3 },
+            }}
+            className="absolute  w-full h-[100px] bottom-0 left-0 bg-gradient-to-br from-transparent via-[#EEF2FF]/6 to-[#C7D2FE]"
+          />
+          {/* bluish overlay with gradient */}
+          {/* bluish overlay */}
+        </motion.div>
         <div
           className={`w-1/3 h-full  px-2 py-2 flex flex-col items-center rounded-3xl ${borderColor.primary} border-[1px]`}
         ></div>
