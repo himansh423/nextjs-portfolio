@@ -3,11 +3,13 @@ import { createSlice } from "@reduxjs/toolkit";
 interface HomeMySiteState {
   isChangelogBoxHovering: boolean;
   isMusicBoxHovering: boolean;
+  isCommunityBoxHovering: boolean;
 }
 
 const initialState: HomeMySiteState = {
   isChangelogBoxHovering: false,
   isMusicBoxHovering: false,
+  isCommunityBoxHovering: false,
 };
 
 const homeMySiteSlice = createSlice({
@@ -19,6 +21,9 @@ const homeMySiteSlice = createSlice({
     },
     setIsMusicBoxHovering: (state, action) => {
       state.isMusicBoxHovering = action.payload;
+    },
+    setIsCommunityBoxHovering: (state, action) => {
+      state.isCommunityBoxHovering = action.payload;
     },
   },
 });
