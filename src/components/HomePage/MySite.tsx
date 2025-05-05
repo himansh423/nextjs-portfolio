@@ -184,7 +184,7 @@ const MySite = () => {
                 }}
                 transition={{
                   duration: 0.6,
-                  delay: isMusicBoxHovering ? 0.2 : 0.5, 
+                  delay: isMusicBoxHovering ? 0.2 : 0.5,
                 }}
                 className={`w-[370px] h-[370px] border-[1px] rounded-full flex items-center justify-center`}
               >
@@ -194,7 +194,7 @@ const MySite = () => {
                   }}
                   transition={{
                     duration: 0.5,
-                    delay: isMusicBoxHovering ? 0.2 : 0.6, 
+                    delay: isMusicBoxHovering ? 0.2 : 0.6,
                   }}
                   className={`w-[280px] h-[280px] border-[1px] rounded-full flex items-center justify-center`}
                 >
@@ -219,16 +219,12 @@ const MySite = () => {
           <div className={`w-full h-full absolute top-0 left-0 `}>
             <div className="w-full flex justify-around">
               <motion.div
-
-              animate={{
-                y:isMusicBoxHovering? -10:0
-              }}
-              transition={{
-               
-                delay:0.2
-                
-              }}
-
+                animate={{
+                  y: isMusicBoxHovering ? -10 : 0,
+                }}
+                transition={{
+                  delay: 0.2,
+                }}
                 className={`w-[76px] h-[76px] rounded-full  border-[1px] ${borderColor.primary} flex items-center justify-center mt-20 `}
               >
                 <div
@@ -243,13 +239,12 @@ const MySite = () => {
                 </div>
               </motion.div>
               <motion.div
-               animate={{
-                y:isMusicBoxHovering? -10:0
-              }}
-              transition={{
-                duration: 0.2,
-                
-              }}
+                animate={{
+                  y: isMusicBoxHovering ? -10 : 0,
+                }}
+                transition={{
+                  duration: 0.2,
+                }}
                 className={`w-[117px] h-[117px] rounded-full   border-[1px] ${borderColor.primary} flex items-center justify-center mt-6 `}
               >
                 <div
@@ -264,14 +259,12 @@ const MySite = () => {
                 </div>
               </motion.div>
               <motion.div
-               animate={{
-                y:isMusicBoxHovering? -10:0
-              }}
-              transition={{
-                
-                duration: 0.289,
-                
-              }}
+                animate={{
+                  y: isMusicBoxHovering ? -10 : 0,
+                }}
+                transition={{
+                  duration: 0.289,
+                }}
                 className={`w-[76px] h-[76px] rounded-full  border-[1px] ${borderColor.primary} flex items-center justify-center mt-20 `}
               >
                 <div
@@ -396,8 +389,69 @@ const MySite = () => {
         </motion.div>
 
         <div
-          className={`w-1/3 h-full  px-2 py-2 flex flex-col items-center rounded-3xl ${borderColor.primary} border-[1px]`}
-        ></div>
+          className={`w-1/3 h-full  px-2 py-2 flex flex-col items-center rounded-3xl ${borderColor.primary} border-[1px] relative bg-[#ffffff] overflow-hidden`}
+        >
+          {/* background with cards */}
+          <div className="w-full h-full absolute top-0 left-0  ">
+            <div
+              className={`w-[115px] h-[140px] bg-white overflow-hidden rounded-md ${borderColor.primary} border-[1px] shadow-xl p-2 -rotate-12 absolute top-[-20px] left-10`}
+            >
+              <div className="w-full h-[100px] bg-gradient-to-tr from-pink-500 via-purple-500/80 to-red-500 rounded-sm flex flex-col gap-1 items-center justify-center">
+                <div className="flex gap-1">
+                  <div className="w-[40px] h-[10px] rounded-[20px] bg-[#ffffff]/40"></div>
+                  <div className="w-[20px] rounded-[20px] h-[10px] bg-[#ffffff]/40"></div>
+                </div>
+                <div className="flex  gap-1">
+                  <div className="w-[20px] rounded-[20px] h-[10px] bg-[#ffffff]/40"></div>
+                  <div className="w-[40px] rounded-[20px] h-[10px] bg-[#ffffff]/40"></div>
+                </div>
+                <div className="flex  gap-1">
+                  <div className="w-[40px] rounded-[20px] h-[10px] bg-[#ffffff]/40"></div>
+                  <div className="w-[20px] rounded-[20px] h-[10px] bg-[#ffffff]/40"></div>
+                </div>
+              </div>
+              <div className="w-[20px] h-[20px] rounded-full bg-[#000]/20 mt-1 "></div>
+            </div>
+            <div
+              className={`w-[135px] h-[160px] bg-white overflow-hidden rounded-md ${borderColor.primary} border-[1px] shadow-xl p-2 rotate-12 absolute top-[30px] right-10`}
+            >
+              <div className="w-full h-[120px] bg-gradient-to-tr from-pink-500 via-purple-500/80 to-red-500 rounded-sm flex flex-col gap-1 items-center justify-center">
+                <div className="flex gap-1">
+                  <div className="w-[40px] h-[10px] rounded-[20px] bg-[#ffffff]/40"></div>
+                  <div className="w-[20px] rounded-[20px] h-[10px] bg-[#ffffff]/40"></div>
+                </div>
+                <div className="flex  gap-1">
+                  <div className="w-[20px] rounded-[20px] h-[10px] bg-[#ffffff]/40"></div>
+                  <div className="w-[40px] rounded-[20px] h-[10px] bg-[#ffffff]/40"></div>
+                </div>
+                <div className="flex  gap-1">
+                  <div className="w-[40px] rounded-[20px] h-[10px] bg-[#ffffff]/40"></div>
+                  <div className="w-[20px] rounded-[20px] h-[10px] bg-[#ffffff]/40"></div>
+                </div>
+              </div>
+              <div className="w-[20px] h-[20px] rounded-full bg-[#000]/20 mt-1 "></div>
+            </div>{" "}
+          </div>
+          {/* background with cards */}
+          {/* overlay */}
+          <div className="w-full h-full absolute top-0 left-0 z-10 bg-gradient-to-tr from-[#ffffff] via-[#ffffff]/40 to-transparent"></div>
+          {/* overlay */}
+          {/* text */}
+          <div
+            className={`w-full h-full absolute top-0 left-0 z-30 bg-transparent flex justify-start items-end px-6 py-6`}
+          >
+            <div className="flex flex-col gap-2">
+              <p className={`${fontColor.primary} text-[16px] font-semibold`}>
+                Community Wall
+              </p>
+              <p className={`${fontColor.secondry} text-[16px]`}>
+                Let everyone know<br />
+                you were here
+              </p>
+            </div>
+          </div>{" "}
+          {/* text */}
+        </div>
       </div>
     </div>
   );
