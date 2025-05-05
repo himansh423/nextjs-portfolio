@@ -14,7 +14,7 @@ const MySite = () => {
   const bars = new Array(16).fill(0);
 
   return (
-    <div className="w-full min-h-screen mt-14">
+    <div className="w-full mt-14">
       <div
         className={`w-full border-y-[1px]  text-center text-[#4f46ef] text-[14px] font-semibold ${borderColor.primary} shadow-xs`}
       >
@@ -423,11 +423,12 @@ const MySite = () => {
               </div>
               <div className="w-[20px] h-[20px] rounded-full bg-[#000]/20 mt-1 "></div>
             </motion.div>
-            <motion.div animate={{
+            <motion.div
+              animate={{
                 rotate: isCommunityBoxHovering ? 6 : 12,
               }}
               transition={{
-                delay:0.15,
+                delay: 0.15,
                 duration: 0.289,
               }}
               className={`w-[135px] h-[160px] bg-white overflow-hidden rounded-md ${borderColor.primary} border-[1px] shadow-xl p-2 rotate-12 absolute top-[30px] right-10`}
@@ -469,7 +470,6 @@ const MySite = () => {
             </div>
           </div>{" "}
           {/* text */}
-
           {/* bluish overlay */}
           {/* arrow  */}
           <motion.div
@@ -484,7 +484,6 @@ const MySite = () => {
             <ArrowUpRight className="text-[#4F46E5]" />
           </motion.div>
           {/* arrow  */}
-
           {/* bluish overlay with gradient */}
           <motion.div
             animate={{
