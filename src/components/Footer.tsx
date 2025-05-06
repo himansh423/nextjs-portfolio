@@ -1,64 +1,91 @@
 import { borderColor, fontColor } from "@/library/constants/colors";
-
+import { Github, Twitter } from "lucide-react";
+import { CiLinkedin } from "react-icons/ci";
+import sidelines from "../../public/sideLines.jpg"
 const Footer = () => {
   return (
-    <div className="w-full min-h-screen py-[70px]">
-      <div className="w-full h-[500px] overflow-hidden bg-[#3C3C3F] rounded-2xl flex flex-col justify-between">
-        <div className="w-full flex">
-          <div className="w-[50px] h-[50px]   "></div>
-          <div
-            className={`flex-1 h-[50px]  border-x-[1px] border-[#d4d4d8]`}
-          ></div>
-          <div className="w-[50px] h-[50px]   "></div>{" "}
-        </div>
-        <div className="w-full flex flex-1">
-          <div
-            className={`w-[50px] h-full  border-y-[1px] border-[#d4d4d8]`}
-          ></div>
-          <div
-            className={`mainContent flex-1 h-full  border-[1px] border-[#d4d4d8] flex`}
-          >
-            <div className="w-1/2 h-full px-12 py-11">
-              <p className="text-[#faf8fc] text-[30px] font-semibold ">
-                Subscribe to my newsletter
-              </p>
-              <p className={`text-[#d1d5db] mt-5 text-[16px]`}>
-                A periodic update about my life, recent blog <br /> posts,
-                how-tos, and discoveries.
-              </p>
-              <div className="w-[425px] h-[50px] mt-12 relative">
-                <input
-                  type="text"
-                  placeholder="himanshuchau423@gmail.com"
-                  className="w-full h-full focus:outline-none border-[1px] border-[#d4d4d6]  px-[12px] placeholder:text-[#d4d4d6] rounded-[80px] text-[#faf8fc] focus:border-[2px] focus:border-[#faf8fc]"
-                />
-                <button className="absolute w-[100px] bg-[#ffffff] h-[45] top-[50%] translate-y-[-50%] right-1 rounded-[80px] font-semibold text-[14px]">
-                  <p className={` ${fontColor.primary}`}>
-                    Subscribe
-                  </p>
-                </button>
-              </div>
-
-              <p className={`text-[16px] text-[#d1d5db] mt-10 text-nowrap`}>
-                <span className="text-[#ffffff] font-bold">NO SPAM.</span> I
-                never send spam. You can unsubscribe at any time!
-              </p>
-            </div>
-            <div className="w-1/2 h-full bg-black"></div>
+    <footer>
+      <div
+        className={`w-full h-[240px] border-[1px] ${borderColor.primary} flex`}
+      >
+        <div
+          className={`w-1/2 h-full px-20 py-9 flex justify-between border-r-[1px] ${borderColor.primary}`}
+        >
+          <div className={`flex flex-col gap-6`}>
+            <div className="Logo w-[40px] h-[40px] bg-black"></div>
+            <p className={`text-[14px] ${fontColor.secondry} font-semibold`}>
+              I'm Himanshu - a senior Full-Stack <br /> Developer, blogger and{" "}
+              <br /> Streamer. Thanks for checking out my site!
+            </p>
+            <p className={`text-[14px] font-semibold ${fontColor.secondry}`}>
+              © 2025 Braydon Coyer
+            </p>
           </div>
-          <div
-            className={`w-[50px] h-full  border-y-[1px] border-[#d4d4d8]`}
-          ></div>
+
+          <div className="flex items-end">
+            <div className="Links w-[103px] rounded-[30px] h-[37px] bg-[#3c3c3f] flex items-center gap-2 justify-center">
+              <div className="text-gray-300 hover:text-white">
+                <Twitter size={20} />
+              </div>
+              <div className="text-gray-300 hover:text-white">
+                <CiLinkedin size={22} />
+              </div>
+              <div className="text-gray-300 hover:text-white">
+                <Github size={20} />
+              </div>
+            </div>
+          </div>
         </div>
-        <div className="w-full flex">
-          <div className="w-[50px] h-[50px]  "></div>
-          <div
-            className={`flex-1 h-[50px]  border-x-[1px] border-[#d4d4d8]`}
-          ></div>
-          <div className="w-[50px] h-[50px]  "></div>{" "}
+        <div
+          className={`w-1/2 h-full px- py-9 flex  items-center justify-center gap-10 shrink-0`}
+        >
+          <div className={`w-[150px] h-[200px]  flex flex-col gap-3`}>
+            <p className={`text-[16px] font-semibold ${fontColor.primary}`}>
+              General
+            </p>
+            <div
+              className={`text-[14px] flex flex-col gap-2 ${fontColor.secondry}`}
+            >
+              <p>Home</p>
+              <p>About</p>
+              <p>Projects</p>
+              <p>Contact</p>
+              <p>Blog</p>
+            </div>
+          </div>
+          <div className={`w-[150px] h-[200px]  flex flex-col gap-3`}>
+            <p className={`text-[16px] font-semibold ${fontColor.primary}`}>
+              Specifics
+            </p>
+            <div
+              className={`text-[14px] flex flex-col gap-2 ${fontColor.secondry}`}
+            >
+              <p>Techbox</p>
+              <p>Community Wall</p>
+            </div>
+          </div>
+          <div className={`w-[150px] h-[200px]  flex flex-col gap-3`}>
+            <p className={`text-[16px] font-semibold ${fontColor.primary}`}>
+              Extras
+            </p>
+            <div
+              className={`text-[14px] flex flex-col gap-2 ${fontColor.secondry}`}
+            >
+              <p>Changelog</p>
+              <p>Connections</p>
+              <p>Links</p>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+      <div
+        className="w-full h-[35px] bg-repeat-x bg-top"
+        style={{
+          backgroundImage: `url(${sidelines.src})`,
+          backgroundSize: "contain",
+        }}
+      ></div>
+    </footer>
   );
 };
 

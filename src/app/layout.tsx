@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import { Providers } from "@/redux/provider";
-import Footer from "@/components/Footer";
 import sideLines from "../../public/sideLines.jpg";
+import SubscribeBox from "@/components/SubscribeBox";
+import Footer from "@/components/Footer";
 export const metadata: Metadata = {
   title: "Himanshu Chauhan Portfolio",
   description: "Himanshu Chauhan Portfolio",
@@ -29,7 +30,7 @@ export default function RootLayout({
               }}
             ></div>
             <div className="flex-1 flex flex-col overflow-hidden">
-              <Footer />
+              <SubscribeBox />
             </div>
 
             <div
@@ -40,6 +41,7 @@ export default function RootLayout({
               }}
             ></div>
           </div>
+          <Footer />
         </Providers>
       </body>
     </html>
