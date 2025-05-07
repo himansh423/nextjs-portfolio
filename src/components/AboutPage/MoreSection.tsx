@@ -2,9 +2,18 @@
 
 import { borderColor, fontColor } from "@/library/constants/colors";
 import { racingSans } from "@/library/constants/fonts";
+import { aboutMoreActions } from "@/redux/aboutMoreSlice";
+import { RootState } from "@/redux/store";
 import { motion } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
+import Image from "next/image";
+import { useDispatch, useSelector } from "react-redux";
 
 const MoreSection = () => {
+  const { isMovieBoxEntered } = useSelector(
+    (store: RootState) => store.aboutMore
+  );
+  const dispatch = useDispatch();
   return (
     <div className="w-full min-h-screen mt-24 ">
       <div
@@ -34,8 +43,14 @@ const MoreSection = () => {
         {/* first column */}
         <div className="w-[300px] h-full  flex flex-col gap-2">
           {/* first column - first elem */}
-          <div
-            className={`w-full  h-[300px]  rounded-xl ${borderColor.primary} border-[1px] bg-[#ffffff] p-[24px] relative overflow-hidden`}
+          <motion.div
+            onHoverStart={() =>
+              dispatch(aboutMoreActions.setIsMovieBoxEntered(true))
+            }
+            onHoverEnd={() =>
+              dispatch(aboutMoreActions.setIsMovieBoxEntered(false))
+            }
+            className={`w-full  h-[300px]  rounded-xl ${borderColor.primary} border-[1px] bg-[#ffffff] p-[24px] relative overflow-hidden cursor-pointer`}
           >
             <div className="w-full text-[16px] gap-2 flex flex-col ">
               <p className={`${fontColor.primary} font-semibold`}>
@@ -58,8 +73,52 @@ const MoreSection = () => {
                   ></div>
                 </div>
               </div>
+              <motion.div
+                animate={{
+                  y: isMovieBoxEntered ? -60 : 10,
+                  width: isMovieBoxEntered ? "100px" : "150px",
+                  height: isMovieBoxEntered ? "100px" : "150px",
+                }}
+                transition={{
+                  duration: 0.4,
+                }}
+                className="w-[150px] h-[150px] absolute  rounded-full translate-x-[-50%] left-[50%]  overflow-hidden"
+              >
+                <div className="w-full h-full relative">
+                  <Image
+                    src={"/netflix.jpg"}
+                    alt="bdf"
+                    layout="fill"
+                    objectFit="cover"
+                  />
+                </div>
+              </motion.div>
+              <div className="absolute w-[210px] h-[100px] overflow-hidden rounded-t-lg bg-black translate-x-[-50%] left-[50%] bottom-0">
+                <div className="w-full h-full relative">
+                  <Image
+                    src={"/WalkingDead.jpg"}
+                    layout="fill"
+                    alt={"sjfb"}
+                    objectFit="cover"
+                  />
+                </div>
+              </div>
             </div>
-          </div>
+
+           
+
+           {/* bluish overlay with gradient */}
+          <motion.div
+            animate={{
+              display: isMovieBoxEntered ? "flex" : "hidden",
+              opacity: isMovieBoxEntered ? 1 : 0,
+
+              transition: { duration: 0.3 },
+            }}
+            className="absolute  w-full h-[100px] bottom-0 left-0 bg-gradient-to-br from-transparent via-[#EEF2FF]/6 to-[#C7D2FE]"
+          />
+          {/* bluish overlay with gradient */}
+          </motion.div>
           {/* first column - first elem */}
           <div
             className={`flex-1  bg-[#ffffff] rounded-xl border-[1px] ${borderColor.primary}`}
