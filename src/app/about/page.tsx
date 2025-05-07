@@ -2,6 +2,7 @@ import HeroSection from "@/components/AboutPage/HeroSection";
 import sideLines from "../../../public/sideLines.jpg";
 import IntroSection from "@/components/AboutPage/IntroSection";
 import ExperienceSection from "@/components/AboutPage/ExperienceSection";
+import MoreSection from "@/components/AboutPage/MoreSection";
 
 const page = () => {
   return (
@@ -17,6 +18,7 @@ const page = () => {
         <HeroSection />
         <IntroSection/>
         <ExperienceSection/>
+        <MoreSection/>
       </div>
 
       <div
