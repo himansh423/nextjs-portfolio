@@ -1,4 +1,5 @@
 import { borderColor, fontColor } from "@/library/constants/colors";
+import { racingSans } from "@/library/constants/fonts";
 import Image from "next/image";
 import React from "react";
 
@@ -15,7 +16,7 @@ const HeroSection = () => {
             Good afternoon
           </p>
           <p
-            className={`text-[50px] leading-[60px] ${fontColor.primary} font-bold`}
+            className={`text-[50px] leading-[60px] ${fontColor.primary} ${racingSans.className} font-bold`}
           >
             I'm Himanshu, a creative <br /> Full Stack Developer.
           </p>
