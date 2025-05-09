@@ -8,6 +8,7 @@ interface AboutMoreState {
   isImageTwoHovered: boolean;
   isImageThreeHovered: boolean;
   isImageFourHovered: boolean;
+  isBookBoxHovered: boolean;
 }
 
 const initialState: AboutMoreState = {
@@ -18,6 +19,7 @@ const initialState: AboutMoreState = {
   isImageTwoHovered: false,
   isImageThreeHovered: false,
   isImageFourHovered: false,
+  isBookBoxHovered: false,
 };
 const aboutMoreSlice = createSlice({
   name: "aboutMoreSlice",
@@ -43,6 +45,9 @@ const aboutMoreSlice = createSlice({
     },
     setIsImageFourHovered: (state, action) => {
       state.isImageFourHovered = action.payload;
+    },
+    setIsBookBoxHovered: (state, action) => {
+      state.isBookBoxHovered = action.payload;
     },
   },
 });

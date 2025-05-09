@@ -19,6 +19,7 @@ const MoreSection = () => {
     isImageThreeHovered,
     isImageFourHovered,
     isImageTwoHovered,
+    isBookBoxHovered,
   } = useSelector((store: RootState) => store.aboutMore);
 
   const { isConnectionBoxHovering } = useSelector(
@@ -580,8 +581,54 @@ const MoreSection = () => {
         {/* second column */}
 
         {/* third column */}
-        <div className="w-[195px] h-full bg-amber-900 rounded-xl"></div>
-        {/* third column */}
+        <motion.div
+          onHoverStart={() =>
+            dispatch(aboutMoreActions.setIsBookBoxHovered(true))
+          }
+          onHoverEnd={() =>
+            dispatch(aboutMoreActions.setIsBookBoxHovered(false))
+          }
+          className={`w-[195px] h-full overflow-hidden bg-white rounded-xl relative pt-5 pl-4 ${borderColor.primary} border-[1px] cursor-pointer`}
+        >
+          <p className={`${fontColor.primary} font-semibold text-[16px]`}>
+            Currently Reading
+          </p>
+
+          {/* Image wrapper with tilt on hover */}
+          <motion.div
+            animate={{
+              rotate: isBookBoxHovered ? -4 : 0,
+            }}
+            transition={{ type: "spring", stiffness: 120, damping: 12 }}
+            style={{
+              transformOrigin: "bottom center",
+            }}
+            className="absolute w-[240px] bottom-[-10px] h-[450px] mt-4 ml-auto mr-[-60px] rounded-t-lg overflow-hidden shadow-lg right-[-60px]"
+          >
+            <Image
+              src="/redrising.jpeg"
+              alt="Currently Reading Book"
+              layout="fill"
+              objectFit="cover"
+              objectPosition="left"
+              className="rounded-lg"
+            />
+          </motion.div>
+          {/* overlay */}
+          <div className="absolute h-full w-full bg-gradient-to-tr from-[#ffffff] via-[#ffffff]/10 to-transparent"></div>
+          {/* overlay */}
+
+          {/* bluish overlay with gradient */}
+          <motion.div
+            animate={{
+              display: isBookBoxHovered ? "flex" : "none",
+              opacity: isBookBoxHovered ? 1 : 0,
+              transition: { duration: 0.2 },
+            }}
+            className="absolute w-full h-[100px] bottom-0 left-0 bg-gradient-to-br from-transparent via-[#EEF2FF]/6 to-[#C7D2FE]"
+          />
+          {/* bluish overlay with gradient */}
+        </motion.div>
       </div>
     </div>
   );
