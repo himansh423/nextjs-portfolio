@@ -3,8 +3,10 @@
 import { borderColor, fontColor } from "@/library/constants/colors";
 import { racingSans } from "@/library/constants/fonts";
 import { aboutMoreActions } from "@/redux/aboutMoreSlice";
+import { homeAboutActions } from "@/redux/homeAboutSlice";
 import { RootState } from "@/redux/store";
 import { AnimatePresence, motion } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -18,16 +20,20 @@ const MoreSection = () => {
     isImageFourHovered,
     isImageTwoHovered,
   } = useSelector((store: RootState) => store.aboutMore);
+
+  const { isConnectionBoxHovering } = useSelector(
+    (store: RootState) => store.homeAbout
+  );
   const dispatch = useDispatch();
   return (
     <div className="w-full min-h-screen mt-24 ">
       <div
-        className={`w-full border-y-[1px]  text-center text-[#4f46ef] text-[14px] font-semibold ${borderColor.primary} shadow-xs`}
+        className={`w-full border-y-[1px] text-center text-[#4f46ef] text-[14px] font-semibold ${borderColor.primary} shadow-xs`}
       >
         <p>More</p>
       </div>
       <div
-        className={`w-full border-y-[1px]  text-center ${fontColor.primary} text-[36px] font-semibold ${borderColor.primary} mt-7 px-[340px] ${racingSans.className} leading-[40px] shadow-xs`}
+        className={`w-full border-y-[1px] text-center ${fontColor.primary} text-[36px] font-semibold ${borderColor.primary} mt-7 px-[340px] ${racingSans.className} leading-[40px] shadow-xs`}
       >
         <motion.p
           initial={{ opacity: 0, y: 30 }}
@@ -46,7 +52,7 @@ const MoreSection = () => {
         className={`w-full border-y-[1px] mt-20 ${borderColor.primary} h-[530px] flex justify-between items-center gap-2`}
       >
         {/* first column */}
-        <div className="w-[300px] h-full  flex flex-col gap-2">
+        <div className="w-[300px] h-full flex flex-col gap-2">
           {/* first column - first elem */}
           <motion.div
             onHoverStart={() =>
@@ -55,7 +61,7 @@ const MoreSection = () => {
             onHoverEnd={() =>
               dispatch(aboutMoreActions.setIsMovieBoxEntered(false))
             }
-            className={`w-full  h-[300px]  rounded-xl ${borderColor.primary} border-[1px] bg-[#ffffff] p-[24px] relative overflow-hidden cursor-pointer`}
+            className={`w-full h-[300px] rounded-xl ${borderColor.primary} border-[1px] bg-[#ffffff] p-[24px] relative overflow-hidden cursor-pointer`}
           >
             <div className="w-full text-[16px] gap-2 flex flex-col ">
               <p className={`${fontColor.primary} font-semibold`}>
@@ -66,7 +72,7 @@ const MoreSection = () => {
                 album The Lord of the Rings: The Rings of Power
               </p>
             </div>
-            <div className="w-full h-[150px]  absolute bottom-0 left-0">
+            <div className="w-full h-[150px] absolute bottom-0 left-0">
               <div
                 className={`w-[400px] h-[400px] absolute translate-x-[-50%] left-[50%] rounded-full border-[1px] ${borderColor.primary} flex items-center justify-center`}
               >
@@ -87,7 +93,7 @@ const MoreSection = () => {
                 transition={{
                   duration: 0.4,
                 }}
-                className="w-[150px] h-[150px] absolute  rounded-full translate-x-[-50%] left-[50%]  overflow-hidden"
+                className="w-[150px] h-[150px] absolute rounded-full translate-x-[-50%] left-[50%] overflow-hidden"
               >
                 <div className="w-full h-full relative">
                   <Image
@@ -113,12 +119,11 @@ const MoreSection = () => {
             {/* bluish overlay with gradient */}
             <motion.div
               animate={{
-                display: isMovieBoxEntered ? "flex" : "hidden",
+                display: isMovieBoxEntered ? "flex" : "none",
                 opacity: isMovieBoxEntered ? 1 : 0,
-
                 transition: { duration: 0.3 },
               }}
-              className="absolute  w-full h-[100px] bottom-0 left-0 bg-gradient-to-br from-transparent via-[#EEF2FF]/6 to-[#C7D2FE]"
+              className="absolute w-full h-[100px] bottom-0 left-0 bg-gradient-to-br from-transparent via-[#EEF2FF]/6 to-[#C7D2FE]"
             />
             {/* bluish overlay with gradient */}
           </motion.div>
@@ -132,7 +137,7 @@ const MoreSection = () => {
             onHoverEnd={() =>
               dispatch(aboutMoreActions.setIsStatsBoxEntered(false))
             }
-            className={`flex-1  bg-[#ffffff] rounded-xl border-[1px] ${borderColor.primary} gap-2 p-6 relative flex flex-col overflow-hidden`}
+            className={`flex-1 bg-[#ffffff] rounded-xl border-[1px] ${borderColor.primary} gap-2 p-6 relative flex flex-col overflow-hidden`}
           >
             <div className="w-full flex gap-3 items-center">
               <p className={`text-[18px] ${fontColor.primary} font-semibold`}>
@@ -145,10 +150,10 @@ const MoreSection = () => {
               </p>
             </div>
             <div
-              className={`flex-1  rounded-t-2xl flex items-end justify-center border-t-[1px] border-l-[1px] border-r-[1px]  ${borderColor.primary}`}
+              className={`flex-1 rounded-t-2xl flex items-end justify-center border-t-[1px] border-l-[1px] border-r-[1px] ${borderColor.primary}`}
             >
               <div
-                className={`w-[95%] h-[95%] rounded-t-xl  border-t-[1px] border-l-[1px] border-r-[1px] ${borderColor.primary} shadow-inner px-3 pt-2 bg-[#EDEEF0] flex flex-col`}
+                className={`w-[95%] h-[95%] rounded-t-xl border-t-[1px] border-l-[1px] border-r-[1px] ${borderColor.primary} shadow-inner px-3 pt-2 bg-[#EDEEF0] flex flex-col`}
               >
                 <div className="w-full flex justify-between items-center">
                   <p
@@ -183,11 +188,11 @@ const MoreSection = () => {
             {/* bluish overlay with gradient */}
             <motion.div
               animate={{
-                display: isStatsBoxEntered ? "flex" : "hidden",
+                display: isStatsBoxEntered ? "flex" : "none",
                 opacity: isStatsBoxEntered ? 1 : 0,
                 transition: { duration: 0.3 },
               }}
-              className="absolute  w-full h-[100px] bottom-0 left-0 bg-gradient-to-br from-transparent via-[#EEF2FF]/6 to-[#C7D2FE]"
+              className="absolute w-full h-[100px] bottom-0 left-0 bg-gradient-to-br from-transparent via-[#EEF2FF]/6 to-[#C7D2FE]"
             />
             {/* bluish overlay with gradient */}
           </motion.div>
@@ -205,12 +210,12 @@ const MoreSection = () => {
             onHoverEnd={() =>
               dispatch(aboutMoreActions.setIsExploringBoxEntered(false))
             }
-            className={`w-full h-[220px] bg-[#ffffff] rounded-xl border-[1px] p-[24px] ${borderColor.primary} flex flex-col cursor-pointer`}
+            className={`w-full h-[220px] bg-[#ffffff] rounded-xl border-[1px] p-[24px] ${borderColor.primary} flex flex-col cursor-pointer relative`}
           >
             <p className={`${fontColor.primary} text-[16px] font-semibold`}>
               Currently Exploring
             </p>
-            <div className={`flex justify-around items-center flex-1`}>
+            <div className={`flex justify-around items-center flex-1 relative`}>
               <motion.div
                 animate={{
                   scale: isExploringBoxEntered ? 1.3 : 1,
@@ -222,6 +227,7 @@ const MoreSection = () => {
                   dispatch(aboutMoreActions.setIsImageOneHovered(false))
                 }
                 className="w-[100px] h-[100px] relative"
+                style={{ zIndex: isImageOneHovered ? 50 : 1 }}
               >
                 <Image
                   src={"/javalogo.webp"}
@@ -235,10 +241,11 @@ const MoreSection = () => {
                       display: isImageOneHovered ? "flex" : "none",
                       opacity: isImageOneHovered ? 1 : 0,
                     }}
-                    className={`w-[100px] py-1  absolute bottom-[-60px] bg-white left-0  items-center justify-center rounded-xl ${borderColor.primary} border-[1px]`}
+                    className={`desc w-[100px] py-1 absolute bottom-[-60px] bg-white left-0 items-center justify-center rounded-xl ${borderColor.primary} border-[1px]`}
+                    style={{ zIndex: 100 }}
                   >
                     <div
-                      className={`w-[90px] h-[90%]   left-0  rounded-lg ${borderColor.primary} bg-[#EDEEF0] border-[1px] flex items-center justify-center shadow-inner px-1`}
+                      className={`w-[90px] h-[90%] left-0 rounded-lg ${borderColor.primary} bg-[#EDEEF0] border-[1px] flex items-center justify-center shadow-inner px-1`}
                     >
                       <p
                         className={`text-[12px] text-center ${fontColor.primary} font-semibold`}
@@ -260,6 +267,7 @@ const MoreSection = () => {
                   dispatch(aboutMoreActions.setIsImageTwoHovered(false))
                 }
                 className="w-[100px] h-[100px] relative"
+                style={{ zIndex: isImageTwoHovered ? 50 : 1 }}
               >
                 <Image
                   src={"/gologo.png"}
@@ -272,15 +280,16 @@ const MoreSection = () => {
                     display: isImageTwoHovered ? "flex" : "none",
                     opacity: isImageTwoHovered ? 1 : 0,
                   }}
-                  className={`w-[100px] py-1  absolute bottom-[-60px] bg-white left-0  items-center justify-center rounded-xl ${borderColor.primary} border-[1px]`}
+                  className={`w-[100px] py-1 absolute bottom-[-60px] bg-white left-0 items-center justify-center rounded-xl ${borderColor.primary} border-[1px]`}
+                  style={{ zIndex: 100 }}
                 >
                   <div
-                    className={`w-[90px] h-[90%]   left-0  rounded-lg ${borderColor.primary} bg-[#EDEEF0] border-[1px] flex items-center justify-center shadow-inner px-1`}
+                    className={`w-[90px] h-[90%] left-0 rounded-lg ${borderColor.primary} bg-[#EDEEF0] border-[1px] flex items-center justify-center shadow-inner px-1`}
                   >
                     <p
                       className={`text-[12px] text-center ${fontColor.primary} font-semibold`}
                     >
-                      Learning Go Lanuage
+                      Learning Go Language
                     </p>
                   </div>
                 </motion.div>
@@ -296,6 +305,7 @@ const MoreSection = () => {
                   dispatch(aboutMoreActions.setIsImageThreeHovered(false))
                 }
                 className="w-[100px] h-[100px] relative"
+                style={{ zIndex: isImageThreeHovered ? 50 : 1 }}
               >
                 <Image
                   src={"/perplexity.png"}
@@ -308,10 +318,11 @@ const MoreSection = () => {
                     display: isImageThreeHovered ? "flex" : "none",
                     opacity: isImageThreeHovered ? 1 : 0,
                   }}
-                  className={`w-[100px] py-1  absolute bottom-[-80px] bg-white left-0  items-center justify-center rounded-xl ${borderColor.primary} border-[1px]`}
+                  className={`w-[100px] py-1 absolute bottom-[-80px] bg-white left-0 items-center justify-center rounded-xl ${borderColor.primary} border-[1px]`}
+                  style={{ zIndex: 100 }}
                 >
                   <div
-                    className={`w-[90px] h-[90%]   left-0  rounded-lg ${borderColor.primary} bg-[#EDEEF0] border-[1px] flex items-center justify-center shadow-inner px-1`}
+                    className={`w-[90px] h-[90%] left-0 rounded-lg ${borderColor.primary} bg-[#EDEEF0] border-[1px] flex items-center justify-center shadow-inner px-1`}
                   >
                     <p
                       className={`text-[12px] text-center ${fontColor.primary} font-semibold`}
@@ -332,6 +343,7 @@ const MoreSection = () => {
                   dispatch(aboutMoreActions.setIsImageFourHovered(false))
                 }
                 className="w-[100px] h-[100px] relative"
+                style={{ zIndex: isImageFourHovered ? 50 : 1 }}
               >
                 <Image
                   src={"/cursor.png"}
@@ -344,10 +356,11 @@ const MoreSection = () => {
                     display: isImageFourHovered ? "flex" : "none",
                     opacity: isImageFourHovered ? 1 : 0,
                   }}
-                  className={`w-[100px] py-1  absolute bottom-[-60px] bg-white left-0  items-center justify-center rounded-xl ${borderColor.primary} border-[1px]`}
+                  className={`w-[100px] py-1 absolute bottom-[-60px] bg-white left-0 items-center justify-center rounded-xl ${borderColor.primary} border-[1px]`}
+                  style={{ zIndex: 100 }}
                 >
                   <div
-                    className={`w-[90px] h-[90%]   left-0  rounded-lg ${borderColor.primary} bg-[#EDEEF0] border-[1px] flex items-center justify-center shadow-inner px-1`}
+                    className={`w-[90px] h-[90%] left-0 rounded-lg ${borderColor.primary} bg-[#EDEEF0] border-[1px] flex items-center justify-center shadow-inner px-1`}
                   >
                     <p
                       className={`text-[12px] text-center ${fontColor.primary} font-semibold`}
@@ -360,9 +373,209 @@ const MoreSection = () => {
             </div>
           </motion.div>
           {/* second column - first elem */}
-          <div
-            className={`flex-1   bg-[#ffffff] rounded-xl border-[1px] ${borderColor.primary}`}
-          ></div>
+
+          {/* second column - second elem */}
+          <motion.div
+            onHoverStart={() =>
+              dispatch(homeAboutActions.setIsConnectionBoxHovering(true))
+            }
+            onHoverEnd={() =>
+              dispatch(homeAboutActions.setIsConnectionBoxHovering(false))
+            }
+            className={`w-full h-[300px] rounded-2xl overflow-hidden border-[1px] ${borderColor.primary} relative flex flex-col items-center py-[20px] bg-[#ffffff] shadow-gray-300 cursor-pointer`}
+          >
+            {/* side blurs */}
+            <div className="absolute w-[200px] z-10 h-full bottom-[26px] left-0 bg-gradient-to-r from-white via-white/8 to-transparent" />
+            <div className="absolute w-[200px] h-full bottom-[26px] right-0 bg-gradient-to-r from-transparent z-10 via-white/8 to-white" />
+            {/* side blurs */}
+
+            <div className="flex items-center justify-center flex-shrink-0 relative">
+              {/* profile Image */}
+              <motion.div
+                animate={{
+                  borderColor: isConnectionBoxHovering ? "#4F46E5" : "",
+                  transition: { duration: 0.3 },
+                }}
+                className={`-translate-x-[50%] left-[50%] absolute z-20 w-[120px] h-[120px] border-[1px] rounded-full ${borderColor.primary} flex items-center justify-center`}
+              >
+                <div
+                  className={`w-[100px] h-[100px] border-[1px] rounded-full ${borderColor.primary} relative overflow-hidden shadow-inner`}
+                >
+                  <Image
+                    src={"/Profile.jpg"}
+                    alt="profileImage"
+                    layout="fill"
+                    objectFit="cover"
+                  />
+                </div>
+              </motion.div>
+              {/* profile image */}
+              <div
+                className={`w-[190px] h-[190px] border-[1px] rounded-full ${borderColor.primary} flex items-center justify-center relative`}
+              >
+                {/* small connections div */}
+                <motion.div
+                  animate={{
+                    y: isConnectionBoxHovering ? 0 : -100,
+                    opacity: isConnectionBoxHovering ? 1 : 0,
+                    transition: { duration: 0.1 },
+                  }}
+                  className={`w-[35px] h-[35px] rounded-full absolute -translate-x-[50%] left-[50%] top-[-10px] flex justify-center items-center ${borderColor.primary} border-[1px]`}
+                >
+                  <div
+                    className={`w-[30px] shadow-inner h-[30px] rounded-full border-[1px] ${borderColor.primary} relative overflow-hidden`}
+                  >
+                    <Image
+                      src={"/Profile.jpg"}
+                      alt="profileImage"
+                      layout="fill"
+                      objectFit="cover"
+                    />
+                  </div>
+                </motion.div>
+                {/* small connections div */}
+                <div
+                  className={`w-[170px] bg-[#E9EAF1] shadow-inner h-[170px] border-[1px] rounded-full ${borderColor.primary}`}
+                ></div>
+              </div>
+              <div
+                className={`w-[190px] h-[190px] border-[1px] rounded-full ${borderColor.primary} flex items-center justify-center relative`}
+              >
+                {/* small connections div */}
+                <motion.div
+                  animate={{
+                    y: isConnectionBoxHovering ? 0 : 100,
+                    opacity: isConnectionBoxHovering ? 1 : 0,
+                    transition: { duration: 0.4 },
+                  }}
+                  className={`w-[50px] h-[50px] rounded-full absolute left-0 bottom-[20px] flex justify-center items-center ${borderColor.primary} border-[1px]`}
+                >
+                  <div
+                    className={`w-[40px] shadow-inner h-[40px] rounded-full border-[1px] ${borderColor.primary} relative overflow-hidden`}
+                  >
+                    <Image
+                      src={"/Profile.jpg"}
+                      alt="profileImage"
+                      layout="fill"
+                      objectFit="cover"
+                    />
+                  </div>
+                </motion.div>
+                <motion.div
+                  animate={{
+                    y: isConnectionBoxHovering ? 0 : -100,
+                    opacity: isConnectionBoxHovering ? 1 : 0,
+                    transition: { duration: 0.2 },
+                  }}
+                  className={`w-[60px] h-[60px] rounded-full absolute right-[50px] top-[-10px] flex justify-center items-center ${borderColor.primary} border-[1px]`}
+                >
+                  <div
+                    className={`w-[50px] shadow-inner h-[50px] rounded-full border-[1px] ${borderColor.primary} relative overflow-hidden`}
+                  >
+                    <Image
+                      src={"/Profile.jpg"}
+                      alt="profileImage"
+                      layout="fill"
+                      objectFit="cover"
+                    />
+                  </div>
+                </motion.div>
+                {/* small connections div */}
+                <div
+                  className={`w-[170px] bg-[#E9EAF1] shadow-inner h-[170px] border-[1px] rounded-full ${borderColor.primary}`}
+                ></div>
+              </div>{" "}
+              <div
+                className={`w-[190px] h-[190px] border-[1px] rounded-full ${borderColor.primary} flex items-center justify-center relative`}
+              >
+                {/* small connections div */}
+                <motion.div
+                  animate={{
+                    y: isConnectionBoxHovering ? 0 : 100,
+                    opacity: isConnectionBoxHovering ? 1 : 0,
+                    transition: { duration: 0.5 },
+                  }}
+                  className={`w-[70px] h-[70px] rounded-full absolute right-0 bottom-[20px] flex justify-center items-center ${borderColor.primary} border-[1px]`}
+                >
+                  <div
+                    className={`w-[60px] shadow-inner h-[60px] rounded-full border-[1px] ${borderColor.primary} relative overflow-hidden`}
+                  >
+                    <Image
+                      src={"/Profile.jpg"}
+                      alt="profileImage"
+                      layout="fill"
+                      objectFit="cover"
+                    />
+                  </div>
+                </motion.div>
+                {/* small connections div */}
+                <div
+                  className={`w-[170px] h-[170px] border-[1px] bg-[#E9EAF1] shadow-inner rounded-full ${borderColor.primary}`}
+                ></div>
+              </div>
+              <div
+                className={`w-[190px] h-[190px] border-[1px] rounded-full ${borderColor.primary} flex items-center justify-center relative`}
+              >
+                {/* small connections div */}
+                <motion.div
+                  animate={{
+                    y: isConnectionBoxHovering ? 0 : -100,
+                    opacity: isConnectionBoxHovering ? 1 : 0,
+                    transition: { duration: 0.3 },
+                  }}
+                  className={`w-[40px] h-[40px] rounded-full absolute left-0 top-[20px] flex justify-center items-center ${borderColor.primary} border-[1px]`}
+                >
+                  <div
+                    className={`w-[35px] shadow-inner h-[35px] rounded-full border-[1px] ${borderColor.primary} relative overflow-hidden`}
+                  >
+                    <Image
+                      src={"/Profile.jpg"}
+                      alt="profileImage"
+                      layout="fill"
+                      objectFit="cover"
+                    />
+                  </div>
+                </motion.div>
+                {/* small connections div */}
+                <div
+                  className={`w-[170px] h-[170px] border-[1px] bg-[#E9EAF1] shadow-inner rounded-full ${borderColor.primary}`}
+                ></div>
+              </div>{" "}
+            </div>
+            <div className="w-full flex flex-col items-center">
+              <p className={`text-[#000000] mb-[8px] font-semibold`}>
+                Connections
+              </p>
+              <p className={`${fontColor.secondry}`}>
+                Check out my favorite tech and spots around the globe.
+              </p>
+            </div>
+            {/* arrow  */}
+            <motion.div
+              animate={{
+                display: isConnectionBoxHovering ? "flex" : "none",
+                opacity: isConnectionBoxHovering ? 1 : 0,
+                y: isConnectionBoxHovering ? 0 : 10,
+                transition: { duration: 0.3 },
+              }}
+              className="absolute flex items-center justify-center w-[40px] h-[40px] rounded-full bottom-[10px] right-[10px] bg-[#C7D2FE] z-40"
+            >
+              <ArrowUpRight className="text-[#4F46E5]" />
+            </motion.div>
+            {/* arrow  */}
+
+            {/* bluish overlay with gradient */}
+            <motion.div
+              animate={{
+                display: isConnectionBoxHovering ? "flex" : "none",
+                opacity: isConnectionBoxHovering ? 1 : 0,
+                transition: { duration: 0.3 },
+              }}
+              className="absolute w-full h-[100px] bottom-0 left-0 bg-gradient-to-br from-transparent via-[#EEF2FF]/3 to-[#C7D2FE] z-30"
+            />
+            {/* bluish overlay with gradient */}
+          </motion.div>
+          {/* second column - second elem */}
         </div>
         {/* second column */}
 
