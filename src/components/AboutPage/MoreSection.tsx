@@ -4,15 +4,20 @@ import { borderColor, fontColor } from "@/library/constants/colors";
 import { racingSans } from "@/library/constants/fonts";
 import { aboutMoreActions } from "@/redux/aboutMoreSlice";
 import { RootState } from "@/redux/store";
-import { motion } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
 
 const MoreSection = () => {
-  const { isMovieBoxEntered,isStatsBoxEntered } = useSelector(
-    (store: RootState) => store.aboutMore
-  );
+  const {
+    isMovieBoxEntered,
+    isStatsBoxEntered,
+    isExploringBoxEntered,
+    isImageOneHovered,
+    isImageThreeHovered,
+    isImageFourHovered,
+    isImageTwoHovered,
+  } = useSelector((store: RootState) => store.aboutMore);
   const dispatch = useDispatch();
   return (
     <div className="w-full min-h-screen mt-24 ">
@@ -121,8 +126,12 @@ const MoreSection = () => {
 
           {/* first column - second elem */}
           <motion.div
-          onHoverStart={() => dispatch(aboutMoreActions.setIsStatsBoxEntered(true))}
-          onHoverEnd={() => dispatch(aboutMoreActions.setIsStatsBoxEntered(false))}
+            onHoverStart={() =>
+              dispatch(aboutMoreActions.setIsStatsBoxEntered(true))
+            }
+            onHoverEnd={() =>
+              dispatch(aboutMoreActions.setIsStatsBoxEntered(false))
+            }
             className={`flex-1  bg-[#ffffff] rounded-xl border-[1px] ${borderColor.primary} gap-2 p-6 relative flex flex-col overflow-hidden`}
           >
             <div className="w-full flex gap-3 items-center">
@@ -167,8 +176,7 @@ const MoreSection = () => {
 
             {/* overlay */}
             <div className="absolute h-full w-full bg-gradient-to-tr from-[#ffffff] via-[#ffffff]/10 to-transparent">
-            <div className="absolute h-full w-full bg-gradient-to-tl from-[#ffffff] via-[#ffffff]/10 to-transparent"></div>
-
+              <div className="absolute h-full w-full bg-gradient-to-tl from-[#ffffff] via-[#ffffff]/10 to-transparent"></div>
             </div>
             {/* overlay */}
 
@@ -177,7 +185,6 @@ const MoreSection = () => {
               animate={{
                 display: isStatsBoxEntered ? "flex" : "hidden",
                 opacity: isStatsBoxEntered ? 1 : 0,
-
                 transition: { duration: 0.3 },
               }}
               className="absolute  w-full h-[100px] bottom-0 left-0 bg-gradient-to-br from-transparent via-[#EEF2FF]/6 to-[#C7D2FE]"
@@ -190,9 +197,169 @@ const MoreSection = () => {
 
         {/* second column */}
         <div className="flex-1 h-full flex flex-col gap-2">
-          <div
-            className={`w-full h-[220px] bg-[#ffffff] rounded-xl border-[1px] ${borderColor.primary}`}
-          ></div>
+          {/* second column - first elem */}
+          <motion.div
+            onHoverStart={() =>
+              dispatch(aboutMoreActions.setIsExploringBoxEntered(true))
+            }
+            onHoverEnd={() =>
+              dispatch(aboutMoreActions.setIsExploringBoxEntered(false))
+            }
+            className={`w-full h-[220px] bg-[#ffffff] rounded-xl border-[1px] p-[24px] ${borderColor.primary} flex flex-col cursor-pointer`}
+          >
+            <p className={`${fontColor.primary} text-[16px] font-semibold`}>
+              Currently Exploring
+            </p>
+            <div className={`flex justify-around items-center flex-1`}>
+              <motion.div
+                animate={{
+                  scale: isExploringBoxEntered ? 1.3 : 1,
+                }}
+                onHoverStart={() =>
+                  dispatch(aboutMoreActions.setIsImageOneHovered(true))
+                }
+                onHoverEnd={() =>
+                  dispatch(aboutMoreActions.setIsImageOneHovered(false))
+                }
+                className="w-[100px] h-[100px] relative"
+              >
+                <Image
+                  src={"/javalogo.webp"}
+                  alt="nwdc"
+                  layout="fill"
+                  objectFit="cover"
+                />
+                <AnimatePresence>
+                  <motion.div
+                    animate={{
+                      display: isImageOneHovered ? "flex" : "none",
+                      opacity: isImageOneHovered ? 1 : 0,
+                    }}
+                    className={`w-[100px] py-1  absolute bottom-[-60px] bg-white left-0  items-center justify-center rounded-xl ${borderColor.primary} border-[1px]`}
+                  >
+                    <div
+                      className={`w-[90px] h-[90%]   left-0  rounded-lg ${borderColor.primary} bg-[#EDEEF0] border-[1px] flex items-center justify-center shadow-inner px-1`}
+                    >
+                      <p
+                        className={`text-[12px] text-center ${fontColor.primary} font-semibold`}
+                      >
+                        Learning DSA using Java
+                      </p>
+                    </div>
+                  </motion.div>
+                </AnimatePresence>
+              </motion.div>
+              <motion.div
+                animate={{
+                  scale: isExploringBoxEntered ? 1.3 : 1,
+                }}
+                onHoverStart={() =>
+                  dispatch(aboutMoreActions.setIsImageTwoHovered(true))
+                }
+                onHoverEnd={() =>
+                  dispatch(aboutMoreActions.setIsImageTwoHovered(false))
+                }
+                className="w-[100px] h-[100px] relative"
+              >
+                <Image
+                  src={"/gologo.png"}
+                  alt="nwdc"
+                  layout="fill"
+                  objectFit="cover"
+                />
+                <motion.div
+                  animate={{
+                    display: isImageTwoHovered ? "flex" : "none",
+                    opacity: isImageTwoHovered ? 1 : 0,
+                  }}
+                  className={`w-[100px] py-1  absolute bottom-[-60px] bg-white left-0  items-center justify-center rounded-xl ${borderColor.primary} border-[1px]`}
+                >
+                  <div
+                    className={`w-[90px] h-[90%]   left-0  rounded-lg ${borderColor.primary} bg-[#EDEEF0] border-[1px] flex items-center justify-center shadow-inner px-1`}
+                  >
+                    <p
+                      className={`text-[12px] text-center ${fontColor.primary} font-semibold`}
+                    >
+                      Learning Go Lanuage
+                    </p>
+                  </div>
+                </motion.div>
+              </motion.div>
+              <motion.div
+                animate={{
+                  scale: isExploringBoxEntered ? 1.3 : 1,
+                }}
+                onHoverStart={() =>
+                  dispatch(aboutMoreActions.setIsImageThreeHovered(true))
+                }
+                onHoverEnd={() =>
+                  dispatch(aboutMoreActions.setIsImageThreeHovered(false))
+                }
+                className="w-[100px] h-[100px] relative"
+              >
+                <Image
+                  src={"/perplexity.png"}
+                  alt="nwdc"
+                  layout="fill"
+                  objectFit="cover"
+                />
+                <motion.div
+                  animate={{
+                    display: isImageThreeHovered ? "flex" : "none",
+                    opacity: isImageThreeHovered ? 1 : 0,
+                  }}
+                  className={`w-[100px] py-1  absolute bottom-[-80px] bg-white left-0  items-center justify-center rounded-xl ${borderColor.primary} border-[1px]`}
+                >
+                  <div
+                    className={`w-[90px] h-[90%]   left-0  rounded-lg ${borderColor.primary} bg-[#EDEEF0] border-[1px] flex items-center justify-center shadow-inner px-1`}
+                  >
+                    <p
+                      className={`text-[12px] text-center ${fontColor.primary} font-semibold`}
+                    >
+                      Exploring more about Perplexity
+                    </p>
+                  </div>
+                </motion.div>
+              </motion.div>
+              <motion.div
+                animate={{
+                  scale: isExploringBoxEntered ? 1.3 : 1,
+                }}
+                onHoverStart={() =>
+                  dispatch(aboutMoreActions.setIsImageFourHovered(true))
+                }
+                onHoverEnd={() =>
+                  dispatch(aboutMoreActions.setIsImageFourHovered(false))
+                }
+                className="w-[100px] h-[100px] relative"
+              >
+                <Image
+                  src={"/cursor.png"}
+                  alt="nwdc"
+                  layout="fill"
+                  objectFit="cover"
+                />
+                <motion.div
+                  animate={{
+                    display: isImageFourHovered ? "flex" : "none",
+                    opacity: isImageFourHovered ? 1 : 0,
+                  }}
+                  className={`w-[100px] py-1  absolute bottom-[-60px] bg-white left-0  items-center justify-center rounded-xl ${borderColor.primary} border-[1px]`}
+                >
+                  <div
+                    className={`w-[90px] h-[90%]   left-0  rounded-lg ${borderColor.primary} bg-[#EDEEF0] border-[1px] flex items-center justify-center shadow-inner px-1`}
+                  >
+                    <p
+                      className={`text-[12px] text-center ${fontColor.primary} font-semibold`}
+                    >
+                      Polishing Cursor Skills{" "}
+                    </p>
+                  </div>
+                </motion.div>
+              </motion.div>
+            </div>
+          </motion.div>
+          {/* second column - first elem */}
           <div
             className={`flex-1   bg-[#ffffff] rounded-xl border-[1px] ${borderColor.primary}`}
           ></div>
