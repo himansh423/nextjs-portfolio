@@ -186,7 +186,8 @@ const AboutSection = () => {
                 className={`w-[120px] h-[120px] flex-shrink-0 rounded-[20px] border-[1px] ${borderColor.primary} flex justify-center items-center`}
               >
                 <div
-                  className={`w-[100px] h-[100px] flex-shrink-0 rounded-[10px] border-[1px] ${borderColor.primary} bg-[#E9EAF1] shadow-inner flex items-center justify-center`}
+                  className={`w-[100px] h-[100px] flex-shrink-0 rounded-[10px] border-[1px] border-[#A5AEB81F]/10 bg-[#E9EAF1]  flex items-center justify-center`}
+                  style={{ boxShadow: "0px 2px 1.5px 0px #A5AEB852 inset" }}
                 >
                   <div className="w-[40px] h-[40px] bg-white rounded-full relative">
                     <Image
