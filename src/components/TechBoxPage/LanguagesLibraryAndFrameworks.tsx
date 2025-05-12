@@ -23,11 +23,10 @@ const LanguagesLibraryAndFrameworks = () => {
             <motion.div
               whileHover={{ y: -20, borderColor: "#4f46ef" }}
               transition={{ duration: 0.3 }}
-              className={`w-[112px] h-[112px] rounded-xl border-[1px] ${borderColor.primary} flex items-center justify-center`}
-              style={{ borderColor: "#A5AEB8" }} // fallback in case Tailwind border doesn't animate
+              className={`w-[112px] h-[112px] rounded-2xl border-[1px] ${borderColor.primary} flex items-center justify-center`}
             >
               <div
-                className={`w-[98px] bg-[#edeef0] h-[98px] rounded-lg border-[1px] border-[#A5AEB81F]/10 flex items-center justify-center`}
+                className={`w-[95px] bg-[#edeef0] h-[95px] rounded-xl border-[1px] border-[#A5AEB81F]/10 flex items-center justify-center`}
                 style={{ boxShadow: "0px 2px 1.5px 0px #A5AEB852 inset" }}
               >
                 <div className="w-[50px] h-[50px] bg-white rounded-full relative">
