@@ -1,3 +1,4 @@
+import ContactUs from "@/components/contactPage/ContactUs";
 import sideLines from "../../../public/sideLines.jpg";
 
 const page = () => {
@@ -10,8 +11,8 @@ const page = () => {
           backgroundSize: "contain",
         }}
       ></div>
-      <div className="flex-1 flex flex-col overflow-hidden">
-       
+      <div className="flex-1 flex flex-col px-14 py-10 overflow-hidden">
+       <ContactUs/>
       </div>
 
       <div
