@@ -1,6 +1,5 @@
-import HeroSection from "@/components/ConnectionsPage/HeroSection";
+import CommunityWall from "@/components/CommunityWallPage/CommunityWall";
 import sideLines from "../../../public/sideLines.jpg";
-import ConnectionBox from "@/components/ConnectionsPage/ConnectionBox";
 
 const page = () => {
   return (
@@ -12,11 +11,8 @@ const page = () => {
           backgroundSize: "contain",
         }}
       ></div>
-      <div className="flex-1 flex flex-col overflow-hidden">
-        <HeroSection />
-        <ConnectionBox />
-      </div>
-
+      <div className="flex-1 flex flex-col overflow-hidden"></div>
+      <CommunityWall />
       <div
         className="w-[30px] min-h-screen bg-repeat-y bg-top"
         style={{
