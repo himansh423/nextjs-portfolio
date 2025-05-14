@@ -63,7 +63,8 @@ const rotations = [
 
 const CommunityWall = () => {
   return (
-    <div className="w-full min-h-screen">
+    <div className="w-full min-h-screen relative">
+      {/* button to add more views */}
       <div className="w-full h-[60px] mt-3.5 flex justify-end items-center px-5">
         <div className="w-[180px] h-[50px] bg-gradient-to-br from-purple-600 via-yellow-500/30 rounded-[50px] to-red-500 flex items-center justify-center font-semibold cursor-pointer gap-1 border-[1px]">
           <p className="text-[16px] text-black">Add Your Views</p>
@@ -72,7 +73,8 @@ const CommunityWall = () => {
           </div>
         </div>
       </div>
-
+      {/* button to add more views */}
+      {/* cards grird */}
       <div className="w-full min-h-screen flex justify-center items-start py-20 px-10 bg-[#f4f4f4] relative">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-36">
           {cardsData.map((card, index) => {
@@ -121,6 +123,7 @@ const CommunityWall = () => {
             );
           })}
         </div>
+        {/* overay */}
         <div
           className={`w-full h-[100vh] bg-gradient-to-t  from-gray-600 via-gray-600/30 to-transparent absolute bottom-0 left-0 z-20 flex items-end justify-center pb-10`}
         >
@@ -132,7 +135,11 @@ const CommunityWall = () => {
             </div>
           </div>
         </div>
+        {/* overay */}
       </div>
+      {/* cards grird */}
+
+     
     </div>
   );
 };
