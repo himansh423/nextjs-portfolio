@@ -1,65 +1,79 @@
-import { borderColor, fontColor } from "@/library/constants/colors";
+"use client";
+import { borderColor } from "@/library/constants/colors";
+import { navbarActions } from "@/redux/navbarSlice";
+import { RootState } from "@/redux/store";
 import { Github, Twitter } from "lucide-react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { CiLinkedin } from "react-icons/ci";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import clsx from "clsx";
+
+const NAV_LINKS = [
+  { href: "/", label: "Home" },
+  { href: "/about", label: "About" },
+  { href: "/projects", label: "Projects" },
+  { href: "/contact", label: "Contact" },
+  { href: "/blog", label: "Blog" },
+  { href: "/techbox", label: "Techbox" },
+];
 
 const Navbar = () => {
+  const { tab } = useSelector((store: RootState) => store.navbar);
+  const dispatch = useDispatch();
+  const pathname = usePathname();
+
+  useEffect(() => {
+    const validTabs = new Set(NAV_LINKS.map(link => link.href));
+    if (validTabs.has(pathname)) {
+      dispatch(navbarActions.setTab(pathname));
+    } else {
+      dispatch(navbarActions.setTab(""));
+    }
+  }, [pathname, dispatch]);
+
   return (
     <nav
-      className={`w-full h-[64px] flex justify-between relative items-center px-4 border-b-[1px] border-x-[1px] ${borderColor.primary}`}
+      className={clsx(
+        "w-full h-[64px] flex justify-between items-center px-4 border-b-[1px] border-x-[1px]",
+        borderColor.primary
+      )}
     >
-      <div className="Logo w-[30px] h-[30px] bg-black"></div>
+      {/* Logo */}
+      <div className="Logo w-[30px] h-[30px] bg-black" />
 
+      {/* Center Navigation */}
       <div
-        className={`navigations absolute w-[400px] h-[37px] left-1/2 -translate-x-1/2 flex gap-4 rounded-[30px] border-[1px]   text-[14px]  ${borderColor.primary} text-[14px] px-4 justify-center items-center font-medium`}
+        className={clsx(
+          "absolute w-[400px] h-[37px] left-1/2 -translate-x-1/2 flex gap-4 rounded-[30px] border-[1px] text-[14px] px-4 justify-center items-center font-medium",
+          borderColor.primary
+        )}
       >
-        <Link
-          href="/"
-          className={`${fontColor.primary} hover:${fontColor.primary} transition-all`}
-        >
-          Home
-        </Link>
-        <Link
-          href="/about"
-          className={`${fontColor.secondry} hover:${fontColor.primary} transition-all`}
-        >
-          About
-        </Link>
-        <Link
-          href="/projects"
-          className={`${fontColor.secondry} hover:${fontColor.primary} transition-all`}
-        >
-          Projects
-        </Link>
-        <Link
-          href="/contact"
-          className={`${fontColor.secondry} hover:${fontColor.primary} transition-all`}
-        >
-          Contact
-        </Link>
-        <Link
-          href="/blog"
-          className={`${fontColor.secondry} hover:${fontColor.primary} transition-all`}
-        >
-          Blog
-        </Link>
-        <Link
-          href="/techbox"
-          className={`${fontColor.secondry} hover:${fontColor.primary} transition-all`}
-        >
-          Techbox
-        </Link>
+        {NAV_LINKS.map(({ href, label }) => (
+          <Link
+            key={href}
+            href={href}
+            className={clsx(
+              "transition-all",
+              tab === href ? "text-[#0f172a]" : "text-[#6b7280] hover:text-[#0f172a]"
+            )}
+          >
+            {label}
+          </Link>
+        ))}
       </div>
 
+      {/* Social Icons */}
       <div className="Links w-[103px] rounded-[30px] h-[37px] bg-[#3c3c3f] flex items-center gap-2 justify-center">
         <div className="text-gray-300 hover:text-white">
-          <Twitter size={20}/>
+          <Twitter size={20} />
         </div>
         <div className="text-gray-300 hover:text-white">
-        <CiLinkedin size={22} />
+          <CiLinkedin size={22} />
         </div>
         <div className="text-gray-300 hover:text-white">
-          <Github size={20}/>
+          <Github size={20} />
         </div>
       </div>
     </nav>

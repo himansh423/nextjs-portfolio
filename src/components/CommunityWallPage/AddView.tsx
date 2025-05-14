@@ -13,7 +13,7 @@ const gradientColors = [
 ];
 const AddView = () => {
   return (
-    <div className="w-full h-screen bg-gray-700/80 absolute z-40 top-0 left-0 flex items-center justify-center flex-col gap-4">
+    <div className="hidden w-full h-screen bg-gray-700/80 absolute z-40 top-0 left-0 flex items-center justify-center flex-col gap-4">
       <div className="flex items-center gap-4">
         <div className="w-[65px] h-[65px] flex items-center-safe justify-center text-[24px] text-gray-500 bg-[#f7f7f8] rounded-full">
           <div>

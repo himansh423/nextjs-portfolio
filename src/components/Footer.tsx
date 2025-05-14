@@ -1,7 +1,7 @@
 import { borderColor, fontColor } from "@/library/constants/colors";
 import { Github, Twitter } from "lucide-react";
 import { CiLinkedin } from "react-icons/ci";
-import sidelines from "../../public/sideLines.jpg"
+import sidelines from "../../public/sideLines.jpg";
 const Footer = () => {
   return (
     <footer>
@@ -73,7 +73,6 @@ const Footer = () => {
             >
               <p>Changelog</p>
               <p>Connections</p>
-              <p>Links</p>
             </div>
           </div>
         </div>
