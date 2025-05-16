@@ -11,7 +11,7 @@ const HeroSection = () => {
     <div className="w-full flex flex-col">
       {/* profile Box */}
       <div
-        className={`w-full h-[250px] flex justify-center items-center border-b-[1px] ${borderColor.primary}`}
+        className={`w-full h-[250px] flex justify-center items-center border-b-[1px] ${borderColor.primary} max-sm:h-[220px] `}
       >
         <motion.div
           initial={{ opacity: 0, scale: 0 }}
@@ -20,7 +20,7 @@ const HeroSection = () => {
             duration: 0.5,
             scale: { type: "spring", bounce: 0.5 },
           }}
-          className={`w-[140px] h-[140px] rounded-full border-[1px] ${borderColor.primary} flex justify-center items-center mt-10`}
+          className={`w-[140px] h-[140px] rounded-full border-[1px] ${borderColor.primary} flex justify-center items-center mt-10 max-sm:mt-0`}
         >
           <div
             className={`w-[110px] h-[110px] rounded-full border-[1px] ${borderColor.primary} flex justify-center items-center`}
@@ -42,7 +42,7 @@ const HeroSection = () => {
 
       {/* Hey Box */}
       <div
-        className={`w-full py-2 flex justify-center px-[250px] max-small-l:px-[140px] text-center border-b-[1px] ${borderColor.primary} max-md:px-[80px]`}
+        className={`w-full py-2 flex justify-center px-[250px] max-small-l:px-[140px] text-center border-b-[1px] ${borderColor.primary} max-md:px-[80px] max-sm:px-2`}
       >
         <motion.p
           initial={{ opacity: 0, y: 50 }}
@@ -52,7 +52,7 @@ const HeroSection = () => {
             delay: 0.5,
             ease: "easeOut",
           }}
-          className={`${fontColor.primary} ${racingSans.className} font-semibold text-6xl `}
+          className={`${fontColor.primary} ${racingSans.className} font-semibold text-6xl max-sm:text-[36px]  `}
         >
           Hey, I'm Himanshu! Welcome to my corner of the internet!
         </motion.p>
@@ -61,7 +61,7 @@ const HeroSection = () => {
 
       {/* description box */}
       <div
-        className={`w-full flex items-center ${fontColor.secondry} text-center px-[250px] py-2 border-y-[1px] mt-7 ${borderColor.primary} max-md:px-[60px]`}
+        className={`w-full flex items-center ${fontColor.secondry} text-center px-[250px] py-2 border-y-[1px] mt-7 ${borderColor.primary} max-md:px-[60px] max-sm:px-2`}
       >
         <motion.p
           initial={{ opacity: 0, y: 20 }}

@@ -62,7 +62,7 @@ const AboutSection = () => {
         <p>About</p>
       </div>
       <div
-        className={`w-full border-y-[1px]  text-center ${fontColor.primary} text-[36px] font-semibold ${borderColor.primary} mt-7 px-[340px]  ${racingSans.className} leading-[40px] shadow-xs max-small-l:px-[240px] max-md:px-[150px]`}
+        className={`w-full border-y-[1px]  text-center ${fontColor.primary} text-[36px] font-semibold ${borderColor.primary} mt-7 px-[340px]  ${racingSans.className} leading-[40px] shadow-xs max-small-l:px-[240px] max-md:px-[150px] max-sm:px-1 max-sm:text-[36px]`}
       >
         <motion.p
           initial={{ opacity: 0, y: 30 }}
@@ -80,10 +80,10 @@ const AboutSection = () => {
       {/* about grid */}
       {/* parent div */}
       <div
-        className={`w-full overflow-hidden flex justify-between gap-2 items-center mt-20 border-y-[1px] ${borderColor.primary} max-md:flex-col max-md:px-2`}
+        className={`w-full overflow-hidden flex justify-between gap-2 items-center mt-20 border-y-[1px] ${borderColor.primary} max-md:flex-col max-md:px-2 `}
       >
         {/* child div1 */}
-        <div className="w-[40%] flex flex-col gap-2 max-md:flex-row-reverse max-md:w-full">
+        <div className="w-[40%] flex flex-col gap-2 max-md:flex-row-reverse max-md:w-full max-sm:flex-col">
           {/* div1 - child div(i)*/}
           <motion.div
             onHoverStart={() =>
@@ -92,7 +92,7 @@ const AboutSection = () => {
             onHoverEnd={() =>
               dispatch(homeAboutActions.setIsAboutHovering(false))
             }
-            className={`w-full h-[220px] rounded-2xl border-[1px] ${borderColor.primary}   shadow-gray-300 flex bg-[#ffffff] justify-between p-[24px] cursor-pointer relative overflow-hidden max-md:w-[300px] max-md:h-[300px]`}
+            className={`w-full h-[220px] rounded-2xl border-[1px] ${borderColor.primary}   shadow-gray-300 flex bg-[#ffffff] justify-between p-[24px] cursor-pointer relative overflow-hidden max-md:w-[300px] max-md:h-[300px] max-sm:w-full max-sm:h-[250px]`}
           >
             <div className="flex flex-col text-[16px] w-[230px]">
               <p className={`text-[#000000] mb-[16px] font-semibold`}>
@@ -171,11 +171,11 @@ const AboutSection = () => {
             onHoverEnd={() =>
               dispatch(homeAboutActions.setIsTechBoxHovering(false))
             }
-            className={`w-full h-[300px] rounded-2xl  border-[1px] ${borderColor.primary} bg-[#ffffff] shadow-gray-300 py-[24px] flex flex-col justify-between cursor-pointer overflow-hidden relative max-md:flex-1`}
+            className={`w-full h-[300px] rounded-2xl  border-[1px] ${borderColor.primary} bg-[#ffffff] shadow-gray-300 py-[24px] flex flex-col justify-between cursor-pointer overflow-hidden relative max-md:flex-1 max-sm:w-full max-sm:text-center`}
           >
             <div className={` flex flex-col items-center text-[16px]`}>
               <p className={`text-[#000000] mb-[8px] font-semibold`}>Techbox</p>
-              <p className={`${fontColor.secondry}`}>
+              <p className={`${fontColor.secondry}  max-sm:px-4 `}>
                 Check out my favorite tech and spots around the globe.
               </p>
             </div>
@@ -498,7 +498,7 @@ const AboutSection = () => {
               <p className={`text-[#000000] mb-[8px] font-semibold`}>
                 Connections
               </p>
-              <p className={`${fontColor.secondry}`}>
+              <p className={`${fontColor.secondry}  max-sm:px-16 max-sm:text-center `}>
                 Check out my favorite tech and spots around the globe.
               </p>
             </div>
@@ -557,7 +557,7 @@ const AboutSection = () => {
                   transition: { duration: 0.3 },
                 }}
                 className={`w-[490px] h-[190px] border-t-[1px]
-              border-l-[1px] rounded-tl-[20px] flex items-end justify-end ${borderColor.primary} flex-shrink-0 max-small-l:w-[400px] max-small-l:h-[160px] max-md:w-full`}
+              border-l-[1px] rounded-tl-[20px] flex items-end justify-end ${borderColor.primary} flex-shrink-0 max-small-l:w-[400px] max-small-l:h-[160px] max-md:w-full max-sm:w-[300px] max-sm:absolute max-sm:right-[-70px]`}
               >
                 <div
                   className={`w-[480px] h-[180px] border-t-[1px]

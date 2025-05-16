@@ -12,7 +12,7 @@ const BlogSection = () => {
         <p>Blog</p>
       </div>
       <div
-        className={`w-full border-y-[1px]  text-center ${fontColor.primary} text-[36px] font-semibold ${borderColor.primary} mt-7 px-[340px] ${racingSans.className} leading-[40px] shadow-xs max-small-l:px-[210px] max-md:px-[120px]`}
+        className={`w-full border-y-[1px]  text-center ${fontColor.primary} text-[36px] font-semibold ${borderColor.primary} mt-7 px-[340px] ${racingSans.className} leading-[40px] shadow-xs max-small-l:px-[210px] max-md:px-[120px] max-sm:text-[36px] max-sm:px-2`}
       >
         <motion.p
           initial={{ opacity: 0, y: 30 }}
@@ -28,10 +28,10 @@ const BlogSection = () => {
       </div>
 
       <div
-        className={`w-full h-[515px] border-y-[1px] ${borderColor.primary} mt-18 flex justify-between items-center gap-2 max-md:px-2`}
+        className={`w-full h-[515px] border-y-[1px] ${borderColor.primary} mt-18 flex justify-between items-center gap-2 max-md:px-2 max-sm:flex-col max-sm:h-fit`}
       >
         <div
-          className={`w-1/3 h-full  px-2 py-2 flex flex-col items-center rounded-3xl ${borderColor.primary} border-[1px] bg-[#FFFFFF] `}
+          className={`w-1/3 h-full  px-2 py-2 flex flex-col items-center rounded-3xl ${borderColor.primary} border-[1px] bg-[#FFFFFF] max-sm:w-full `}
         >
           <div
             className={`w-full h-[225px]  rounded-2xl ${borderColor.primary} border-[1px] relative overflow-hidden`}
@@ -53,7 +53,7 @@ const BlogSection = () => {
           </div>
         </div>
         <div
-          className={`w-1/3 h-full bg-[#FFFFFF]  px-2 py-2 flex flex-col items-center rounded-3xl ${borderColor.primary} border-[1px]`}
+          className={`w-1/3 h-full bg-[#FFFFFF]  px-2 py-2 flex flex-col items-center rounded-3xl ${borderColor.primary} border-[1px] max-sm:w-full`}
         >
           <div
             className={`w-full h-[225px]  rounded-2xl ${borderColor.primary} border-[1px] relative overflow-hidden`}
@@ -75,7 +75,7 @@ const BlogSection = () => {
           </div>
         </div>
         <div
-          className={`w-1/3 h-full bg-[#FFFFFF]  px-2 py-2 flex flex-col items-center rounded-3xl ${borderColor.primary} border-[1px]`}
+          className={`w-1/3 h-full bg-[#FFFFFF]  px-2 py-2 flex flex-col items-center rounded-3xl ${borderColor.primary} border-[1px] max-sm:w-full`}
         >
           <div
             className={`w-full h-[225px]  rounded-2xl ${borderColor.primary} border-[1px] relative overflow-hidden`}
