@@ -6,10 +6,10 @@ const Footer = () => {
   return (
     <footer>
       <div
-        className={`w-full h-[240px] border-[1px] ${borderColor.primary} flex`}
+        className={`w-full h-[240px] border-[1px] ${borderColor.primary} flex max-md:flex-col max-md:h-fit max-md:px-3 max-md:border-0 max-md:border-t-[1px]`}
       >
         <div
-          className={`w-1/2 h-full px-20 py-9 flex justify-between border-r-[1px] ${borderColor.primary}`}
+          className={`w-1/2 h-full px-20 py-9 flex justify-between border-r-[1px] ${borderColor.primary} max-md:border-r-0 max-md: w-full max-md:border-b-[1px]`}
         >
           <div className={`flex flex-col gap-6 max-small-l:gap-2`}>
             <div className="Logo w-[40px] h-[40px] bg-black"></div>
@@ -49,7 +49,7 @@ const Footer = () => {
           </div>
         </div>
         <div
-          className={`w-1/2 h-full px- py-9 flex  items-center justify-center gap-10 shrink-0 max-small-l:gap-2`}
+          className={`w-1/2 h-full px- py-9 flex  items-center justify-center gap-10 shrink-0 max-small-l:gap-2 max-md:justify-around max-md:w-full`}
         >
           <div className={`w-[150px] h-[200px]  flex flex-col gap-3`}>
             <p className={`text-[16px] font-semibold ${fontColor.primary}`}>

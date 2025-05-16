@@ -8,6 +8,7 @@ body {
 }
 @theme {
   --breakpoint-small-l : 64.0625rem;
+  --breakpoint-md:50rem
 }
 
 

@@ -42,7 +42,7 @@ const HeroSection = () => {
 
       {/* Hey Box */}
       <div
-        className={`w-full py-2 flex justify-center px-[250px] max-small-l:px-[140px] text-center border-b-[1px] ${borderColor.primary}`}
+        className={`w-full py-2 flex justify-center px-[250px] max-small-l:px-[140px] text-center border-b-[1px] ${borderColor.primary} max-md:px-[80px]`}
       >
         <motion.p
           initial={{ opacity: 0, y: 50 }}
@@ -61,7 +61,7 @@ const HeroSection = () => {
 
       {/* description box */}
       <div
-        className={`w-full flex items-center ${fontColor.secondry} text-center px-[250px] py-2 border-y-[1px] mt-7 ${borderColor.primary}`}
+        className={`w-full flex items-center ${fontColor.secondry} text-center px-[250px] py-2 border-y-[1px] mt-7 ${borderColor.primary} max-md:px-[60px]`}
       >
         <motion.p
           initial={{ opacity: 0, y: 20 }}

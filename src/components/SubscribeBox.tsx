@@ -5,7 +5,7 @@ import Image from "next/image";
 const SubscribeBox = () => {
   return (
     <div className="w-full  py-[70px]">
-      <div className="w-full h-[500px] overflow-hidden bg-[#3C3C3F] rounded-2xl flex flex-col justify-between">
+      <div className="w-full h-[500px] overflow-hidden bg-[#3C3C3F] rounded-2xl flex flex-col justify-between max-md:h-[600px]">
         <div className="w-full flex">
           <div className="w-[50px] h-[50px]   "></div>
           <div
@@ -34,7 +34,7 @@ const SubscribeBox = () => {
                   placeholder="himanshuchau423@gmail.com"
                   className="w-full h-full focus:outline-none border-[1px] border-[#d4d4d6]  px-[12px] placeholder:text-[#d4d4d6] rounded-[80px] text-[#faf8fc] focus:border-[2px] focus:border-[#faf8fc]"
                 />
-                <button className="absolute w-[100px] bg-[#ffffff] h-[45] top-[50%] translate-y-[-50%] right-1 rounded-[80px] font-semibold text-[14px]">
+                <button className="absolute w-[100px] bg-[#ffffff] h-[45] top-[50%] translate-y-[-50%] right-1 rounded-[80px] font-semibold text-[14px] z-10">
                   <p className={` ${fontColor.primary}`}>Subscribe</p>
                 </button>
               </div>
@@ -44,7 +44,7 @@ const SubscribeBox = () => {
                 never send spam. You can unsubscribe at any time!
               </p>
             </div>
-            <div className="w-1/2 h-full relative">
+            <div className="w-1/2 h-full relative max-md:hidden">
               <Image
                 src={silver.src}
                 alt="silver"

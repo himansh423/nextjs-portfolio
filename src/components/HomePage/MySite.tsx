@@ -21,7 +21,7 @@ const MySite = () => {
         <p>My Site</p>
       </div>
       <div
-        className={`w-full border-y-[1px]  text-center ${fontColor.primary} text-[36px] font-semibold ${borderColor.primary} mt-7 px-[340px] ${racingSans.className} leading-[40px] shadow-xs max-small-l:px-[200px]`}
+        className={`w-full border-y-[1px]  text-center ${fontColor.primary} text-[36px] font-semibold ${borderColor.primary} mt-7 px-[340px] ${racingSans.className} leading-[40px] shadow-xs max-small-l:px-[200px] max-md:px-[100px]`}
       >
         <motion.p
           initial={{ opacity: 0, y: 30 }}
@@ -36,7 +36,7 @@ const MySite = () => {
         </motion.p>
       </div>
       <div
-        className={`w-full h-[276px] ${borderColor.primary} border-y-[1px] mt-18 flex justify-between items-center gap-2`}
+        className={`w-full h-[276px] ${borderColor.primary} border-y-[1px] mt-18 flex justify-between items-center gap-2 max-md:px-2 `}
       >
         <motion.div
           onHoverStart={() =>
@@ -45,7 +45,7 @@ const MySite = () => {
           onHoverEnd={() =>
             dispatch(homeMySiteActions.setIsChangeLogBoxHovering(false))
           }
-          className={`w-1/3 h-full  overflow-hidden   rounded-3xl ${borderColor.primary} border-[1px] relative`}
+          className={`w-1/3 h-full  overflow-hidden   rounded-3xl ${borderColor.primary} border-[1px] relative max-md:hidden`}
         >
           {/* changelog background */}
           <motion.div
@@ -162,7 +162,7 @@ const MySite = () => {
           onHoverEnd={() =>
             dispatch(homeMySiteActions.setIsMusicBoxHovering(false))
           }
-          className={`w-1/3 h-full  px-2 py-2 rounded-3xl ${borderColor.primary} border-[1px] relative overflow-hidden bg-[#ffffff] cursor-pointer`}
+          className={`w-1/3 h-full  px-2 py-2 rounded-3xl ${borderColor.primary} border-[1px] relative overflow-hidden bg-[#ffffff] cursor-pointer max-md:w-1/2`}
         >
           {/* circle background */}
 
@@ -394,7 +394,7 @@ const MySite = () => {
           onHoverEnd={() =>
             dispatch(homeMySiteActions.setIsCommunityBoxHovering(false))
           }
-          className={`w-1/3 h-full  px-2 py-2 flex flex-col items-center rounded-3xl ${borderColor.primary} border-[1px] relative bg-[#ffffff] overflow-hidden`}
+          className={`w-1/3 h-full  px-2 py-2 flex flex-col items-center rounded-3xl ${borderColor.primary} border-[1px] relative bg-[#ffffff] overflow-hidden max-md:w-1/2`}
         >
           {/* background with cards */}
           <div className="w-full h-full absolute top-0 left-0  ">

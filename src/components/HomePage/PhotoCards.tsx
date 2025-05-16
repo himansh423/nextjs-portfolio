@@ -1,7 +1,12 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { motion, useMotionValue, useSpring, AnimatePresence } from "framer-motion";
+import {
+  motion,
+  useMotionValue,
+  useSpring,
+  AnimatePresence,
+} from "framer-motion";
 import Image from "next/image";
 import cardImg1 from "../../../public/cardimg1.jpg";
 import cardImg2 from "../../../public/cardimg2.jpg";
@@ -32,7 +37,7 @@ export default function PhotoGallery() {
 
   return (
     <div
-      className={`w-full h-[500px] flex items-center justify-center overflow-hidden border-b-[1px] ${borderColor.primary}`}
+      className={`w-full h-[500px] flex items-center justify-center overflow-hidden border-b-[1px] ${borderColor.primary} max-md:h-[300px]`}
       ref={containerRef}
     >
       <div className="relative w-full max-w-6xl h-[400px] flex items-center justify-center">
@@ -53,14 +58,21 @@ export default function PhotoGallery() {
   );
 }
 
-function PhotoCard({ src, index, total, containerRef, isInitialAnimation }: any) {
+function PhotoCard({
+  src,
+  index,
+  total,
+  containerRef,
+  isInitialAnimation,
+}: any) {
   const [responsivePos, setResponsivePos] = useState({ x: 0, rotation: 0 });
 
   useEffect(() => {
     const updatePosition = () => {
-      const containerWidth = containerRef.current?.offsetWidth || window.innerWidth;
+      const containerWidth =
+        containerRef.current?.offsetWidth || window.innerWidth;
       const maxOffset = containerWidth * 0.35;
-      const step = (total > 1) ? maxOffset / ((total - 1) / 2) : 0;
+      const step = total > 1 ? maxOffset / ((total - 1) / 2) : 0;
       const midIndex = Math.floor(total / 2);
       const relativeIndex = index - midIndex;
 
@@ -106,7 +118,11 @@ function PhotoCard({ src, index, total, containerRef, isInitialAnimation }: any)
         x: xSpring,
         y: ySpring,
         rotate: rotationSpring,
-        zIndex: isDragging ? 50 : isInitialAnimation ? total - index : index + 1,
+        zIndex: isDragging
+          ? 50
+          : isInitialAnimation
+          ? total - index
+          : index + 1,
         left: "50%",
         transformOrigin: "center center",
       }}
@@ -145,7 +161,7 @@ function PhotoCard({ src, index, total, containerRef, isInitialAnimation }: any)
       }}
     >
       <div
-        className="relative w-[280px] h-[350px] overflow-hidden shadow-lg max-small-l:w-[200px] max-small-l:h-[270px]"
+        className="relative w-[280px] h-[350px] overflow-hidden shadow-lg max-small-l:w-[200px] max-small-l:h-[270px] max-md:w-[150px] max-md:h-[220px]"
         style={{
           borderRadius: "18px",
           boxShadow: "0 10px 25px rgba(0,0,0,0.08)",

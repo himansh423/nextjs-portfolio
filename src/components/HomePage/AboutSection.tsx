@@ -5,8 +5,9 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "@/redux/store";
+import type { RootState } from "@/redux/store";
 import { homeAboutActions } from "@/redux/homeAboutSlice";
+import { useMediaQuery } from "@/library/hooks/use-media-query";
 
 const AboutSection = () => {
   const {
@@ -50,6 +51,9 @@ const AboutSection = () => {
     "25",
     "26",
   ];
+
+  const isMobile = useMediaQuery("(max-width: 780px)");
+
   return (
     <div>
       <div
@@ -58,7 +62,7 @@ const AboutSection = () => {
         <p>About</p>
       </div>
       <div
-        className={`w-full border-y-[1px]  text-center ${fontColor.primary} text-[36px] font-semibold ${borderColor.primary} mt-7 px-[340px]  ${racingSans.className} leading-[40px] shadow-xs max-small-l:px-[240px]`}
+        className={`w-full border-y-[1px]  text-center ${fontColor.primary} text-[36px] font-semibold ${borderColor.primary} mt-7 px-[340px]  ${racingSans.className} leading-[40px] shadow-xs max-small-l:px-[240px] max-md:px-[150px]`}
       >
         <motion.p
           initial={{ opacity: 0, y: 30 }}
@@ -76,10 +80,10 @@ const AboutSection = () => {
       {/* about grid */}
       {/* parent div */}
       <div
-        className={`w-full overflow-hidden flex justify-between gap-2 items-center mt-20 border-y-[1px] ${borderColor.primary} `}
+        className={`w-full overflow-hidden flex justify-between gap-2 items-center mt-20 border-y-[1px] ${borderColor.primary} max-md:flex-col max-md:px-2`}
       >
         {/* child div1 */}
-        <div className="w-[40%] flex flex-col gap-2">
+        <div className="w-[40%] flex flex-col gap-2 max-md:flex-row-reverse max-md:w-full">
           {/* div1 - child div(i)*/}
           <motion.div
             onHoverStart={() =>
@@ -88,7 +92,7 @@ const AboutSection = () => {
             onHoverEnd={() =>
               dispatch(homeAboutActions.setIsAboutHovering(false))
             }
-            className={`w-full h-[220px] rounded-2xl border-[1px] ${borderColor.primary}   shadow-gray-300 flex bg-[#ffffff] justify-between p-[24px] cursor-pointer relative overflow-hidden`}
+            className={`w-full h-[220px] rounded-2xl border-[1px] ${borderColor.primary}   shadow-gray-300 flex bg-[#ffffff] justify-between p-[24px] cursor-pointer relative overflow-hidden max-md:w-[300px] max-md:h-[300px]`}
           >
             <div className="flex flex-col text-[16px] w-[230px]">
               <p className={`text-[#000000] mb-[16px] font-semibold`}>
@@ -106,10 +110,10 @@ const AboutSection = () => {
                   borderColor: isAboutHovering ? "#4F46E5" : "",
                   transition: { duration: 0.6 },
                 }}
-                className={`w-[185px] rounded-xl h-[290px] border-[1px] flex items-center justify-center ${borderColor.primary}`}
+                className={`w-[185px] rounded-xl h-[290px] border-[1px] flex items-center justify-center ${borderColor.primary}  max-md:w-[150px] max-md:h-[255px]`}
               >
                 <div
-                  className={`w-[165px] border-[1px] rounded-lg h-[270px] bg-[#E9EAF1]  ${borderColor.primary}`}
+                  className={`w-[165px] border-[1px] rounded-lg h-[270px] bg-[#E9EAF1]  ${borderColor.primary} max-md:w-[135px] max-md:h-[235px]`}
                 ></div>
               </motion.div>
               {/* imgDiv - overlay */}
@@ -120,7 +124,7 @@ const AboutSection = () => {
                   scale: isAboutHovering ? 1.05 : 1,
                   transition: { duration: 0.3, ease: "easeOut" },
                 }}
-                className={`w-[185px] rounded-xl h-[290px] border-[1px] flex items-center justify-center ${borderColor.primary} absolute  translate-x-[-50%]  left-[50%] top-0  overflow-hidden`}
+                className={`w-[185px] rounded-xl h-[290px] border-[1px] flex items-center justify-center ${borderColor.primary} absolute  translate-x-[-50%]  left-[50%] top-0  overflow-hidden max-md:w-[150px] max-md:h-[255px]`}
               >
                 {" "}
                 <div className="w-full h-full relative overflow-hidden">
@@ -167,7 +171,7 @@ const AboutSection = () => {
             onHoverEnd={() =>
               dispatch(homeAboutActions.setIsTechBoxHovering(false))
             }
-            className={`w-full h-[300px] rounded-2xl  border-[1px] ${borderColor.primary} bg-[#ffffff] shadow-gray-300 py-[24px] flex flex-col justify-between cursor-pointer overflow-hidden relative`}
+            className={`w-full h-[300px] rounded-2xl  border-[1px] ${borderColor.primary} bg-[#ffffff] shadow-gray-300 py-[24px] flex flex-col justify-between cursor-pointer overflow-hidden relative max-md:flex-1`}
           >
             <div className={` flex flex-col items-center text-[16px]`}>
               <p className={`text-[#000000] mb-[8px] font-semibold`}>Techbox</p>
@@ -320,7 +324,7 @@ const AboutSection = () => {
           </motion.div>
         </div>
         {/* child div2 */}
-        <div className="w-[60%] relative flex flex-col gap-2 items-center overflow-hidden">
+        <div className="w-[60%] relative flex flex-col gap-2 items-center overflow-hidden max-md:w-full">
           {/* div2 -child div(i) */}
 
           <motion.div
@@ -364,12 +368,11 @@ const AboutSection = () => {
                 {/* small connections div */}
                 <motion.div
                   animate={{
-                    y: isConnectionBoxHovering ? 0 : -100,
-                    opacity: isConnectionBoxHovering ? 1 : 0,
-
+                    y: isMobile ? 0 : isConnectionBoxHovering ? 0 : -100,
+                    opacity: isMobile ? 1 : isConnectionBoxHovering ? 1 : 0,
                     transition: { duration: 0.1 },
                   }}
-                  className={`w-[35px] h-[35px]  rounded-full absolute -translate-x-[50%]  left-[50%]  top-[-10px] flex justify-center items-center ${borderColor.primary} border-[1px]`}
+                  className={`w-[35px] h-[35px]  rounded-full absolute -translate-x-[50%]  left-[50%]  top-[-10px] flex justify-center items-center ${borderColor.primary} border-[1px] `}
                 >
                   <div
                     className={`w-[30px] shadow-inner h-[30px] rounded-full border-[1px] ${borderColor.primary} relative overflow-hidden`}
@@ -393,9 +396,8 @@ const AboutSection = () => {
                 {/* small connections div */}
                 <motion.div
                   animate={{
-                    y: isConnectionBoxHovering ? 0 : 100,
-                    opacity: isConnectionBoxHovering ? 1 : 0,
-
+                    y: isMobile ? 0 : isConnectionBoxHovering ? 0 : 100,
+                    opacity: isMobile ? 1 : isConnectionBoxHovering ? 1 : 0,
                     transition: { duration: 0.4 },
                   }}
                   className={`w-[50px] h-[50px]  rounded-full absolute   left-0 bottom-[20px] flex justify-center items-center ${borderColor.primary} border-[1px] `}
@@ -413,9 +415,8 @@ const AboutSection = () => {
                 </motion.div>
                 <motion.div
                   animate={{
-                    y: isConnectionBoxHovering ? 0 : -100,
-                    opacity: isConnectionBoxHovering ? 1 : 0,
-
+                    y: isMobile ? 0 : isConnectionBoxHovering ? 0 : -100,
+                    opacity: isMobile ? 1 : isConnectionBoxHovering ? 1 : 0,
                     transition: { duration: 0.2 },
                   }}
                   className={`w-[60px] h-[60px]  rounded-full absolute   right-[50px] top-[-10px] flex justify-center items-center ${borderColor.primary} border-[1px] `}
@@ -442,9 +443,8 @@ const AboutSection = () => {
                 {/* small connections div */}
                 <motion.div
                   animate={{
-                    y: isConnectionBoxHovering ? 0 : 100,
-                    opacity: isConnectionBoxHovering ? 1 : 0,
-
+                    y: isMobile ? 0 : isConnectionBoxHovering ? 0 : 100,
+                    opacity: isMobile ? 1 : isConnectionBoxHovering ? 1 : 0,
                     transition: { duration: 0.5 },
                   }}
                   className={`w-[70px] h-[70px]  rounded-full absolute   right-0 bottom-[20px]  flex justify-center items-center ${borderColor.primary} border-[1px]  `}
@@ -471,9 +471,8 @@ const AboutSection = () => {
                 {/* small connections div */}
                 <motion.div
                   animate={{
-                    y: isConnectionBoxHovering ? 0 : -100,
-                    opacity: isConnectionBoxHovering ? 1 : 0,
-
+                    y: isMobile ? 0 : isConnectionBoxHovering ? 0 : -100,
+                    opacity: isMobile ? 1 : isConnectionBoxHovering ? 1 : 0,
                     transition: { duration: 0.3 },
                   }}
                   className={`w-[40px] h-[40px]  rounded-full absolute   left-0 top-[20px] flex justify-center items-center ${borderColor.primary} border-[1px]  `}
@@ -558,11 +557,11 @@ const AboutSection = () => {
                   transition: { duration: 0.3 },
                 }}
                 className={`w-[490px] h-[190px] border-t-[1px]
-              border-l-[1px] rounded-tl-[20px] flex items-end justify-end ${borderColor.primary} flex-shrink-0 max-small-l:w-[400px] max-small-l:h-[160px]`}
+              border-l-[1px] rounded-tl-[20px] flex items-end justify-end ${borderColor.primary} flex-shrink-0 max-small-l:w-[400px] max-small-l:h-[160px] max-md:w-full`}
               >
                 <div
                   className={`w-[480px] h-[180px] border-t-[1px]
-              border-l-[1px] rounded-tl-[10px] ${borderColor.primary} shadow-inner overflow-hidden bg-[#E9EAF1] flex flex-col flex-shrink-0  max-small-l:w-[390px] max-small-l:h-[150px]`}
+              border-l-[1px] rounded-tl-[10px] ${borderColor.primary} shadow-inner overflow-hidden bg-[#E9EAF1] flex flex-col flex-shrink-0  max-small-l:w-[390px] max-small-l:h-[150px] max-md:w-[98%]`}
                 >
                   <div className="w-full h-[40px] px-[10px] flex items-center justify-start gap-2.5 flex-shrink-0">
                     <p
