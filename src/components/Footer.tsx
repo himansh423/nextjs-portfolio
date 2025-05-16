@@ -11,7 +11,7 @@ const Footer = () => {
         <div
           className={`w-1/2 h-full px-20 py-9 flex justify-between border-r-[1px] ${borderColor.primary}`}
         >
-          <div className={`flex flex-col gap-6`}>
+          <div className={`flex flex-col gap-6 max-small-l:gap-2`}>
             <div className="Logo w-[40px] h-[40px] bg-black"></div>
             <p className={`text-[14px] ${fontColor.secondry} font-semibold`}>
               I'm Himanshu - a senior Full-Stack <br /> Developer, blogger and{" "}
@@ -24,20 +24,32 @@ const Footer = () => {
 
           <div className="flex items-end">
             <div className="Links w-[103px] rounded-[30px] h-[37px] bg-[#3c3c3f] flex items-center gap-2 justify-center">
-              <div className="text-gray-300 hover:text-white">
+              <a
+                href="https://x.com/Himansh423"
+                target="_main"
+                className="text-gray-300 hover:text-white"
+              >
                 <Twitter size={20} />
-              </div>
-              <div className="text-gray-300 hover:text-white">
+              </a>
+              <a
+                href="https://www.linkedin.com/in/himanshu-chauhan423/"
+                target="_main"
+                className="text-gray-300 hover:text-white"
+              >
                 <CiLinkedin size={22} />
-              </div>
-              <div className="text-gray-300 hover:text-white">
+              </a>
+              <a
+                href="https://github.com/himansh423"
+                target="_main"
+                className="text-gray-300 hover:text-white"
+              >
                 <Github size={20} />
-              </div>
+              </a>
             </div>
           </div>
         </div>
         <div
-          className={`w-1/2 h-full px- py-9 flex  items-center justify-center gap-10 shrink-0`}
+          className={`w-1/2 h-full px- py-9 flex  items-center justify-center gap-10 shrink-0 max-small-l:gap-2`}
         >
           <div className={`w-[150px] h-[200px]  flex flex-col gap-3`}>
             <p className={`text-[16px] font-semibold ${fontColor.primary}`}>

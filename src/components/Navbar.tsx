@@ -25,7 +25,7 @@ const Navbar = () => {
   const pathname = usePathname();
 
   useEffect(() => {
-    const validTabs = new Set(NAV_LINKS.map(link => link.href));
+    const validTabs = new Set(NAV_LINKS.map((link) => link.href));
     if (validTabs.has(pathname)) {
       dispatch(navbarActions.setTab(pathname));
     } else {
@@ -56,7 +56,9 @@ const Navbar = () => {
             href={href}
             className={clsx(
               "transition-all",
-              tab === href ? "text-[#0f172a]" : "text-[#6b7280] hover:text-[#0f172a]"
+              tab === href
+                ? "text-[#0f172a]"
+                : "text-[#6b7280] hover:text-[#0f172a]"
             )}
           >
             {label}
@@ -66,15 +68,27 @@ const Navbar = () => {
 
       {/* Social Icons */}
       <div className="Links w-[103px] rounded-[30px] h-[37px] bg-[#3c3c3f] flex items-center gap-2 justify-center">
-        <div className="text-gray-300 hover:text-white">
+        <a
+          href="https://x.com/Himansh423"
+          target="_main"
+          className="text-gray-300 hover:text-white"
+        >
           <Twitter size={20} />
-        </div>
-        <div className="text-gray-300 hover:text-white">
+        </a>
+        <a
+          href="https://www.linkedin.com/in/himanshu-chauhan423/"
+          target="_main"
+          className="text-gray-300 hover:text-white"
+        >
           <CiLinkedin size={22} />
-        </div>
-        <div className="text-gray-300 hover:text-white">
+        </a>
+        <a
+          href="https://github.com/himansh423"
+          target="_main"
+          className="text-gray-300 hover:text-white"
+        >
           <Github size={20} />
-        </div>
+        </a>
       </div>
     </nav>
   );

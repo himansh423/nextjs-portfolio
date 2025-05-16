@@ -4,7 +4,7 @@ import Image from "next/image";
 
 const SubscribeBox = () => {
   return (
-    <div className="w-full min-h-screen py-[70px]">
+    <div className="w-full  py-[70px]">
       <div className="w-full h-[500px] overflow-hidden bg-[#3C3C3F] rounded-2xl flex flex-col justify-between">
         <div className="w-full flex">
           <div className="w-[50px] h-[50px]   "></div>

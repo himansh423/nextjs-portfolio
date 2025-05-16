@@ -21,7 +21,7 @@ const MySite = () => {
         <p>My Site</p>
       </div>
       <div
-        className={`w-full border-y-[1px]  text-center ${fontColor.primary} text-[36px] font-semibold ${borderColor.primary} mt-7 px-[340px] ${racingSans.className} leading-[40px] shadow-xs`}
+        className={`w-full border-y-[1px]  text-center ${fontColor.primary} text-[36px] font-semibold ${borderColor.primary} mt-7 px-[340px] ${racingSans.className} leading-[40px] shadow-xs max-small-l:px-[200px]`}
       >
         <motion.p
           initial={{ opacity: 0, y: 30 }}
@@ -59,7 +59,7 @@ const MySite = () => {
             className="backgroundWithTags w-full h-[120%] relative overflow-hidden bg-[#FFFFFF]"
           >
             {/* center line */}
-            <div className="absolute z-10 w-[10px] h-full bg-gray-400 -translate-x-[50%] left-[50%]"></div>
+            <div className="absolute z-10 w-[10px] h-full bg-gray-400 -translate-x-[50%] left-[50%] max-small-l:hidden"></div>
             {/* center line */}
             {/* tags */}
             <div
@@ -71,7 +71,7 @@ const MySite = () => {
               <p className={`${fontColor.secondry} text-[12px]`}>April, 2025</p>
               <span className="absolute right-[-25px] h-[1px] w-[25px] bg-gray-300"></span>
             </div>
-            <div className="absolute w-[10px] h-full bg-gray-400 -translate-x-[50%] left-[50%]"></div>
+          
             <div
               className={`w-[160px] h-[54px] rounded-[10px] bg-[#F7F7F8] absolute left-[20px] top-[110px] flex flex-col items-start justify-center px-3 ${borderColor.primary} border-[1px]`}
             >
@@ -93,7 +93,7 @@ const MySite = () => {
             </div>
 
             <div
-              className={`w-[160px] h-[54px] rounded-[10px] bg-[#F7F7F8] absolute right-[20px] top-[160px] flex flex-col items-start justify-center px-3 ${borderColor.primary} border-[1px]`}
+              className={`w-[160px] h-[54px] rounded-[10px] bg-[#F7F7F8] absolute right-[20px] top-[160px] flex flex-col items-start justify-center px-3 ${borderColor.primary} border-[1px] max-small-l:top-[170px]`}
             >
               <p className={`${fontColor.secondry} text-[12px]`}>
                 Blogfolio V5 is Now Live!

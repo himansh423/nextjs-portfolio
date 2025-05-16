@@ -58,7 +58,7 @@ const AboutSection = () => {
         <p>About</p>
       </div>
       <div
-        className={`w-full border-y-[1px]  text-center ${fontColor.primary} text-[36px] font-semibold ${borderColor.primary} mt-7 px-[340px] ${racingSans.className} leading-[40px] shadow-xs`}
+        className={`w-full border-y-[1px]  text-center ${fontColor.primary} text-[36px] font-semibold ${borderColor.primary} mt-7 px-[340px]  ${racingSans.className} leading-[40px] shadow-xs max-small-l:px-[240px]`}
       >
         <motion.p
           initial={{ opacity: 0, y: 30 }}
@@ -538,7 +538,7 @@ const AboutSection = () => {
             }
             className={`w-full h-[220px] rounded-2xl  border-[1px] ${borderColor.primary} bg-[#ffffff] shadow-gray-300  flex justify-between pl-[24px]  cursor-pointer relative overflow-hidden`}
           >
-            <div className="flex flex-col text-[16px] py-5 w-[180px]">
+            <div className="flex flex-col text-[16px] py-5 w-[180px] max-small-l:text-[14px]">
               <p className={`text-[#000000] mb-[16px] font-semibold`}>
                 Book a call with me
               </p>
@@ -558,11 +558,11 @@ const AboutSection = () => {
                   transition: { duration: 0.3 },
                 }}
                 className={`w-[490px] h-[190px] border-t-[1px]
-              border-l-[1px] rounded-tl-[20px] flex items-end justify-end ${borderColor.primary} flex-shrink-0`}
+              border-l-[1px] rounded-tl-[20px] flex items-end justify-end ${borderColor.primary} flex-shrink-0 max-small-l:w-[400px] max-small-l:h-[160px]`}
               >
                 <div
                   className={`w-[480px] h-[180px] border-t-[1px]
-              border-l-[1px] rounded-tl-[10px] ${borderColor.primary} shadow-inner overflow-hidden bg-[#E9EAF1] flex flex-col flex-shrink-0 `}
+              border-l-[1px] rounded-tl-[10px] ${borderColor.primary} shadow-inner overflow-hidden bg-[#E9EAF1] flex flex-col flex-shrink-0  max-small-l:w-[390px] max-small-l:h-[150px]`}
                 >
                   <div className="w-full h-[40px] px-[10px] flex items-center justify-start gap-2.5 flex-shrink-0">
                     <p

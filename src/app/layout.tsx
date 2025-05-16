@@ -21,7 +21,7 @@ export default function RootLayout({
       <body>
         <Providers>
           <AddView />
-          <div className="mx-[100px]">
+          <div className="mx-[100px] max-small-l:mx-0">
             <Navbar />
             {children}
             <div className="w-full min-h-screen flex justify-between">

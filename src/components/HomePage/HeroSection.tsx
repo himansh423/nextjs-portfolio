@@ -42,7 +42,7 @@ const HeroSection = () => {
 
       {/* Hey Box */}
       <div
-        className={`w-full py-2 flex justify-center px-[250px] text-center border-b-[1px] ${borderColor.primary}`}
+        className={`w-full py-2 flex justify-center px-[250px] max-small-l:px-[140px] text-center border-b-[1px] ${borderColor.primary}`}
       >
         <motion.p
           initial={{ opacity: 0, y: 50 }}
@@ -52,7 +52,7 @@ const HeroSection = () => {
             delay: 0.5,
             ease: "easeOut",
           }}
-          className={`${fontColor.primary} ${racingSans.className} font-semibold text-6xl`}
+          className={`${fontColor.primary} ${racingSans.className} font-semibold text-6xl `}
         >
           Hey, I'm Himanshu! Welcome to my corner of the internet!
         </motion.p>
