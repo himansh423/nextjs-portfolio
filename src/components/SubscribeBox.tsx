@@ -41,7 +41,7 @@ const SubscribeBox = () => {
                 />
                 <button className="absolute w-[100px] bg-[#ffffff] h-[45] top-[50%] translate-y-[-50%] right-1 rounded-[80px] font-semibold text-[14px] z-10  max-m:w-[50px] max-m:text-[9px] max-m:flex max-m:justify-center max-m:items-center">
                   <p className={` ${fontColor.primary} max-m:hidden`}>Subscribe</p>
-                  <p className={` ${fontColor.primary} `}><Send/></p>
+                  <p className={` ${fontColor.primary} m:hidden`}><Send/></p>
 
                 </button>
               </div>

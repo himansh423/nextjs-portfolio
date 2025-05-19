@@ -4,11 +4,9 @@ import { useRouter } from "next/navigation";
 import { Music } from "lucide-react";
 import { motion } from "framer-motion";
 
-interface MusicButtonProps {
-  className?: string;
-}
 
-export function MusicButton({ className }: MusicButtonProps) {
+
+export function MusicButton() {
   const router = useRouter();
 
   return (

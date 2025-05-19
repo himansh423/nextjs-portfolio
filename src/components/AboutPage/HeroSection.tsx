@@ -18,7 +18,7 @@ const HeroSection = () => {
           <p
             className={`text-[50px] leading-[60px] ${fontColor.primary} ${racingSans.className} font-bold`}
           >
-            I'm Himanshu, a creative <br /> Full Stack Developer.
+            I&apos;m Himanshu, a creative <br /> Full Stack Developer.
           </p>
         </div>
         <div className="flex-1 h-full   relative">

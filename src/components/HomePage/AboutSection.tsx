@@ -73,7 +73,7 @@ const AboutSection = () => {
             ease: "easeOut",
           }}
         >
-          Here's what sets me apart and makes me unique
+          Here&apos;s what sets me apart and makes me unique
         </motion.p>
       </div>
 
@@ -100,7 +100,7 @@ const AboutSection = () => {
               </p>
               <div className={`${fontColor.secondry}`}>
                 <p>Good afternoon!</p>
-                <p>I'm Himanshu, a Experienced Full Stack Developer.</p>
+                <p>I&apos;m Himanshu, a Experienced Full Stack Developer.</p>
               </div>
             </div>
             <div className="flex-1 flex justify-center text-center relative">
@@ -543,7 +543,7 @@ const AboutSection = () => {
               </p>
               <div className={`${fontColor.secondry}`}>
                 <p>
-                  I'd love to chat even
+                  I&apos;d love to chat even
                   <br />
                   if there is no agenda!
                 </p>

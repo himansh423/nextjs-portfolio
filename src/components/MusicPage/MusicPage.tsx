@@ -205,7 +205,7 @@ const MusicPage = () => {
               transition={{ delay: 0.4 }}
             >
               <span className={`${fontColor.secondry} font-semibold text-sm`}>
-                Here's my Fav Artists and Songs
+                Here&apos;s my Fav Artists and Songs
               </span>
             </motion.div>
           </div>

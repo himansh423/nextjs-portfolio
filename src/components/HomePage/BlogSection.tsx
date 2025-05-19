@@ -44,9 +44,9 @@ const BlogSection = () => {
                 Introducing Blogfolio V5
               </p>
               <p className={`text-[16px] ${fontColor.secondry} `}>
-                I've been working hard on my website, and I'm pumped to show you
-                what I've been up to this year. From new features to some
-                behind-the-scenes tech magic, there's a lot to unpack in this
+                I&apos;ve been working hard on my website, and I&apos;m pumped to show you
+                what I&apos;ve been up to this year. From new features to some
+                behind-the-scenes tech magic, there&apos;s a lot to unpack in this
                 2024 update.
               </p>
             </div>
@@ -66,9 +66,9 @@ const BlogSection = () => {
                 Introducing Blogfolio V5
               </p>
               <p className={`text-[16px] ${fontColor.secondry} `}>
-                I've been working hard on my website, and I'm pumped to show you
-                what I've been up to this year. From new features to some
-                behind-the-scenes tech magic, there's a lot to unpack in this
+                I&apos;ve been working hard on my website, and I&apos;m pumped to show you
+                what I&apos;ve been up to this year. From new features to some
+                behind-the-scenes tech magic, there&apos;s a lot to unpack in this
                 2024 update.
               </p>
             </div>
@@ -88,9 +88,9 @@ const BlogSection = () => {
                 Introducing Blogfolio V5
               </p>
               <p className={`text-[16px] ${fontColor.secondry} `}>
-                I've been working hard on my website, and I'm pumped to show you
-                what I've been up to this year. From new features to some
-                behind-the-scenes tech magic, there's a lot to unpack in this
+                I&apos;ve been working hard on my website, and I&apos;m pumped to show you
+                what I&apos;ve been up to this year. From new features to some
+                behind-the-scenes tech magic, there&apos;s a lot to unpack in this
                 2024 update.
               </p>
             </div>

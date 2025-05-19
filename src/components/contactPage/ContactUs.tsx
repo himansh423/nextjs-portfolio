@@ -29,7 +29,7 @@ const ContactUs = () => {
         <div className={`w-full ${borderColor.primary} border-b-[1px] pb-8`}>
           <h1 className={`text-[42px] ${fontColor.primary} font-bold`}>Get in Touch</h1>
           <p className={`text-[18px] ${fontColor.secondry} mt-4 max-w-2xl`}>
-            Have a question or want to work together? Fill out the form below and I'll get back to you as soon as
+            Have a question or want to work together? Fill out the form below and I&apos;ll get back to you as soon as
             possible.
           </p>
         </div>

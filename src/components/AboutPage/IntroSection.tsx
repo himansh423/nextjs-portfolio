@@ -14,7 +14,7 @@ const IntroSection = () => {
         className={`border-y-[1px] ${borderColor.primary} text-[30px] text-center  ${racingSans.className} mt-8`}
       >
         <p>
-          Here's a quick intro about <br /> me and what I love to do
+          Here&apos;s a quick intro about <br /> me and what I love to do
         </p>
       </div>
       {/* intro section */}

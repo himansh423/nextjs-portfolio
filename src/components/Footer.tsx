@@ -14,7 +14,7 @@ const Footer = () => {
           <div className={`flex flex-col gap-6 max-small-l:gap-2`}>
             <div className="Logo w-[40px] h-[40px] bg-black"></div>
             <p className={`text-[14px] ${fontColor.secondry} font-semibold`}>
-              I'm Himanshu - a senior Full-Stack <br /> Developer, blogger and{" "}
+              I&apos;m Himanshu - a senior Full-Stack <br /> Developer, blogger and{" "}
               <br /> Streamer. Thanks for checking out my site!
             </p>
             <p className={`text-[14px] font-semibold ${fontColor.secondry}`}>

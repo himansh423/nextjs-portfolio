@@ -54,7 +54,7 @@ const HeroSection = () => {
           }}
           className={`${fontColor.primary} ${racingSans.className} font-semibold text-6xl max-sm:text-[36px]  `}
         >
-          Hey, I'm Himanshu! Welcome to my corner of the internet!
+          Hey, I&apos;m Himanshu! Welcome to my corner of the internet!
         </motion.p>
       </div>
       {/* Hey Box */}
@@ -71,7 +71,7 @@ const HeroSection = () => {
             delay: 1,
             ease: "easeOut",
           }}>
-          I'm a Full Stack Developer with a love for design and a knack for
+          I&apos;m a Full Stack Developer with a love for design and a knack for
           tinkering. This site is intentionally over-engineered and serves as my
           playground for experimenting with new ideas and seeing what sticks!
         </motion.p>

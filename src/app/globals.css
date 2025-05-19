@@ -9,7 +9,8 @@ body {
 @theme {
   --breakpoint-small-l : 64.0625rem;
   --breakpoint-md:50rem;
-  --breakpoint-m:23.5rem
+  --breakpoint-m:23.5rem;
+  --breakpoint-2xl:120rem
 }
 
 

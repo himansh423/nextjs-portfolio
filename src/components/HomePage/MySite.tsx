@@ -120,7 +120,7 @@ const MySite = () => {
                 Changelog
               </p>
               <p className={`${fontColor.secondry} text-[16px]`}>
-                Here's what's new on <br />
+                Here&apos;s what&apos;s new on <br />
                 my site
               </p>
             </div>
@@ -351,7 +351,7 @@ const MySite = () => {
                 Music
               </p>
               <p className={`${fontColor.secondry} text-[16px]`}>
-                Here's my Fav Artists <br />
+                Here&apos;s my Fav Artists <br />
                 and Songs
               </p>
             </div>

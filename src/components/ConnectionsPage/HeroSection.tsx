@@ -12,7 +12,7 @@ const HeroSection = () => {
         >
           <p
             className={`${racingSans.className} text-center leading-[65px] text-[60px]`}
-          >An evolving list of<br />people I've met and<br />those I wish to meet.</p>
+          >An evolving list of<br />people I&apos;ve met and<br />those I wish to meet.</p>
         </div>
       </div>
     </div>

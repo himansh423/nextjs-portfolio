@@ -1,4 +1,4 @@
-import { Check, Cross, X } from "lucide-react";
+import { Check,  X } from "lucide-react";
 import { FaGreaterThan, FaLessThan } from "react-icons/fa";
 const gradientColors = [
   "bg-gradient-to-b from-pink-400 via-red-400 to-yellow-300",
@@ -42,7 +42,7 @@ const AddView = () => {
       <div className="w-[380px] flex items-center justify-between">
         <div className="w-[260px] h-[40px] rounded-[40px] bg-[#3c3c3f] flex items-center gap-1 justify-between px-3">
           {gradientColors.map((colorG) => (
-            <div className={`w-[15px] h-[15px] rounded-full  ${colorG}`}></div>
+            <div key={colorG} className={`w-[15px] h-[15px] rounded-full  ${colorG}`}></div>
           ))}
         </div>
         <div className="w-[110px] h-[40px] flex items-center justify-between py-1 bg-[#3c3c3f] rounded-[40px]">

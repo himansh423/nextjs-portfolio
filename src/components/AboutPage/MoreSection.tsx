@@ -45,7 +45,7 @@ const MoreSection = () => {
             ease: "easeOut",
           }}
         >
-          Here's what sets me apart and makes me unique
+          Here&apos;s what sets me apart and makes me unique
         </motion.p>
       </div>
 
@@ -69,7 +69,7 @@ const MoreSection = () => {
                 Recent Favourite
               </p>
               <p className={`${fontColor.secondry}`}>
-                I'm listening to The Sun Yet Shines by Bear McCreary from the
+                I&apos;m listening to The Sun Yet Shines by Bear McCreary from the
                 album The Lord of the Rings: The Rings of Power
               </p>
             </div>

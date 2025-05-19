@@ -1,4 +1,3 @@
-import ContactUs from "@/components/contactPage/ContactUs";
 import sideLines from "../../../public/sideLines.jpg";
 import MusicPage from "@/components/MusicPage/MusicPage";
 
