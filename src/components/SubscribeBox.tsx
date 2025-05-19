@@ -4,8 +4,9 @@ import Image from "next/image";
 
 const SubscribeBox = () => {
   return (
-    <div className="w-full  py-[70px]">
+    <div className="w-full  py-[70px] max-sm:px-2">
       <div className="w-full h-[500px] overflow-hidden bg-[#3C3C3F] rounded-2xl flex flex-col justify-between max-md:h-[600px]">
+        {/*  */}
         <div className="w-full flex">
           <div className="w-[50px] h-[50px]   "></div>
           <div
@@ -13,22 +14,25 @@ const SubscribeBox = () => {
           ></div>
           <div className="w-[50px] h-[50px]   "></div>{" "}
         </div>
+        {/*  */}
+
+        {/*  */}
         <div className="w-full flex flex-1">
           <div
             className={`w-[50px] h-full  border-y-[1px] border-[#d4d4d8]`}
           ></div>
           <div
-            className={`mainContent flex-1 h-full  border-[1px] border-[#d4d4d8] flex`}
+            className={`mainContent flex-1 h-full  border-[1px] border-[#d4d4d8] flex max-sm:w-[100px]`}
           >
-            <div className="w-1/2 h-full px-12 py-11">
-              <p className="text-[#faf8fc] text-[30px] font-semibold ">
-                Subscribe to my newsletter
+            <div className="w-1/2 h-full px-12 py-11 max-sm:py-10 max-sm:w-full max-sm:px-2">
+              <p className="text-[#faf8fc] text-[30px] font-semibold max-sm:text-[25px]">
+                Subscribe to <br /> my newsletter
               </p>
               <p className={`text-[#d1d5db] mt-5 text-[16px]`}>
                 A periodic update about my life, recent blog <br /> posts,
                 how-tos, and discoveries.
               </p>
-              <div className="w-[425px] h-[50px] mt-12 relative">
+              <div className="w-[425px] h-[50px] mt-12 relative max-sm:w-full">
                 <input
                   type="text"
                   placeholder="himanshuchau423@gmail.com"
@@ -39,7 +43,7 @@ const SubscribeBox = () => {
                 </button>
               </div>
 
-              <p className={`text-[16px] text-[#d1d5db] mt-10 text-nowrap`}>
+              <p className={`text-[16px] text-[#d1d5db] mt-10 text-nowrap max-sm:text-wrap`}>
                 <span className="text-[#ffffff] font-bold">NO SPAM.</span> I
                 never send spam. You can unsubscribe at any time!
               </p>
@@ -57,6 +61,9 @@ const SubscribeBox = () => {
             className={`w-[50px] h-full  border-y-[1px] border-[#d4d4d8]`}
           ></div>
         </div>
+        {/*  */}
+
+        {/*  */}
         <div className="w-full flex">
           <div className="w-[50px] h-[50px]  "></div>
           <div
@@ -64,6 +71,8 @@ const SubscribeBox = () => {
           ></div>
           <div className="w-[50px] h-[50px]  "></div>{" "}
         </div>
+
+        {/*  */}
       </div>
     </div>
   );

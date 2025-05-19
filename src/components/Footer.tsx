@@ -9,7 +9,7 @@ const Footer = () => {
         className={`w-full h-[240px] border-[1px] ${borderColor.primary} flex max-md:flex-col max-md:h-fit max-md:px-3 max-md:border-0 max-md:border-t-[1px]`}
       >
         <div
-          className={`w-1/2 h-full px-20 py-9 flex justify-between border-r-[1px] ${borderColor.primary} max-md:border-r-0 max-md: w-full max-md:border-b-[1px]`}
+          className={`w-1/2 h-full px-20 py-9 flex justify-between border-r-[1px] ${borderColor.primary} max-md:border-r-0 max-md: w-full max-md:border-b-[1px] max-sm:px-2`}
         >
           <div className={`flex flex-col gap-6 max-small-l:gap-2`}>
             <div className="Logo w-[40px] h-[40px] bg-black"></div>
@@ -18,7 +18,7 @@ const Footer = () => {
               <br /> Streamer. Thanks for checking out my site!
             </p>
             <p className={`text-[14px] font-semibold ${fontColor.secondry}`}>
-              © 2025 Braydon Coyer
+              © 2025 Himanshu Chauhan
             </p>
           </div>
 
@@ -51,7 +51,7 @@ const Footer = () => {
         <div
           className={`w-1/2 h-full px- py-9 flex  items-center justify-center gap-10 shrink-0 max-small-l:gap-2 max-md:justify-around max-md:w-full`}
         >
-          <div className={`w-[150px] h-[200px]  flex flex-col gap-3`}>
+          <div className={`w-[150px] h-[200px]  flex flex-col gap-3 max-sm:w-fit`}>
             <p className={`text-[16px] font-semibold ${fontColor.primary}`}>
               General
             </p>
@@ -65,7 +65,7 @@ const Footer = () => {
               <p>Blog</p>
             </div>
           </div>
-          <div className={`w-[150px] h-[200px]  flex flex-col gap-3`}>
+          <div className={`w-[150px] h-[200px]  flex flex-col gap-3 max-sm:w-fit`}>
             <p className={`text-[16px] font-semibold ${fontColor.primary}`}>
               Specifics
             </p>
@@ -76,7 +76,7 @@ const Footer = () => {
               <p>Community Wall</p>
             </div>
           </div>
-          <div className={`w-[150px] h-[200px]  flex flex-col gap-3`}>
+          <div className={`w-[150px] h-[200px]  flex flex-col gap-3 max-sm:w-fit`}>
             <p className={`text-[16px] font-semibold ${fontColor.primary}`}>
               Extras
             </p>
