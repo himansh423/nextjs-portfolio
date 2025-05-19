@@ -71,7 +71,7 @@ const MySite = () => {
               <p className={`${fontColor.secondry} text-[12px]`}>April, 2025</p>
               <span className="absolute right-[-25px] h-[1px] w-[25px] bg-gray-300"></span>
             </div>
-          
+
             <div
               className={`w-[160px] h-[54px] rounded-[10px] bg-[#F7F7F8] absolute left-[20px] top-[110px] flex flex-col items-start justify-center px-3 ${borderColor.primary} border-[1px]`}
             >

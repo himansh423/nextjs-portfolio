@@ -2,10 +2,12 @@ import { createSlice } from "@reduxjs/toolkit";
 
 interface NavbarState {
   tab: string;
+  IsMobNav:boolean;
 }
 
 const initialState: NavbarState = {
   tab: "/",
+  IsMobNav:false,
 };
 const navbarSlice = createSlice({
   name: "navbar",
@@ -14,6 +16,9 @@ const navbarSlice = createSlice({
     setTab: (state, action) => {
       state.tab = action.payload;
     },
+    setIsMobNav:(state,action) => {
+      state.IsMobNav = action.payload
+    }
   },
 });
 
