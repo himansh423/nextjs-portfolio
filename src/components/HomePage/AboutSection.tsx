@@ -557,7 +557,7 @@ const AboutSection = () => {
                   transition: { duration: 0.3 },
                 }}
                 className={`w-[490px] h-[190px] border-t-[1px]
-              border-l-[1px] rounded-tl-[20px] flex items-end justify-end ${borderColor.primary} flex-shrink-0 max-small-l:w-[400px] max-small-l:h-[160px] max-md:w-full max-sm:w-[300px] max-sm:absolute max-sm:right-[-70px] max-m:w-[250px]`}
+              border-l-[1px] rounded-tl-[20px] flex items-end justify-end ${borderColor.primary} flex-shrink-0 max-small-l:w-[400px] max-small-l:h-[160px] max-md:w-full max-sm:w-[300px] max-sm:absolute max-sm:right-[-70px] max-m:w-[250px] max-m:right-[-120px]`}
               >
                 <div
                   className={`w-[480px] h-[180px] border-t-[1px]

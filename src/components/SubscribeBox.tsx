@@ -1,6 +1,7 @@
 import { fontColor } from "@/library/constants/colors";
 import silver from "../../public/silversurfer.png";
 import Image from "next/image";
+import { Send } from "lucide-react";
 
 const SubscribeBox = () => {
   return (
@@ -8,18 +9,18 @@ const SubscribeBox = () => {
       <div className="w-full h-[500px] overflow-hidden bg-[#3C3C3F] rounded-2xl flex flex-col justify-between max-md:h-[600px]">
         {/*  */}
         <div className="w-full flex">
-          <div className="w-[50px] h-[50px]   "></div>
+          <div className="w-[50px] h-[50px]   max-m:w-[20px]"></div>
           <div
             className={`flex-1 h-[50px]  border-x-[1px] border-[#d4d4d8]`}
           ></div>
-          <div className="w-[50px] h-[50px]   "></div>{" "}
+          <div className="w-[50px] h-[50px]   max-m:w-[20px] "></div>{" "}
         </div>
         {/*  */}
 
         {/*  */}
         <div className="w-full flex flex-1">
           <div
-            className={`w-[50px] h-full  border-y-[1px] border-[#d4d4d8]`}
+            className={`w-[50px] h-full  border-y-[1px] border-[#d4d4d8]  max-m:w-[20px]`}
           ></div>
           <div
             className={`mainContent flex-1 h-full  border-[1px] border-[#d4d4d8] flex max-sm:w-[100px]`}
@@ -36,10 +37,12 @@ const SubscribeBox = () => {
                 <input
                   type="text"
                   placeholder="himanshuchau423@gmail.com"
-                  className="w-full h-full focus:outline-none border-[1px] border-[#d4d4d6]  px-[12px] placeholder:text-[#d4d4d6] rounded-[80px] text-[#faf8fc] focus:border-[2px] focus:border-[#faf8fc]"
+                  className="w-full h-full focus:outline-none border-[1px] border-[#d4d4d6]  px-[12px] placeholder:text-[#d4d4d6] rounded-[80px] text-[#faf8fc] focus:border-[2px] focus:border-[#faf8fc] max-m:pr-[20px]"
                 />
-                <button className="absolute w-[100px] bg-[#ffffff] h-[45] top-[50%] translate-y-[-50%] right-1 rounded-[80px] font-semibold text-[14px] z-10">
-                  <p className={` ${fontColor.primary}`}>Subscribe</p>
+                <button className="absolute w-[100px] bg-[#ffffff] h-[45] top-[50%] translate-y-[-50%] right-1 rounded-[80px] font-semibold text-[14px] z-10  max-m:w-[50px] max-m:text-[9px] max-m:flex max-m:justify-center max-m:items-center">
+                  <p className={` ${fontColor.primary} max-m:hidden`}>Subscribe</p>
+                  <p className={` ${fontColor.primary} `}><Send/></p>
+
                 </button>
               </div>
 
@@ -58,18 +61,18 @@ const SubscribeBox = () => {
             </div>
           </div>
           <div
-            className={`w-[50px] h-full  border-y-[1px] border-[#d4d4d8]`}
+            className={`w-[50px] h-full  border-y-[1px] border-[#d4d4d8]  max-m:w-[20px]`}
           ></div>
         </div>
         {/*  */}
 
         {/*  */}
         <div className="w-full flex">
-          <div className="w-[50px] h-[50px]  "></div>
+          <div className="w-[50px] h-[50px]  max-m:w-[20px] "></div>
           <div
             className={`flex-1 h-[50px]  border-x-[1px] border-[#d4d4d8]`}
           ></div>
-          <div className="w-[50px] h-[50px]  "></div>{" "}
+          <div className="w-[50px] h-[50px]  max-m:w-[20px] "></div>{" "}
         </div>
 
         {/*  */}
