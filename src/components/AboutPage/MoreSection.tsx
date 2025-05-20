@@ -34,7 +34,7 @@ const MoreSection = () => {
         <p>More</p>
       </div>
       <div
-        className={`w-full border-y-[1px] text-center ${fontColor.primary} text-[36px] font-semibold ${borderColor.primary} mt-7 px-[340px] ${racingSans.className} leading-[40px] shadow-xs`}
+        className={`w-full border-y-[1px] text-center ${fontColor.primary} text-[36px] font-semibold ${borderColor.primary} mt-7 px-[340px] ${racingSans.className} leading-[40px] shadow-xs max-small-l:px-50`}
       >
         <motion.p
           initial={{ opacity: 0, y: 30 }}
@@ -53,7 +53,7 @@ const MoreSection = () => {
         className={`w-full border-y-[1px] mt-20 ${borderColor.primary} h-[530px] flex justify-between items-center gap-2`}
       >
         {/* first column */}
-        <div className="w-[300px] h-full flex flex-col gap-2">
+        <div className="w-[300px] h-full flex flex-col gap-2 max-small-l:w-[230px]">
           {/* first column - first elem */}
           <motion.div
             onHoverStart={() =>
@@ -68,7 +68,7 @@ const MoreSection = () => {
               <p className={`${fontColor.primary} font-semibold`}>
                 Recent Favourite
               </p>
-              <p className={`${fontColor.secondry}`}>
+              <p className={`${fontColor.secondry} max-small-l:text-ellipsis max-small-l:h-[97px] max-small-l:overflow-hidden`}>
                 I&apos;m listening to The Sun Yet Shines by Bear McCreary from the
                 album The Lord of the Rings: The Rings of Power
               </p>
@@ -202,7 +202,7 @@ const MoreSection = () => {
         {/* first column */}
 
         {/* second column */}
-        <div className="flex-1 h-full flex flex-col gap-2">
+        <div className="flex-1 h-full flex flex-col gap-2 max-small-l:w-[550px]">
           {/* second column - first elem */}
           <motion.div
             onHoverStart={() =>
@@ -227,7 +227,7 @@ const MoreSection = () => {
                 onHoverEnd={() =>
                   dispatch(aboutMoreActions.setIsImageOneHovered(false))
                 }
-                className="w-[100px] h-[100px] relative"
+                className="w-[100px] h-[100px] relative max-small-l:w-[50px] max-small-l:h-[50px]"
                 style={{ zIndex: isImageOneHovered ? 50 : 1 }}
               >
                 <Image
@@ -267,7 +267,7 @@ const MoreSection = () => {
                 onHoverEnd={() =>
                   dispatch(aboutMoreActions.setIsImageTwoHovered(false))
                 }
-                className="w-[100px] h-[100px] relative"
+                className="w-[100px] h-[100px] relative max-small-l:w-[50px] max-small-l:h-[50px]"
                 style={{ zIndex: isImageTwoHovered ? 50 : 1 }}
               >
                 <Image
@@ -305,7 +305,7 @@ const MoreSection = () => {
                 onHoverEnd={() =>
                   dispatch(aboutMoreActions.setIsImageThreeHovered(false))
                 }
-                className="w-[100px] h-[100px] relative"
+                className="w-[100px] h-[100px] relative max-small-l:w-[50px] max-small-l:h-[50px]"
                 style={{ zIndex: isImageThreeHovered ? 50 : 1 }}
               >
                 <Image
@@ -343,7 +343,7 @@ const MoreSection = () => {
                 onHoverEnd={() =>
                   dispatch(aboutMoreActions.setIsImageFourHovered(false))
                 }
-                className="w-[100px] h-[100px] relative"
+                className="w-[100px] h-[100px] relative max-small-l:w-[50px] max-small-l:h-[50px]"
                 style={{ zIndex: isImageFourHovered ? 50 : 1 }}
               >
                 <Image
@@ -588,7 +588,7 @@ const MoreSection = () => {
           onHoverEnd={() =>
             dispatch(aboutMoreActions.setIsBookBoxHovered(false))
           }
-          className={`w-[195px] h-full overflow-hidden bg-white rounded-xl relative pt-5 pl-4 ${borderColor.primary} border-[1px] cursor-pointer`}
+          className={`w-[195px] h-full overflow-hidden bg-white rounded-xl relative pt-5 pl-4 ${borderColor.primary} border-[1px] cursor-pointer max-small-l:w-[150px]`}
         >
           <p className={`${fontColor.primary} font-semibold text-[16px]`}>
             Currently Reading
