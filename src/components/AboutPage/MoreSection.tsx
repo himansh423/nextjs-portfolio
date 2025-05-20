@@ -50,10 +50,10 @@ const MoreSection = () => {
       </div>
 
       <div
-        className={`w-full border-y-[1px] mt-20 ${borderColor.primary} h-[530px] flex justify-between items-center gap-2`}
+        className={`w-full border-y-[1px] mt-20 ${borderColor.primary} h-[530px] flex justify-between items-center gap-2 max-md:flex-col max-md:h-fit max-md:px-3`}
       >
         {/* first column */}
-        <div className="w-[300px] h-full flex flex-col gap-2 max-small-l:w-[230px]">
+        <div className="w-[300px] h-full flex flex-col gap-2 max-small-l:w-[230px] max-md:w-full">
           {/* first column - first elem */}
           <motion.div
             onHoverStart={() =>
@@ -202,7 +202,7 @@ const MoreSection = () => {
         {/* first column */}
 
         {/* second column */}
-        <div className="flex-1 h-full flex flex-col gap-2 max-small-l:w-[550px]">
+        <div className="flex-1 h-full flex flex-col gap-2 max-small-l:w-[550px] max-md:w-full">
           {/* second column - first elem */}
           <motion.div
             onHoverStart={() =>
@@ -588,7 +588,7 @@ const MoreSection = () => {
           onHoverEnd={() =>
             dispatch(aboutMoreActions.setIsBookBoxHovered(false))
           }
-          className={`w-[195px] h-full overflow-hidden bg-white rounded-xl relative pt-5 pl-4 ${borderColor.primary} border-[1px] cursor-pointer max-small-l:w-[150px]`}
+          className={`w-[195px] h-full overflow-hidden bg-white rounded-xl relative pt-5 pl-4 ${borderColor.primary} border-[1px] cursor-pointer max-small-l:w-[150px] max-md:hidden`}
         >
           <p className={`${fontColor.primary} font-semibold text-[16px]`}>
             Currently Reading
