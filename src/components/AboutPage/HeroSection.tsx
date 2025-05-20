@@ -16,7 +16,7 @@ const HeroSection = () => {
             Good afternoon
           </p>
           <p
-            className={`text-[50px] leading-[60px] ${fontColor.primary} ${racingSans.className} font-bold`}
+            className={`text-[50px] leading-[60px] ${fontColor.primary} ${racingSans.className} font-bold max-md:text-center`}
           >
             I&apos;m Himanshu, a creative <br /> Full Stack Developer.
           </p>

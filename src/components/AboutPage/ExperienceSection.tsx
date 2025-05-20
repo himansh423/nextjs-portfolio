@@ -32,8 +32,8 @@ const ExperienceSection = () => {
       >
         {/* exp 1 */}
 
-        <div className={`w-full ${borderColor.primary} flex `}>
-          <div className="w-1/2 h-full  px-10">
+        <div className={`w-full ${borderColor.primary} flex max-md:gap-6 `}>
+          <div className="w-1/2 h-full  px-10 max-md:px-1 max-md:w-[100px]">
             <p className={`text-[20px] ${fontColor.primary} font-semibold`}>
               Adprovize InfoTech
             </p>
@@ -41,7 +41,7 @@ const ExperienceSection = () => {
               2025 - Present
             </p>
           </div>
-          <div className="w-1/2 h-full pr-14 flex flex-col gap-4">
+          <div className="w-1/2 h-full pr-14 max-md:pr-1 flex flex-col gap-4 max-md:flex-1">
             <p className={`text-[20px] ${fontColor.primary} font-semibold`}>
               Senior Full Stack Developer
             </p>
@@ -66,14 +66,14 @@ const ExperienceSection = () => {
         {/* exp 1 */}
 
         {/* exp 2 */}
-        <div className={`w-full ${borderColor.primary} flex `}>
-          <div className="w-1/2 h-full  px-10">
+        <div className={`w-full ${borderColor.primary} flex max-md:gap-6 `}>
+          <div className="w-1/2 h-full  px-10 max-md:px-1 max-md:w-[100px]">
             <p className={`text-[20px] ${fontColor.primary} font-semibold`}>
               Cyroweb Solutions
             </p>
             <p className={`text-[14px] ${fontColor.secondry}`}>2024 - 2025</p>
           </div>
-          <div className="w-1/2 h-full pr-14 flex flex-col gap-4">
+          <div className="w-1/2 h-full pr-14 max-md:pr-1 flex flex-col gap-4 max-md:flex-1">
             <p className={`text-[20px] ${fontColor.primary} font-semibold`}>
               Founder
             </p>
