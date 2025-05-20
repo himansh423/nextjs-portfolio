@@ -6,9 +6,9 @@ const ProjectSection = () => {
   return (
     <div className="w-full flex flex-col">
       <div className={`w-full flex mt-[50px] flex-col gap-10 py-10`}>
-        <div className={`w-full px-14 ${borderColor.primary} border-y-[1px]`}>
+        <div className={`w-full px-14 ${borderColor.primary} border-y-[1px] max-small-l:px-3`}>
           <div
-            className={`border-[1px] ${borderColor.primary} w-full h-[80vh] rounded-2xl overflow-hidden shadow-black/10 shadow-xl relative`}
+            className={`border-[1px] ${borderColor.primary} w-full h-[80vh] rounded-2xl overflow-hidden shadow-black/10 shadow-xl relative max-md:h-[380px] max-sm:h-[200px]`}
           >
             <Image
               src={"/HealthCarePlus.png"}
@@ -19,7 +19,7 @@ const ProjectSection = () => {
           </div>
         </div>
         <div
-          className={`w-full flex py-[20px] flex-col gap-6 items-start border-y-[1px] ${borderColor.primary} px-18`}
+          className={`w-full flex py-[20px] flex-col gap-6 items-start border-y-[1px] ${borderColor.primary} px-18 max-sm:px-4`}
         >
           <p className={`text-[24px] ${fontColor.primary} font-semibold`}>
             HealthCare+ - AI Powered Healthcare Platform
@@ -57,9 +57,9 @@ const ProjectSection = () => {
 
 
       <div className={`w-full flex mt-[50px] flex-col gap-10 py-10`}>
-        <div className={`w-full px-14 ${borderColor.primary} border-y-[1px]`}>
+        <div className={`w-full px-14 ${borderColor.primary} border-y-[1px] max-small-l:px-3`}>
           <div
-            className={`border-[1px] ${borderColor.primary} w-full h-[80vh] rounded-2xl overflow-hidden shadow-black/10 shadow-xl relative`}
+            className={`border-[1px] ${borderColor.primary} w-full h-[80vh] rounded-2xl overflow-hidden shadow-black/10 shadow-xl relative max-md:h-[380px] max-sm:h-[200px]`}
           >
             <Image
               src={"/HealthCarePlus.png"}
@@ -70,7 +70,7 @@ const ProjectSection = () => {
           </div>
         </div>
         <div
-          className={`w-full flex py-[20px] flex-col gap-6 items-start border-y-[1px] ${borderColor.primary} px-18`}
+          className={`w-full flex py-[20px] flex-col gap-6 items-start border-y-[1px] ${borderColor.primary} px-18 max-sm:px-4`}
         >
           <p className={`text-[24px] ${fontColor.primary} font-semibold`}>
             HealthCare+ - AI Powered Healthcare Platform
