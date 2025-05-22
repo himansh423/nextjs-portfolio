@@ -15,12 +15,12 @@ const AddView = () => {
   return (
     <div className="hidden w-full h-screen bg-gray-700/80 absolute z-40 top-0 left-0 flex items-center justify-center flex-col gap-4">
       <div className="flex items-center gap-4">
-        <div className="w-[65px] h-[65px] flex items-center-safe justify-center text-[24px] text-gray-500 bg-[#f7f7f8] rounded-full">
+        <div className="w-[65px] h-[65px] flex items-center-safe justify-center text-[24px] text-gray-500 bg-[#f7f7f8] rounded-full max-sm:hidden">
           <div>
             <FaLessThan />
           </div>
         </div>
-        <div className="w-[380px] h-[455px] bg-[#f7f7f8] rounded-xl flex flex-col p-[10px]">
+        <div className="w-[380px] h-[455px] bg-[#f7f7f8] rounded-xl flex flex-col p-[10px] max-sm:w-[90vw]">
           <div className="w-full h-[386px] bg-gradient-to-b from-pink-400 via-red-400 to-yellow-300 rounded-lg flex items-center justify-center">
             <textarea
               placeholder="Type here to leave a message"
@@ -32,15 +32,15 @@ const AddView = () => {
             <p className={`text-[16px] text-[#5e5f6e]`}>Himanshu Chauhan</p>
           </div>
         </div>
-        <div className="w-[65px] h-[65px] flex items-center-safe justify-center text-[24px] text-gray-500 bg-[#f7f7f8] rounded-full">
+        <div className="w-[65px] h-[65px] flex items-center-safe justify-center text-[24px] text-gray-500 bg-[#f7f7f8] rounded-full max-sm:hidden">
           <div>
             <FaGreaterThan />
           </div>
         </div>
       </div>
       {/* bottom operation */}
-      <div className="w-[380px] flex items-center justify-between">
-        <div className="w-[260px] h-[40px] rounded-[40px] bg-[#3c3c3f] flex items-center gap-1 justify-between px-3">
+      <div className="w-[380px] flex items-center justify-between max-sm:w-[90vw]">
+        <div className="w-[260px] h-[40px] rounded-[40px] bg-[#3c3c3f] flex items-center gap-1 justify-between px-3 max-sm:w-[200px]">
           {gradientColors.map((colorG) => (
             <div key={colorG} className={`w-[15px] h-[15px] rounded-full  ${colorG}`}></div>
           ))}

@@ -76,7 +76,7 @@ const CommunityWall = () => {
       {/* button to add more views */}
       {/* cards grird */}
       <div className="w-full min-h-screen flex justify-center items-start py-20 px-10 bg-[#f4f4f4] relative">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-36">
+        <div className="grid grid-cols-3 max-small-l:grid-cols-2 gap-36 max-sm:grid-cols-1">
           {cardsData.map((card, index) => {
             const gradient = gradientColors[index % gradientColors.length];
             const rotation = rotations[index % rotations.length];

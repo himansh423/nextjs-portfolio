@@ -5,7 +5,7 @@ const page = () => {
   return (
     <div className="w-full min-h-screen flex justify-between relative">
       <div
-        className="w-[30px] min-h-screen bg-repeat-y bg-top"
+        className="w-[30px] min-h-screen bg-repeat-y bg-top max-md:hidden"
         style={{
           backgroundImage: `url(${sideLines.src})`,
           backgroundSize: "contain",
@@ -15,7 +15,7 @@ const page = () => {
       <div className="flex-1 flex flex-col overflow-hidden"></div>
       <CommunityWall />
       <div
-        className="w-[30px] min-h-screen bg-repeat-y bg-top"
+        className="w-[30px] min-h-screen bg-repeat-y bg-top max-md:hidden"
         style={{
           backgroundImage: `url(${sideLines.src})`,
           backgroundSize: "contain",
