@@ -6,7 +6,7 @@ const BlogSection = () => {
   return (
     <div className="w-full min-h-screen mt-14">
       <div
-        className={`w-full min-h-screen border-y-[1px] ${borderColor.primary} mt-18 grid grid-cols-3  gap-2`}
+        className={`w-full min-h-screen border-y-[1px] ${borderColor.primary} mt-18 grid grid-cols-3  gap-2 max-md:grid-cols-2 max-md:px-2 max-sm:grid-cols-1`}
       >
         {/* first */}
         {Array.from({ length: 18 }).map((_, index) => (
