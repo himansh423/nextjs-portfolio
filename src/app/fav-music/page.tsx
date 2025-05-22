@@ -5,18 +5,18 @@ const page = () => {
   return (
     <div className="w-full min-h-screen flex justify-between">
       <div
-        className="w-[30px] min-h-screen bg-repeat-y bg-top"
+        className="w-[30px] min-h-screen bg-repeat-y bg-top max-md:hidden"
         style={{
           backgroundImage: `url(${sideLines.src})`,
           backgroundSize: "contain",
         }}
       ></div>
-      <div className="flex-1 flex flex-col px-14 py-10 overflow-hidden">
+      <div className="flex-1 flex flex-col px-14 max-md:px-2 py-10 overflow-hidden">
       <MusicPage/>
       </div>
 
       <div
-        className="w-[30px] min-h-screen bg-repeat-y bg-top"
+        className="w-[30px] min-h-screen bg-repeat-y bg-top max-md:hidden"
         style={{
           backgroundImage: `url(${sideLines.src})`,
           backgroundSize: "contain",
