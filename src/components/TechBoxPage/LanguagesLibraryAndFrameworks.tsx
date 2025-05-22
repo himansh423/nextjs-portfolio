@@ -13,7 +13,7 @@ const LanguagesLibraryAndFrameworks = () => {
       </div>
 
       <div
-        className={`w-full grid place-items-center gap-y-14 grid-cols-8 grid-rows-2 ${borderColor.primary} border-y-[1px] mt-[50px] max-md:grid-cols-4 max-sm:grid-cols-3 max-xs:grid-cols-2`}
+        className={`w-full grid place-items-center gap-y-14 grid-cols-8 grid-rows-2 ${borderColor.primary} border-y-[1px] mt-[50px] max-md:grid-cols-4 max-sm:grid-cols-3 max-xs:grid-cols-2 max-mid:grid-cols-4`}
       >
         {Array.from({ length: 16 }).map((_, index) => (
           <div

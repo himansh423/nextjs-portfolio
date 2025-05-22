@@ -5,7 +5,7 @@ import { borderColor, fontColor } from "@/library/constants/colors";
 const ConnectionBox = () => {
   return (
     <div
-      className={`w-full grid place-items-center gap-y-14 grid-cols-8 grid-rows-2 mt-[50px]`}
+      className={`w-full grid place-items-center gap-y-14 grid-cols-8 grid-rows-2 mt-[50px] max-small-l:grid-cols-6 max-md:grid-cols-4 max-sm:grid-cols-3 max-xs:grid-cols-2`}
     >
       {Array.from({ length: 16 }).map((_, index) => (
         <div
@@ -31,11 +31,19 @@ const ConnectionBox = () => {
               </div>
             </div>
 
-            <div className={`w-full h-[24px] bg-[#818CF8] absolute bottom-[-10px] rounded-[50px] left-0`}>
-              <p className={`text-[#ffffff] text-[12px] font-semibold flex items-center justify-center pt-[3px]`}>Met on 12/04/25</p>
+            <div
+              className={`w-full h-[24px] bg-[#818CF8] absolute bottom-[-10px] rounded-[50px] left-0`}
+            >
+              <p
+                className={`text-[#ffffff] text-[12px] font-semibold flex items-center justify-center pt-[3px]`}
+              >
+                Met on 12/04/25
+              </p>
             </div>
           </motion.div>
-          <p className={`text-[14px] ${fontColor.secondry}`}>Himanshu Chauhan</p>
+          <p className={`text-[14px] ${fontColor.secondry}`}>
+            Himanshu Chauhan
+          </p>
         </div>
       ))}
     </div>
