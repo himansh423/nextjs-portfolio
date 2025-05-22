@@ -13,7 +13,10 @@ const HeroSection = () => {
           <p
             className={`${racingSans.className} text-center leading-[65px] text-[60px] max-sm:text-[40px] max-sm:leading-[40px]`}
           >
-Insightful && helpful<br />content curated for you.          </p>
+            Insightful && helpful
+            <br />
+            content curated for you.{" "}
+          </p>
         </div>
       </div>
     </div>

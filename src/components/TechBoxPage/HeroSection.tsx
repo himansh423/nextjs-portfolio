@@ -5,13 +5,13 @@ const HeroSection = () => {
   return (
     <div className="w-full  flex flex-col">
       <div
-        className={`w-full h-[280px] border-[1px] ${borderColor.primary} flex items-center`}
+        className={`w-full h-[280px] border-b-[1px] ${borderColor.primary} flex items-center`}
       >
         <div
           className={`w-full flex items-center justify-center border-y-[1px] ${borderColor.primary}`}
         >
           <p
-            className={`${racingSans.className} text-center leading-[65px] text-[60px]`}
+            className={`${racingSans.className} text-center leading-[65px] text-[60px] max-sm:text-[40px] max-sm:leading-[40px]`}
           >
             Hardware && software<br />I keep in my techbox.
           </p>
