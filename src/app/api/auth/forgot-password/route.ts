@@ -21,7 +21,7 @@ export async function POST(req: Request) {
   user.resetPasswordExpires = Date.now() + 15 * 60 * 1000;
   await user.save();
 
-  const resetLink = `${process.env.NEXT_PUBLIC_FRONTEND_URL}/auth/reset-password?token=${resetToken}&email=${email}`;
+  const resetLink = `${process.env.FRONTEND_URL}/auth/reset-password?token=${resetToken}&email=${email}`;
   await sendEmail({
     to: process.env.DEFAULT_ADMIN_EMAIL as string,
     subject: "Password Reset",
