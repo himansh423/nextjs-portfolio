@@ -27,7 +27,7 @@ export async function POST(req: Request) {
       );
     }
 
-    // Update the found user 
+    // Update the found user
     user.otp = undefined;
     await user.save();
 
