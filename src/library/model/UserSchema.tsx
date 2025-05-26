@@ -2,7 +2,7 @@ import mongoose, { Document, Model } from "mongoose";
 const { Schema } = mongoose;
 
 const userSchema = new Schema({
-  name: { type: String, required: true },
+  name: { type: String },
   email: { type: String, required: true },
   password: { type: String, select: false },
   googleId: { type: String, select: false },
