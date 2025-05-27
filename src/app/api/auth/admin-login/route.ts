@@ -87,6 +87,7 @@ export async function POST(req: Request) {
     const response = NextResponse.json({
       success: true,
       message: "OTP Sent to Registered Email ID Successfully",
+      email: existingUser.email,
     });
 
     return response;

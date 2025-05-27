@@ -4,7 +4,6 @@ import connectToDatabase from "@/library/database/db";
 import { sendEmail } from "@/library/sendMail/sendMail";
 import jwt from "jsonwebtoken";
 import User from "@/library/model/UserSchema";
-import { image } from "framer-motion/client";
 
 // Token generation function
 

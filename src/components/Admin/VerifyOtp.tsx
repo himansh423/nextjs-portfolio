@@ -1,7 +1,12 @@
 import { borderColor, fontColor } from "@/library/constants/colors";
 import { racingSans } from "@/library/constants/fonts";
-import { ArrowRight, Key, KeyRound, Lock, MailIcon } from "lucide-react";
+import { VerifyOTPSchema } from "@/library/zodSchema/VerifyOTP";
+import { ArrowRight, Lock } from "lucide-react";
+import { z } from "zod";
 
+
+
+type OTPData = z.infer<typeof VerifyOTPSchema>;
 const VerifyOtp = () => {
   return (
     <div className="w-full h-screen flex flex-col gap-3 items-center justify-center">

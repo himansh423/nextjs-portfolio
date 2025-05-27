@@ -3,6 +3,7 @@ import homeAboutSlice from "./homeAboutSlice";
 import homeMySiteSlice from "./homeMySiteSlice";
 import aboutMoreSlice from "./aboutMoreSlice";
 import navbarSlice from "./navbarSlice";
+import adminLoginSlice from "./AdminLoginSlice";
 
 export const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ export const store = configureStore({
     homeMySite: homeMySiteSlice.reducer,
     aboutMore: aboutMoreSlice.reducer,
     navbar: navbarSlice.reducer,
+    adminLogin: adminLoginSlice.reducer,
   },
 });
 
