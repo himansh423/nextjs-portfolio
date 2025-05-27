@@ -70,7 +70,7 @@ const Login = () => {
       </div>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className={`w-[500px]  rounded-[10px] border-[1px] ${borderColor.primary} shadow-2xl flex flex-col px-5 py-4`}
+        className={`w-[500px] max-sm:w-[85vw]  rounded-[10px] border-[1px] ${borderColor.primary} shadow-2xl flex flex-col px-5 py-4`}
       >
         <div>
           <p className={`text-[25px] font-bold ${fontColor.primary}`}>
