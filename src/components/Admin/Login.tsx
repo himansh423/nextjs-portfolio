@@ -144,7 +144,7 @@ const Login = () => {
           </p>
         )}
         <button
-          className={`w-full h-[40px] bg-black flex items-center justify-center text-[#fafafa] mt-5 rounded-[5px] gap-1 text-[14px] font-semibold`}
+          className={`w-full h-[40px] bg-black flex items-center justify-center text-[#fafafa] cursor-pointer mt-5 rounded-[5px] gap-1 text-[14px] font-semibold`}
         >
           {isSubmitting ? (
             <div className="w-[30px] h-[30px] rounded-full border-t-[3px] border-l-[3px]  border-white  animate-spin"></div>
