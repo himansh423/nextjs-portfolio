@@ -65,7 +65,9 @@ const VerifyOtp = () => {
         >
           Verify OTP
         </p>
-        <p className="max-sm:text-center">Enter the verification code sent to Admin email</p>
+        <p className="max-sm:text-center">
+          Enter the verification code sent to Admin email
+        </p>
       </div>
       <form
         className={`w-[500px] max-sm:w-[85vw] rounded-[10px] border-[1px] ${borderColor.primary} shadow-2xl flex flex-col px-5 py-4`}
@@ -106,7 +108,11 @@ const VerifyOtp = () => {
             )}
           </div>
         </div>
-
+        {errors.root && (
+          <p className="text-red-500 text-sm mt-2 text-center">
+            {errors.root.message}
+          </p>
+        )}
         <button
           className={`w-full h-[40px] bg-black flex items-center justify-center text-[#fafafa] mt-5 cursor-pointer rounded-[5px] gap-1 text-[14px] font-semibold`}
         >

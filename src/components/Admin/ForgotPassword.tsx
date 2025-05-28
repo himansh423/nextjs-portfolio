@@ -115,7 +115,11 @@ const ForgotPassword = () => {
                 )}
               </div>
             </div>
-
+            {errors.root && (
+              <p className="text-red-500 text-sm mt-2 text-center">
+                {errors.root.message}
+              </p>
+            )}
             <button
               className={`w-full h-[40px] bg-black flex items-center justify-center text-[#fafafa] mt-5 cursor-pointer rounded-[5px] gap-1 text-[14px] font-semibold`}
             >
