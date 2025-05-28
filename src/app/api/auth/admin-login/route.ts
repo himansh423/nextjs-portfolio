@@ -42,7 +42,7 @@ export async function POST(req: Request) {
     // Send OTP email
     await sendEmail({
       to: email,
-      subject: "OTP from Saas Arc",
+      subject: "OTP from Himanshu Chauhan - Portfolio",
       text: `Your OTP code is ${otp}, use it within 15 minutes.`,
       html: `
         <div style="font-family: Arial, sans-serif; line-height: 1.6;">
@@ -51,8 +51,7 @@ export async function POST(req: Request) {
           <p>Your OTP code is <strong>${otp}</strong>. Please use it within the next 15 minutes to verify your account.</p>
           <p>If you did not request this OTP, please ignore this email.</p>
           <br>
-          <p>Thanks,</p>
-          <p>The SaasArc Team</p>
+          <p>Thanks</p>
         </div>
       `,
     });
@@ -68,7 +67,7 @@ export async function POST(req: Request) {
         // Send OTP expired email
         await sendEmail({
           to: email,
-          subject: "OTP Expired - Saas Arc",
+          subject: "OTP Expired - Himanshu Chauhan - Portfolio",
           text: `Your OTP has expired. Please log in again to receive a new OTP.`,
           html: `
             <div style="font-family: Arial, sans-serif; line-height: 1.6;">
@@ -76,8 +75,7 @@ export async function POST(req: Request) {
               <p>Hello ${userToExpire.email},</p>
               <p>Your previous OTP has expired due to inactivity. Please log in again to receive a new OTP.</p>
               <br>
-              <p>Thanks,</p>
-              <p>The SaasArc Team</p>
+              <p>Thanks</p>
             </div>
           `,
         });

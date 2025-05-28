@@ -42,7 +42,7 @@ export async function POST(req: Request) {
           <p>Your OTP code is <strong>${otp}</strong>. Please use it within the next 15 minutes to verify your account.</p>
           <p>If you did not request this OTP, please ignore this email.</p>
           <br>
-          <p>Thanks,</p>
+          <p>Thanks</p>
         </div>
       `,
     });

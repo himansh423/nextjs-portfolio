@@ -39,7 +39,7 @@ const ResetPasswordForm = () => {
     data: ResetPasswordData
   ) => {
     const payload = {
-      password: data.password,
+      newPassword: data.password,
       token,
       email,
     };

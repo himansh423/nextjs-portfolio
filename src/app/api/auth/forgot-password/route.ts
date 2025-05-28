@@ -27,7 +27,7 @@ export async function POST(req: Request) {
   const resetLink = `${process.env.FRONTEND_URL}/admin/auth/reset-password?token=${resetToken}&email=${email}`;
   await sendEmail({
     to: process.env.DEFAULT_ADMIN_EMAIL as string,
-    subject: "Password Reset",
+    subject: "Password Reset Link From Admin",
     text: `Click here to reset your password: ${resetLink}`,
     html: `<p>Click here to reset your password: <a href="${resetLink}">${resetLink}</a></p>`,
   });

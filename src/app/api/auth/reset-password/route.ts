@@ -3,7 +3,6 @@ import bcrypt from "bcryptjs";
 import connectToDatabase from "@/library/database/db";
 import User from "@/library/model/UserSchema";
 
-
 export async function POST(req: Request) {
   await connectToDatabase();
   const { email, token, newPassword } = await req.json();
@@ -28,5 +27,8 @@ export async function POST(req: Request) {
   user.resetPasswordExpires = undefined;
   await user.save();
 
-  return NextResponse.json({ message: "Password reset successful" });
+  return NextResponse.json({
+    success: true,
+    message: "Password reset successful",
+  });
 }

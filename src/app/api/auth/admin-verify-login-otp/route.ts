@@ -47,7 +47,7 @@ export async function POST(req: Request) {
       { status: 200 }
     );
 
-    // Set token in the response cookie
+    //  token in the response cookie
     response.headers.set(
       "Set-Cookie",
       cookie.serialize("token", token, {
