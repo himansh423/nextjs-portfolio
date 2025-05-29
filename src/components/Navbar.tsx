@@ -7,8 +7,10 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { CiLinkedin } from "react-icons/ci";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { use, useEffect } from "react";
 import clsx from "clsx";
+import axios from "axios";
+import { LoggedInActions } from "@/redux/LoggedInSlice";
 
 const NAV_LINKS = [
   { href: "/", label: "Home" },
@@ -21,6 +23,7 @@ const NAV_LINKS = [
 
 const Navbar = () => {
   const { tab, IsMobNav } = useSelector((store: RootState) => store.navbar);
+  
   const dispatch = useDispatch();
   const pathname = usePathname();
 
@@ -32,6 +35,8 @@ const Navbar = () => {
       dispatch(navbarActions.setTab(""));
     }
   }, [pathname, dispatch]);
+
+  
 
   return (
     <>
@@ -101,7 +106,7 @@ const Navbar = () => {
             </div>
             {NAV_LINKS.map(({ href, label }) => (
               <Link
-              onClick={() => dispatch(navbarActions.setIsMobNav(false))}
+                onClick={() => dispatch(navbarActions.setIsMobNav(false))}
                 key={href}
                 href={href}
                 className={clsx(
@@ -150,6 +155,7 @@ const Navbar = () => {
           ))}
         </div>
 
+      
         {/* Social Icons */}
         <div className="Links w-[103px] rounded-[30px] h-[37px] bg-[#3c3c3f] flex items-center gap-2 justify-center">
           <a

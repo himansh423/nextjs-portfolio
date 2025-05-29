@@ -6,6 +6,7 @@ import navbarSlice from "./navbarSlice";
 import adminLoginSlice from "./AdminLoginSlice";
 import forgotPasswordSlice from "./forgotPasswordSlice";
 import resetPasswordSlice from "./ResetPasswordSlice";
+import loggedInSlice from "./LoggedInSlice";
 
 export const store = configureStore({
   reducer: {
@@ -15,7 +16,8 @@ export const store = configureStore({
     navbar: navbarSlice.reducer,
     adminLogin: adminLoginSlice.reducer,
     forgotPassword: forgotPasswordSlice.reducer,
-    resetPassword: resetPasswordSlice.reducer
+    resetPassword: resetPasswordSlice.reducer,
+    loggedIn: loggedInSlice.reducer
   },
 });
 

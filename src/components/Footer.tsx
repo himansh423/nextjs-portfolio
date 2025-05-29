@@ -1,8 +1,45 @@
+"use client";
 import { borderColor, fontColor } from "@/library/constants/colors";
 import { Github, Twitter } from "lucide-react";
 import { CiLinkedin } from "react-icons/ci";
 import sidelines from "../../public/sideLines.jpg";
+import axios from "axios";
+import { LoggedInActions } from "@/redux/LoggedInSlice";
+import { RootState } from "@/redux/store";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+
 const Footer = () => {
+  const { isAdminLoggedIn, isUserLoggedIn } = useSelector(
+    (store: RootState) => store.loggedIn
+  );
+  const dispatch = useDispatch();
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const response = await axios.get("/api/auth/decode-token");
+        if (response.data?.success) {
+          if (response.data.user.role === "admin") {
+            dispatch(LoggedInActions.setIsAdminLoggedIn(true));
+          } else if (response.data.user.role === "user") {
+            dispatch(LoggedInActions.setIsUserLoggedIn(true));
+          }
+        }
+      } catch (error) {
+        console.error("Error fetching logged-in user data:", error);
+      }
+    };
+
+    fetchUserData();
+  }, []);
+
+  const handleLogout = async () => {
+    const res = await axios.post("/api/auth/logout");
+
+    if (res.data.success) {
+      window.location.reload();
+    }
+  };
   return (
     <footer>
       <div
@@ -14,8 +51,8 @@ const Footer = () => {
           <div className={`flex flex-col gap-6 max-small-l:gap-2`}>
             <div className="Logo w-[40px] h-[40px] bg-black"></div>
             <p className={`text-[14px] ${fontColor.secondry} font-semibold`}>
-              I&apos;m Himanshu - a senior Full-Stack <br /> Developer, blogger and{" "}
-              <br /> Streamer. Thanks for checking out my site!
+              I&apos;m Himanshu - a senior Full-Stack <br /> Developer, blogger
+              and <br /> Streamer. Thanks for checking out my site!
             </p>
             <p className={`text-[14px] font-semibold ${fontColor.secondry}`}>
               © 2025 Himanshu Chauhan
@@ -51,7 +88,9 @@ const Footer = () => {
         <div
           className={`w-1/2 h-full px- py-9 flex  items-center justify-center gap-10 shrink-0 max-small-l:gap-2 max-md:justify-around max-md:w-full`}
         >
-          <div className={`w-[150px] h-[200px]  flex flex-col gap-3 max-sm:w-fit`}>
+          <div
+            className={`w-[150px] h-[200px]  flex flex-col gap-3 max-sm:w-fit`}
+          >
             <p className={`text-[16px] font-semibold ${fontColor.primary}`}>
               General
             </p>
@@ -63,9 +102,16 @@ const Footer = () => {
               <p>Projects</p>
               <p>Contact</p>
               <p>Blog</p>
+              {isAdminLoggedIn && (
+                <p onClick={handleLogout} className="cursor-pointer">
+                  Logout
+                </p>
+              )}
             </div>
           </div>
-          <div className={`w-[150px] h-[200px]  flex flex-col gap-3 max-sm:w-fit`}>
+          <div
+            className={`w-[150px] h-[200px]  flex flex-col gap-3 max-sm:w-fit`}
+          >
             <p className={`text-[16px] font-semibold ${fontColor.primary}`}>
               Specifics
             </p>
@@ -76,7 +122,9 @@ const Footer = () => {
               <p>Community Wall</p>
             </div>
           </div>
-          <div className={`w-[150px] h-[200px]  flex flex-col gap-3 max-sm:w-fit`}>
+          <div
+            className={`w-[150px] h-[200px]  flex flex-col gap-3 max-sm:w-fit`}
+          >
             <p className={`text-[16px] font-semibold ${fontColor.primary}`}>
               Extras
             </p>
