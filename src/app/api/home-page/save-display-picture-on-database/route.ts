@@ -27,16 +27,16 @@ async function validateFileInS3(key: string): Promise<boolean> {
 
 export async function PATCH(req: NextRequest) {
   try {
-    const { profilePictureKey, alt } = await req.json();
+    const { dpFileKey } = await req.json();
 
-    if (!profilePictureKey || !alt) {
+    if (!dpFileKey) {
       return NextResponse.json(
         { error: "profilePictureKey and alt are required." },
         { status: 400 }
       );
     }
 
-    const isValid = await validateFileInS3(profilePictureKey);
+    const isValid = await validateFileInS3(dpFileKey);
     if (!isValid) {
       return NextResponse.json(
         { error: "Image does not exist in the S3 bucket." },
@@ -49,13 +49,12 @@ export async function PATCH(req: NextRequest) {
     const existing = await HomeDisplayPicture.findOne();
 
     if (existing) {
-      existing.image = profilePictureKey;
-      existing.alt = alt;
+      existing.image = dpFileKey;
+
       await existing.save();
     } else {
       await HomeDisplayPicture.create({
-        image: profilePictureKey,
-        alt,
+        image: dpFileKey,
       });
     }
 

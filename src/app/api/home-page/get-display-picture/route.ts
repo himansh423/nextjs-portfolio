@@ -39,7 +39,6 @@ export async function GET(req: Request) {
 
     const data = {
       image: displayPictureUrl,
-      alt: record.alt,
     };
 
     // Return the data as JSON

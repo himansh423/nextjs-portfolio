@@ -5,13 +5,83 @@ import profileImg from "../../../public/Profile.jpg";
 import PhotoGallery from "./PhotoCards";
 import { racingSans } from "@/library/constants/fonts";
 import { motion } from "framer-motion";
+import { Plus, Loader2 } from "lucide-react";
+import { RootState } from "@/redux/store";
+import { useSelector } from "react-redux";
+import { useEffect, useRef, useState } from "react";
+import axios from "axios";
 
 const HeroSection = () => {
+  const { isAdminLoggedIn, isUserLoggedIn } = useSelector(
+    (store: RootState) => store.loggedIn
+  );
+
+  const [image, setImage] = useState<string | null>(null);
+  const [file, setFile] = useState<File | null>(null);
+  const [loading, setLoading] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImage(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
+  }, [file]);
+
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const selectedFile = e.target.files?.[0];
+    if (selectedFile) {
+      setFile(selectedFile);
+    }
+  };
+
+  const handleUpload = async () => {
+    if (!file) return;
+    setLoading(true);
+    try {
+      const dpFileName = file.name;
+      const dpFileType = file.type;
+
+      const { data } = await axios.post(
+        "/api/home-page/get-presigned-url-to-upload-display-picture-on-s3",
+        {
+          dpFileName,
+          dpFileType,
+        }
+      );
+
+      const { dpUploadUrl, dpFileKey } = data;
+
+      await axios.put(dpUploadUrl, file, {
+        headers: { "Content-Type": dpFileType },
+      });
+
+      const res = await axios.patch(
+        `/api/home-page/save-display-picture-on-database`,
+        {
+          dpFileKey,
+        }
+      );
+
+      if (res.data.success) {
+        alert("Profile picture updated!");
+      }
+    } catch (error) {
+      console.error("Upload failed:", error);
+      alert("Failed to upload profile picture.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="w-full flex flex-col">
       {/* profile Box */}
       <div
-        className={`w-full h-[250px] flex justify-center items-center border-b-[1px] ${borderColor.primary} max-sm:h-[220px] `}
+        className={`w-full h-[250px] flex justify-center items-center border-b-[1px] ${borderColor.primary} max-sm:h-[220px] ${isAdminLoggedIn ? "flex-col":null} `}
       >
         <motion.div
           initial={{ opacity: 0, scale: 0 }}
@@ -23,22 +93,62 @@ const HeroSection = () => {
           className={`w-[140px] h-[140px] rounded-full border-[1px] ${borderColor.primary} flex justify-center items-center mt-10 max-sm:mt-0`}
         >
           <div
-            className={`w-[110px] h-[110px] rounded-full border-[1px] ${borderColor.primary} flex justify-center items-center`}
+            className={`w-[110px] h-[110px] rounded-full border-[1px] ${
+              borderColor.primary
+            } flex justify-center items-center  
+            ${isAdminLoggedIn && "relative"}
+            `}
           >
             <div
               className={`w-[100px] h-[100px] rounded-full border-[1px] ${borderColor.primary} overflow-hidden relative`}
             >
               <Image
-                src={profileImg.src}
+                src={image || profileImg.src}
                 alt="profileImage"
                 objectFit="cover"
                 fill
               />
             </div>
+
+            {/* For admin: upload button */}
+            {isAdminLoggedIn && (
+              <>
+                <div
+                  className={`w-[50px] h-[50px] rounded-full absolute bottom-[-10px] right-[-20px] bg-red-500 flex justify-center items-center text-white cursor-pointer`}
+                  onClick={() => fileInputRef.current?.click()}
+                >
+                  <Plus />
+                </div>
+                <input
+                  type="file"
+                  ref={fileInputRef}
+                  accept="image/*"
+                  className="hidden"
+                  onChange={handleImageChange}
+                />
+              </>
+            )}
           </div>
         </motion.div>
+        {isAdminLoggedIn && file && (
+        <div className="flex justify-center mt-4">
+          <button
+            onClick={handleUpload}
+            disabled={loading}
+            className={`px-6 py-2 rounded-md font-semibold bg-blue-600 text-white ${
+              loading ? "opacity-50 cursor-not-allowed" : "hover:bg-blue-700"
+            } flex items-center gap-2`}
+          >
+            {loading && <Loader2 className="animate-spin" size={20} />}
+            {loading ? "Uploading..." : "Upload"}
+          </button>
+        </div>
+      )}
       </div>
       {/* profile Box */}
+
+      {/* Upload Button (only visible when file is selected and user is admin) */}
+      
 
       {/* Hey Box */}
       <div
@@ -70,7 +180,8 @@ const HeroSection = () => {
             duration: 0.5,
             delay: 1,
             ease: "easeOut",
-          }}>
+          }}
+        >
           I&apos;m a Full Stack Developer with a love for design and a knack for
           tinkering. This site is intentionally over-engineered and serves as my
           playground for experimenting with new ideas and seeing what sticks!

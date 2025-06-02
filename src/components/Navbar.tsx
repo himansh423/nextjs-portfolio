@@ -7,10 +7,9 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { CiLinkedin } from "react-icons/ci";
 import { useDispatch, useSelector } from "react-redux";
-import { use, useEffect } from "react";
+import {  useEffect } from "react";
 import clsx from "clsx";
-import axios from "axios";
-import { LoggedInActions } from "@/redux/LoggedInSlice";
+
 
 const NAV_LINKS = [
   { href: "/", label: "Home" },

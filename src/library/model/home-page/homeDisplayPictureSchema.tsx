@@ -2,8 +2,7 @@ import mongoose, { Model } from "mongoose";
 const { Schema } = mongoose;
 
 interface IDisplayPicture extends Document {
-  image:string;
-  alt:string;
+  image: string;
 }
 
 const homeDisplayPictureSchema = new Schema<IDisplayPicture>({
@@ -11,13 +10,9 @@ const homeDisplayPictureSchema = new Schema<IDisplayPicture>({
     type: String,
     required: true,
   },
-  alt: {
-    type: String,
-    required: true,
-  },
 });
 
-const HomeDisplayPicture:Model<IDisplayPicture> =
+const HomeDisplayPicture: Model<IDisplayPicture> =
   mongoose.models.HomeDisplayPictures ||
   mongoose.model("HomeDisplayPictures", homeDisplayPictureSchema);
 export default HomeDisplayPicture;
