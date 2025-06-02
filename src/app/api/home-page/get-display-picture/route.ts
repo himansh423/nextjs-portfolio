@@ -38,6 +38,7 @@ export async function GET(req: Request) {
     );
 
     const data = {
+      success:true,
       image: displayPictureUrl,
     };
 

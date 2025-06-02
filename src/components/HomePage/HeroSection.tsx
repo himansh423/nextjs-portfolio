@@ -7,14 +7,16 @@ import { racingSans } from "@/library/constants/fonts";
 import { motion } from "framer-motion";
 import { Plus, Loader2 } from "lucide-react";
 import { RootState } from "@/redux/store";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useRef, useState } from "react";
 import axios from "axios";
+import { homeHeroActions } from "@/redux/homeHeroSlice";
 
 const HeroSection = () => {
-  const { isAdminLoggedIn, isUserLoggedIn } = useSelector(
-    (store: RootState) => store.loggedIn
-  );
+  const { isAdminLoggedIn } = useSelector((store: RootState) => store.loggedIn);
+  const { picture } = useSelector((store: RootState) => store.homeHero);
+
+  const dispatch = useDispatch();
 
   const [image, setImage] = useState<string | null>(null);
   const [file, setFile] = useState<File | null>(null);
@@ -77,11 +79,27 @@ const HeroSection = () => {
     }
   };
 
+  const getDisplayPicture = async () => {
+    try {
+      const res = await axios.get("/api/home-page/get-display-picture");
+      if (res.data.success) {
+        dispatch(homeHeroActions.setPicture(res.data.image));
+      }
+    } catch (error: unknown) {
+      console.error("Something went Wrong");
+    }
+  };
+
+  useEffect(() => {
+    getDisplayPicture();
+  }, []);
   return (
     <div className="w-full flex flex-col">
       {/* profile Box */}
       <div
-        className={`w-full h-[250px] flex justify-center items-center border-b-[1px] ${borderColor.primary} max-sm:h-[220px] ${isAdminLoggedIn ? "flex-col":null} `}
+        className={`w-full h-[250px] flex justify-center items-center border-b-[1px] ${
+          borderColor.primary
+        } max-sm:h-[220px] ${isAdminLoggedIn ? "flex-col" : null} `}
       >
         <motion.div
           initial={{ opacity: 0, scale: 0 }}
@@ -103,7 +121,7 @@ const HeroSection = () => {
               className={`w-[100px] h-[100px] rounded-full border-[1px] ${borderColor.primary} overflow-hidden relative`}
             >
               <Image
-                src={image || profileImg.src}
+                src={image || picture || "/placeholder.jpg"}
                 alt="profileImage"
                 objectFit="cover"
                 fill
@@ -131,24 +149,23 @@ const HeroSection = () => {
           </div>
         </motion.div>
         {isAdminLoggedIn && file && (
-        <div className="flex justify-center mt-4">
-          <button
-            onClick={handleUpload}
-            disabled={loading}
-            className={`px-6 py-2 rounded-md font-semibold bg-blue-600 text-white ${
-              loading ? "opacity-50 cursor-not-allowed" : "hover:bg-blue-700"
-            } flex items-center gap-2`}
-          >
-            {loading && <Loader2 className="animate-spin" size={20} />}
-            {loading ? "Uploading..." : "Upload"}
-          </button>
-        </div>
-      )}
+          <div className="flex justify-center mt-4">
+            <button
+              onClick={handleUpload}
+              disabled={loading}
+              className={`px-6 py-2 rounded-md font-semibold bg-blue-600 text-white ${
+                loading ? "opacity-50 cursor-not-allowed" : "hover:bg-blue-700"
+              } flex items-center gap-2`}
+            >
+              {loading && <Loader2 className="animate-spin" size={20} />}
+              {loading ? "Uploading..." : "Upload"}
+            </button>
+          </div>
+        )}
       </div>
       {/* profile Box */}
 
       {/* Upload Button (only visible when file is selected and user is admin) */}
-      
 
       {/* Hey Box */}
       <div

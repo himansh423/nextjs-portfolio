@@ -7,6 +7,7 @@ import adminLoginSlice from "./AdminLoginSlice";
 import forgotPasswordSlice from "./forgotPasswordSlice";
 import resetPasswordSlice from "./ResetPasswordSlice";
 import loggedInSlice from "./LoggedInSlice";
+import homeHeroSlice from "./homeHeroSlice";
 
 export const store = configureStore({
   reducer: {
@@ -17,7 +18,8 @@ export const store = configureStore({
     adminLogin: adminLoginSlice.reducer,
     forgotPassword: forgotPasswordSlice.reducer,
     resetPassword: resetPasswordSlice.reducer,
-    loggedIn: loggedInSlice.reducer
+    loggedIn: loggedInSlice.reducer,
+    homeHero: homeHeroSlice.reducer,
   },
 });
 
