@@ -1,7 +1,6 @@
 "use client";
 import { borderColor, fontColor } from "@/library/constants/colors";
 import Image from "next/image";
-import profileImg from "../../../public/Profile.jpg";
 import PhotoGallery from "./PhotoCards";
 import { racingSans } from "@/library/constants/fonts";
 import { motion } from "framer-motion";
@@ -14,13 +13,14 @@ import { homeHeroActions } from "@/redux/homeHeroSlice";
 
 const HeroSection = () => {
   const { isAdminLoggedIn } = useSelector((store: RootState) => store.loggedIn);
-  const { picture } = useSelector((store: RootState) => store.homeHero);
+  const { picture, loading } = useSelector(
+    (store: RootState) => store.homeHero
+  );
 
   const dispatch = useDispatch();
 
   const [image, setImage] = useState<string | null>(null);
   const [file, setFile] = useState<File | null>(null);
-  const [loading, setLoading] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -42,7 +42,7 @@ const HeroSection = () => {
 
   const handleUpload = async () => {
     if (!file) return;
-    setLoading(true);
+    dispatch(homeHeroActions.setLoading(true));
     try {
       const dpFileName = file.name;
       const dpFileType = file.type;
@@ -69,13 +69,17 @@ const HeroSection = () => {
       );
 
       if (res.data.success) {
+        
+        await getDisplayPicture();
+        setImage(null);
+        setFile(null);
         alert("Profile picture updated!");
       }
     } catch (error) {
       console.error("Upload failed:", error);
       alert("Failed to upload profile picture.");
     } finally {
-      setLoading(false);
+      dispatch(homeHeroActions.setLoading(false));
     }
   };
 

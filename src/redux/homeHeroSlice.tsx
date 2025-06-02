@@ -1,11 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 interface HomeHeroState {
-  picture: string | null; // Change this to allow null
+  picture: string | null;
+  loading: boolean;
 }
 
 const initialState: HomeHeroState = {
-  picture: null, // Change this from "" to null
+  picture: null,
+  loading: false,
 };
 
 const homeHeroSlice = createSlice({
@@ -14,6 +16,9 @@ const homeHeroSlice = createSlice({
   reducers: {
     setPicture: (state, action) => {
       state.picture = action.payload;
+    },
+    setLoading: (state, action) => {
+      state.loading = action.payload;
     },
   },
 });
