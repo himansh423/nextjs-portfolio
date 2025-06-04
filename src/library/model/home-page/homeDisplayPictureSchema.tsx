@@ -1,4 +1,4 @@
-import mongoose, { Model } from "mongoose";
+import mongoose, { Document, Model } from "mongoose";
 const { Schema } = mongoose;
 
 interface IDisplayPicture extends Document {

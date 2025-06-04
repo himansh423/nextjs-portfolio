@@ -69,7 +69,6 @@ const HeroSection = () => {
       );
 
       if (res.data.success) {
-        
         await getDisplayPicture();
         setImage(null);
         setFile(null);
