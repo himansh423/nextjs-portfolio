@@ -81,22 +81,23 @@ export default function PhotoGallery() {
     setUploadingImages((prev) => new Set(prev).add(imageId))
 
     try {
-      // Get presigned URL for update
+      // Get presigned URL for update (this now also returns old file key)
       const { data: urlData } = await axios.post("/api/home-page/update-gallery-image", {
         imageId,
         fileName: file.name,
         fileType: file.type,
       })
 
-      // Upload to S3
+      // Upload new image to S3
       await axios.put(urlData.uploadUrl, file, {
         headers: { "Content-Type": file.type },
       })
 
-      // Save to database
+      // Save to database and delete old image from S3
       await axios.patch("/api/home-page/save-updated-gallery-image", {
         imageId,
-        fileKey: urlData.fileKey,
+        newFileKey: urlData.newFileKey,
+        oldFileKey: urlData.oldFileKey,
       })
 
       // Refresh images
@@ -107,7 +108,7 @@ export default function PhotoGallery() {
       newSelectedFiles.delete(imageId)
       setSelectedFiles(newSelectedFiles)
 
-      alert("Image updated successfully!")
+      alert("Image updated successfully! Old image has been removed from storage.")
     } catch (error) {
       console.error("Error updating image:", error)
       alert("Failed to update image")
@@ -127,7 +128,7 @@ export default function PhotoGallery() {
 
     try {
       await Promise.all(uploadPromises)
-      alert(`Successfully updated ${selectedFiles.size} image(s)!`)
+      alert(`Successfully updated ${selectedFiles.size} image(s)! Old images have been removed from storage.`)
     } catch (error) {
       console.error("Error in bulk upload:", error)
       alert("Some images failed to update")
@@ -173,7 +174,7 @@ export default function PhotoGallery() {
       const uploadedKeys = await Promise.all(uploadPromises)
 
       // Save to database
-      await axios.post("/api/home-page/save-photo-gallery-to-database", {
+      await axios.post("/api/home-page/save-gallery-images", {
         imageUrls: uploadedKeys,
       })
 
@@ -483,10 +484,19 @@ function PhotoCard({
         {isAdmin && showUpdateControls && (
           <>
             <div
-              className={`absolute top-2 right-2 w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center cursor-pointer hover:bg-blue-700 transition-colors z-50 ${
+              className={`absolute top-2 right-2 w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center cursor-pointer hover:bg-blue-700 transition-colors z-20 ${
                 hasSelectedFile ? "bg-green-600 hover:bg-green-700" : ""
               }`}
-              onClick={() => fileInputRef.current?.click()}
+              onClick={(e) => {
+                e.stopPropagation()
+                fileInputRef.current?.click()
+              }}
+              onPointerDown={(e) => {
+                e.stopPropagation()
+              }}
+              onMouseDown={(e) => {
+                e.stopPropagation()
+              }}
             >
               {isUploading ? (
                 <Loader2 className="animate-spin text-white" size={16} />
@@ -498,9 +508,18 @@ function PhotoCard({
             <input type="file" ref={fileInputRef} accept="image/*" className="hidden" onChange={handleFileChange} />
 
             {hasSelectedFile && (
-              <div className="absolute bottom-2 right-2">
+              <div className="absolute bottom-2 right-2 z-20">
                 <button
-                  onClick={() => onUpdate(imageData._id)}
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    onUpdate(imageData._id)
+                  }}
+                  onPointerDown={(e) => {
+                    e.stopPropagation()
+                  }}
+                  onMouseDown={(e) => {
+                    e.stopPropagation()
+                  }}
                   disabled={isUploading}
                   className="px-2 py-1 bg-green-600 text-white text-xs rounded hover:bg-green-700 disabled:opacity-50 flex items-center gap-1"
                 >
@@ -513,7 +532,7 @@ function PhotoCard({
         )}
 
         <div
-          className="absolute inset-0 bg-transparent bg-opacity-10 z-10"
+          className="absolute inset-0 bg-transparent bg-opacity-10 z-10 pointer-events-none"
           style={{
             borderRadius: "18px",
           }}
