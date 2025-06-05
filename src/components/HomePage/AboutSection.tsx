@@ -1,40 +1,52 @@
-"use client"
-import { borderColor, fontColor } from "@/library/constants/colors"
-import type React from "react"
+"use client";
+import { borderColor, fontColor } from "@/library/constants/colors";
+import type React from "react";
 
-import { racingSans } from "@/library/constants/fonts"
-import Image from "next/image"
-import { motion } from "framer-motion"
-import { ArrowUpRight, Edit, Loader2, Plus, Upload } from "lucide-react"
-import { useDispatch, useSelector } from "react-redux"
-import type { RootState } from "@/redux/store"
-import { homeAboutActions } from "@/redux/homeAboutSlice"
-import { useMediaQuery } from "@/library/hooks/use-media-query"
-import { useEffect, useRef, useState } from "react"
-import axios from "axios"
+import { racingSans } from "@/library/constants/fonts";
+import Image from "next/image";
+import { motion } from "framer-motion";
+import { ArrowUpRight, Edit, Loader2, Plus, Upload } from "lucide-react";
+import { useDispatch, useSelector } from "react-redux";
+import type { RootState } from "@/redux/store";
+import { homeAboutActions } from "@/redux/homeAboutSlice";
+import { useMediaQuery } from "@/library/hooks/use-media-query";
+import { useEffect, useRef, useState } from "react";
+import axios from "axios";
+import Link from "next/link";
 
 const AboutSection = () => {
-  const { isAboutHovering, isTechBoxHovering, isConnectionBoxHovering, isCallBoxHovering } = useSelector(
-    (store: RootState) => store.homeAbout,
-  )
-  const { isAdminLoggedIn } = useSelector((store: RootState) => store.loggedIn)
-  const dispatch = useDispatch()
+  const {
+    isAboutHovering,
+    isTechBoxHovering,
+    isConnectionBoxHovering,
+    isCallBoxHovering,
+  } = useSelector((store: RootState) => store.homeAbout);
+  const { isAdminLoggedIn } = useSelector((store: RootState) => store.loggedIn);
+  const dispatch = useDispatch();
 
   // State for about image
-  const [aboutImage, setAboutImage] = useState<string | null>(null)
-  const [aboutImageFile, setAboutImageFile] = useState<File | null>(null)
-  const [aboutImagePreview, setAboutImagePreview] = useState<string | null>(null)
-  const [isAboutImageLoading, setIsAboutImageLoading] = useState(false)
-  const aboutImageInputRef = useRef<HTMLInputElement>(null)
-  const [isLoadingAboutImage, setIsLoadingAboutImage] = useState(true)
+  const [aboutImage, setAboutImage] = useState<string | null>(null);
+  const [aboutImageFile, setAboutImageFile] = useState<File | null>(null);
+  const [aboutImagePreview, setAboutImagePreview] = useState<string | null>(
+    null
+  );
+  const [isAboutImageLoading, setIsAboutImageLoading] = useState(false);
+  const aboutImageInputRef = useRef<HTMLInputElement>(null);
+  const [isLoadingAboutImage, setIsLoadingAboutImage] = useState(true);
 
   // State for connections image
-  const [connectionsImage, setConnectionsImage] = useState<string | null>(null)
-  const [connectionsImageFile, setConnectionsImageFile] = useState<File | null>(null)
-  const [connectionsImagePreview, setConnectionsImagePreview] = useState<string | null>(null)
-  const [isConnectionsImageLoading, setIsConnectionsImageLoading] = useState(false)
-  const connectionsImageInputRef = useRef<HTMLInputElement>(null)
-  const [isLoadingConnectionsImage, setIsLoadingConnectionsImage] = useState(true)
+  const [connectionsImage, setConnectionsImage] = useState<string | null>(null);
+  const [connectionsImageFile, setConnectionsImageFile] = useState<File | null>(
+    null
+  );
+  const [connectionsImagePreview, setConnectionsImagePreview] = useState<
+    string | null
+  >(null);
+  const [isConnectionsImageLoading, setIsConnectionsImageLoading] =
+    useState(false);
+  const connectionsImageInputRef = useRef<HTMLInputElement>(null);
+  const [isLoadingConnectionsImage, setIsLoadingConnectionsImage] =
+    useState(true);
 
   const calenderElements = [
     "SUN",
@@ -69,155 +81,169 @@ const AboutSection = () => {
     "24",
     "25",
     "26",
-  ]
+  ];
 
-  const isMobile = useMediaQuery("(max-width: 780px)")
+  const isMobile = useMediaQuery("(max-width: 780px)");
 
   // Fetch images on component mount
   useEffect(() => {
-    fetchAboutImage()
-    fetchConnectionsImage()
-  }, [])
+    fetchAboutImage();
+    fetchConnectionsImage();
+  }, []);
 
   // Handle file preview for about image
   useEffect(() => {
     if (aboutImageFile) {
-      const reader = new FileReader()
+      const reader = new FileReader();
       reader.onloadend = () => {
-        setAboutImagePreview(reader.result as string)
-      }
-      reader.readAsDataURL(aboutImageFile)
+        setAboutImagePreview(reader.result as string);
+      };
+      reader.readAsDataURL(aboutImageFile);
     }
-  }, [aboutImageFile])
+  }, [aboutImageFile]);
 
   // Handle file preview for connections image
   useEffect(() => {
     if (connectionsImageFile) {
-      const reader = new FileReader()
+      const reader = new FileReader();
       reader.onloadend = () => {
-        setConnectionsImagePreview(reader.result as string)
-      }
-      reader.readAsDataURL(connectionsImageFile)
+        setConnectionsImagePreview(reader.result as string);
+      };
+      reader.readAsDataURL(connectionsImageFile);
     }
-  }, [connectionsImageFile])
+  }, [connectionsImageFile]);
 
   // Fetch about image
   const fetchAboutImage = async () => {
     try {
-      setIsLoadingAboutImage(true)
-      const response = await axios.get("/api/home-page/about-image/get")
+      setIsLoadingAboutImage(true);
+      const response = await axios.get("/api/home-page/about-image/get");
       if (response.data.success) {
-        setAboutImage(response.data.image)
+        setAboutImage(response.data.image);
       }
     } catch (error) {
-      console.error("Error fetching about image:", error)
+      console.error("Error fetching about image:", error);
     } finally {
-      setIsLoadingAboutImage(false)
+      setIsLoadingAboutImage(false);
     }
-  }
+  };
 
   // Fetch connections image
   const fetchConnectionsImage = async () => {
     try {
-      setIsLoadingConnectionsImage(true)
-      const response = await axios.get("/api/home-page/connections-image/get")
+      setIsLoadingConnectionsImage(true);
+      const response = await axios.get("/api/home-page/connections-image/get");
       if (response.data.success) {
-        setConnectionsImage(response.data.image)
+        setConnectionsImage(response.data.image);
       }
     } catch (error) {
-      console.error("Error fetching connections image:", error)
+      console.error("Error fetching connections image:", error);
     } finally {
-      setIsLoadingConnectionsImage(false)
+      setIsLoadingConnectionsImage(false);
     }
-  }
+  };
 
   // Handle about image file selection
   const handleAboutImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0]
+    const file = e.target.files?.[0];
     if (file) {
-      setAboutImageFile(file)
+      setAboutImageFile(file);
     }
-  }
+  };
 
   // Handle connections image file selection
-  const handleConnectionsImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0]
+  const handleConnectionsImageChange = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const file = e.target.files?.[0];
     if (file) {
-      setConnectionsImageFile(file)
+      setConnectionsImageFile(file);
     }
-  }
+  };
 
   // Upload about image
   const handleAboutImageUpload = async () => {
-    if (!aboutImageFile) return
+    if (!aboutImageFile) return;
 
-    setIsAboutImageLoading(true)
+    setIsAboutImageLoading(true);
     try {
       // Get presigned URL
-      const { data } = await axios.post("/api/home-page/about-image/get-presigned-url", {
-        fileName: aboutImageFile.name,
-        fileType: aboutImageFile.type,
-      })
+      const { data } = await axios.post(
+        "/api/home-page/about-image/get-presigned-url",
+        {
+          fileName: aboutImageFile.name,
+          fileType: aboutImageFile.type,
+        }
+      );
 
       // Upload to S3
       await axios.put(data.uploadUrl, aboutImageFile, {
         headers: { "Content-Type": aboutImageFile.type },
-      })
+      });
 
       // Save to database
-      const res = await axios.post("/api/home-page/about-image/save-to-database", {
-        fileKey: data.fileKey,
-      })
+      const res = await axios.post(
+        "/api/home-page/about-image/save-to-database",
+        {
+          fileKey: data.fileKey,
+        }
+      );
 
       if (res.data.success) {
-        await fetchAboutImage()
-        setAboutImageFile(null)
-        setAboutImagePreview(null)
-        alert("About image updated successfully!")
+        await fetchAboutImage();
+        setAboutImageFile(null);
+        setAboutImagePreview(null);
+        alert("About image updated successfully!");
       }
     } catch (error) {
-      console.error("Error uploading about image:", error)
-      alert("Failed to upload about image.")
+      console.error("Error uploading about image:", error);
+      alert("Failed to upload about image.");
     } finally {
-      setIsAboutImageLoading(false)
+      setIsAboutImageLoading(false);
     }
-  }
+  };
 
   // Upload connections image
   const handleConnectionsImageUpload = async () => {
-    if (!connectionsImageFile) return
+    if (!connectionsImageFile) return;
 
-    setIsConnectionsImageLoading(true)
+    setIsConnectionsImageLoading(true);
     try {
       // Get presigned URL
-      const { data } = await axios.post("/api/home-page/connections-image/get-presigned-url", {
-        fileName: connectionsImageFile.name,
-        fileType: connectionsImageFile.type,
-      })
+      const { data } = await axios.post(
+        "/api/home-page/connections-image/get-presigned-url",
+        {
+          fileName: connectionsImageFile.name,
+          fileType: connectionsImageFile.type,
+        }
+      );
 
       // Upload to S3
       await axios.put(data.uploadUrl, connectionsImageFile, {
         headers: { "Content-Type": connectionsImageFile.type },
-      })
+      });
 
       // Save to database
-      const res = await axios.post("/api/home-page/connections-image/save-to-database", {
-        fileKey: data.fileKey,
-      })
+      const res = await axios.post(
+        "/api/home-page/connections-image/save-to-database",
+        {
+          fileKey: data.fileKey,
+        }
+      );
 
       if (res.data.success) {
-        await fetchConnectionsImage()
-        setConnectionsImageFile(null)
-        setConnectionsImagePreview(null)
-        alert("Connections image updated successfully!")
+        await fetchConnectionsImage();
+        setConnectionsImageFile(null);
+        setConnectionsImagePreview(null);
+        alert("Connections image updated successfully!");
       }
     } catch (error) {
-      console.error("Error uploading connections image:", error)
-      alert("Failed to upload connections image.")
+      console.error("Error uploading connections image:", error);
+      alert("Failed to upload connections image.");
     } finally {
-      setIsConnectionsImageLoading(false)
+      setIsConnectionsImageLoading(false);
     }
-  }
+  };
 
   return (
     <div>
@@ -250,127 +276,246 @@ const AboutSection = () => {
         {/* child div1 */}
         <div className="w-[40%] flex flex-col gap-2 max-md:flex-row-reverse max-md:w-full max-sm:flex-col">
           {/* div1 - child div(i)*/}
-          <motion.div
-            onHoverStart={() => dispatch(homeAboutActions.setIsAboutHovering(true))}
-            onHoverEnd={() => dispatch(homeAboutActions.setIsAboutHovering(false))}
-            className={`w-full h-[220px] rounded-2xl border-[1px] ${borderColor.primary}   shadow-gray-300 flex bg-[#ffffff] justify-between p-[24px] cursor-pointer relative overflow-hidden max-md:w-[300px] max-md:h-[300px] max-sm:w-full max-sm:h-[250px]`}
-          >
-            <div className="flex flex-col text-[16px] w-[230px]">
-              <p className={`text-[#000000] mb-[16px] font-semibold`}>Learn more about me</p>
-              <div className={`${fontColor.secondry}`}>
-                <p>Good afternoon!</p>
-                <p>I&apos;m Himanshu, a Experienced Full Stack Developer.</p>
-              </div>
-            </div>
-            <div className="flex-1 flex justify-center text-center relative">
-              {/* backDiv */}
-              <motion.div
-                animate={{
-                  borderColor: isAboutHovering ? "#4F46E5" : "",
-                  transition: { duration: 0.6 },
-                }}
-                className={`w-[185px] rounded-xl h-[290px] border-[1px] flex items-center justify-center ${borderColor.primary}  max-md:w-[150px] max-md:h-[255px]`}
-              >
-                <div
-                  className={`w-[165px] border-[1px] rounded-lg h-[270px] bg-[#E9EAF1]  ${borderColor.primary} max-md:w-[135px] max-md:h-[235px]`}
-                ></div>
-              </motion.div>
-              {/* imgDiv - overlay */}
-              <motion.div
-                animate={{
-                  rotate: isAboutHovering ? 8 : 12,
-                  y: isAboutHovering ? -5 : 0,
-                  scale: isAboutHovering ? 1.05 : 1,
-                  transition: { duration: 0.3, ease: "easeOut" },
-                }}
-                className={`w-[185px] rounded-xl h-[290px] border-[1px] flex items-center justify-center ${borderColor.primary} absolute  translate-x-[-50%]  left-[50%] top-0  overflow-hidden max-md:w-[150px] max-md:h-[255px]`}
-              >
-                {" "}
-                <div className="w-full h-full relative overflow-hidden">
-                  {isAboutImageLoading ? (
-                    <div className="w-full h-full flex items-center justify-center bg-gray-200">
-                      <Loader2 className="animate-spin text-gray-400" size={32} />
-                    </div>
-                  ) : (
-                    <Image
-                      src={aboutImagePreview || aboutImage || "/Profile.jpg"}
-                      alt="profileImage"
-                      layout="fill"
-                      objectFit="cover"
-                    />
-                  )}
-                </div>
-              </motion.div>
 
-              {/* Admin Controls for About Image */}
-              {isAdminLoggedIn && (
-                <div className="absolute top-[-20px] right-[-20px] z-30">
-                  <div
-                    className="w-[40px] h-[40px] rounded-full bg-blue-600 flex items-center justify-center cursor-pointer hover:bg-blue-700"
-                    onClick={(e) => {
-                      e.stopPropagation()
-                      aboutImageInputRef.current?.click()
-                    }}
-                  >
-                    {aboutImage ? <Edit className="text-white" size={16} /> : <Plus className="text-white" size={16} />}
-                  </div>
-                  <input
-                    type="file"
-                    ref={aboutImageInputRef}
-                    accept="image/*"
-                    className="hidden"
-                    onChange={handleAboutImageChange}
-                  />
-                </div>
-              )}
-
-              {/* Upload Button (only visible when file is selected) */}
-              {isAdminLoggedIn && aboutImageFile && (
-                <div className="absolute bottom-[-20px] right-[-20px] z-30">
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation()
-                      handleAboutImageUpload()
-                    }}
-                    disabled={isAboutImageLoading}
-                    className="px-2 py-1 bg-green-600 text-white text-xs rounded hover:bg-green-700 disabled:opacity-50 flex items-center gap-1"
-                  >
-                    {isAboutImageLoading ? <Loader2 className="animate-spin" size={12} /> : <Upload size={12} />}
-                    {aboutImage ? "Update" : "Upload"}
-                  </button>
-                </div>
-              )}
-            </div>
-            {/* arrow  */}
+          {isAdminLoggedIn ? (
             <motion.div
-              animate={{
-                display: isAboutHovering ? "flex" : "hidden",
-                opacity: isAboutHovering ? 1 : 0,
-                y: isAboutHovering ? 0 : 10,
-                transition: { duration: 0.3 },
-              }}
-              className="absolute hidden  items-center justify-center w-[40px] h-[40px] rounded-full bottom-[10px] right-[10px] bg-[#C7D2FE] z-30"
+              onHoverStart={() =>
+                dispatch(homeAboutActions.setIsAboutHovering(true))
+              }
+              onHoverEnd={() =>
+                dispatch(homeAboutActions.setIsAboutHovering(false))
+              }
+              className={`w-full h-[220px] rounded-2xl border-[1px] ${borderColor.primary}   shadow-gray-300 flex bg-[#ffffff] justify-between p-[24px] cursor-pointer relative overflow-hidden max-md:w-[300px] max-md:h-[300px] max-sm:w-full max-sm:h-[250px]`}
             >
-              <ArrowUpRight className="text-[#4F46E5]" />
+              <div className="flex flex-col text-[16px] w-[230px]">
+                <p className={`text-[#000000] mb-[16px] font-semibold`}>
+                  Learn more about me
+                </p>
+                <div className={`${fontColor.secondry}`}>
+                  <p>Good afternoon!</p>
+                  <p>I&apos;m Himanshu, a Experienced Full Stack Developer.</p>
+                </div>
+              </div>
+              <div className="flex-1 flex justify-center text-center relative">
+                {/* backDiv */}
+                <motion.div
+                  animate={{
+                    borderColor: isAboutHovering ? "#4F46E5" : "",
+                    transition: { duration: 0.6 },
+                  }}
+                  className={`w-[185px] rounded-xl h-[290px] border-[1px] flex items-center justify-center ${borderColor.primary}  max-md:w-[150px] max-md:h-[255px]`}
+                >
+                  <div
+                    className={`w-[165px] border-[1px] rounded-lg h-[270px] bg-[#E9EAF1]  ${borderColor.primary} max-md:w-[135px] max-md:h-[235px]`}
+                  ></div>
+                </motion.div>
+                {/* imgDiv - overlay */}
+                <motion.div
+                  animate={{
+                    rotate: isAboutHovering ? 8 : 12,
+                    y: isAboutHovering ? -5 : 0,
+                    scale: isAboutHovering ? 1.05 : 1,
+                    transition: { duration: 0.3, ease: "easeOut" },
+                  }}
+                  className={`w-[185px] rounded-xl h-[290px] border-[1px] flex items-center justify-center ${borderColor.primary} absolute  translate-x-[-50%]  left-[50%] top-0  overflow-hidden max-md:w-[150px] max-md:h-[255px]`}
+                >
+                  {" "}
+                  <div className="w-full h-full relative overflow-hidden">
+                    {isAboutImageLoading ? (
+                      <div className="w-full h-full flex items-center justify-center bg-gray-200">
+                        <Loader2
+                          className="animate-spin text-gray-400"
+                          size={32}
+                        />
+                      </div>
+                    ) : (
+                      <Image
+                        src={aboutImagePreview || aboutImage || "/Profile.jpg"}
+                        alt="profileImage"
+                        layout="fill"
+                        objectFit="cover"
+                      />
+                    )}
+                  </div>
+                </motion.div>
+
+                {/* Admin Controls for About Image */}
+                {isAdminLoggedIn && (
+                  <div className="absolute top-[-20px] right-[-20px] z-30">
+                    <div
+                      className="w-[40px] h-[40px] rounded-full bg-blue-600 flex items-center justify-center cursor-pointer hover:bg-blue-700"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        aboutImageInputRef.current?.click();
+                      }}
+                    >
+                      {aboutImage ? (
+                        <Edit className="text-white" size={16} />
+                      ) : (
+                        <Plus className="text-white" size={16} />
+                      )}
+                    </div>
+                    <input
+                      type="file"
+                      ref={aboutImageInputRef}
+                      accept="image/*"
+                      className="hidden"
+                      onChange={handleAboutImageChange}
+                    />
+                  </div>
+                )}
+
+                {/* Upload Button (only visible when file is selected) */}
+                {isAdminLoggedIn && aboutImageFile && (
+                  <div className="absolute bottom-[-20px] right-[-20px] z-30">
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleAboutImageUpload();
+                      }}
+                      disabled={isAboutImageLoading}
+                      className="px-2 py-1 bg-green-600 text-white text-xs rounded hover:bg-green-700 disabled:opacity-50 flex items-center gap-1"
+                    >
+                      {isAboutImageLoading ? (
+                        <Loader2 className="animate-spin" size={12} />
+                      ) : (
+                        <Upload size={12} />
+                      )}
+                      {aboutImage ? "Update" : "Upload"}
+                    </button>
+                  </div>
+                )}
+              </div>
+              {/* arrow  */}
+              <motion.div
+                animate={{
+                  display: isAboutHovering ? "flex" : "hidden",
+                  opacity: isAboutHovering ? 1 : 0,
+                  y: isAboutHovering ? 0 : 10,
+                  transition: { duration: 0.3 },
+                }}
+                className="absolute hidden  items-center justify-center w-[40px] h-[40px] rounded-full bottom-[10px] right-[10px] bg-[#C7D2FE] z-30"
+              >
+                <ArrowUpRight className="text-[#4F46E5]" />
+              </motion.div>
+              {/* arrow  */}
+
+              {/* bluish overlay with gradient */}
+              <motion.div
+                animate={{
+                  display: isAboutHovering ? "flex" : "hidden",
+                  opacity: isAboutHovering ? 1 : 0,
+
+                  transition: { duration: 0.3 },
+                }}
+                className="absolute  w-full h-[100px] bottom-0 left-0 bg-gradient-to-br from-transparent via-[#EEF2FF]/6 to-[#C7D2FE]"
+              />
+              {/* bluish overlay with gradient */}
             </motion.div>
-            {/* arrow  */}
+          ) : (
+            <Link href={"/about"}>
+              <motion.div
+                onHoverStart={() =>
+                  dispatch(homeAboutActions.setIsAboutHovering(true))
+                }
+                onHoverEnd={() =>
+                  dispatch(homeAboutActions.setIsAboutHovering(false))
+                }
+                className={`w-full h-[220px] rounded-2xl border-[1px] ${borderColor.primary}   shadow-gray-300 flex bg-[#ffffff] justify-between p-[24px] cursor-pointer relative overflow-hidden max-md:w-[300px] max-md:h-[300px] max-sm:w-full max-sm:h-[250px]`}
+              >
+                <div className="flex flex-col text-[16px] w-[230px]">
+                  <p className={`text-[#000000] mb-[16px] font-semibold`}>
+                    Learn more about me
+                  </p>
+                  <div className={`${fontColor.secondry}`}>
+                    <p>Good afternoon!</p>
+                    <p>
+                      I&apos;m Himanshu, a Experienced Full Stack Developer.
+                    </p>
+                  </div>
+                </div>
+                <div className="flex-1 flex justify-center text-center relative">
+                  {/* backDiv */}
+                  <motion.div
+                    animate={{
+                      borderColor: isAboutHovering ? "#4F46E5" : "",
+                      transition: { duration: 0.6 },
+                    }}
+                    className={`w-[185px] rounded-xl h-[290px] border-[1px] flex items-center justify-center ${borderColor.primary}  max-md:w-[150px] max-md:h-[255px]`}
+                  >
+                    <div
+                      className={`w-[165px] border-[1px] rounded-lg h-[270px] bg-[#E9EAF1]  ${borderColor.primary} max-md:w-[135px] max-md:h-[235px]`}
+                    ></div>
+                  </motion.div>
+                  {/* imgDiv - overlay */}
+                  <motion.div
+                    animate={{
+                      rotate: isAboutHovering ? 8 : 12,
+                      y: isAboutHovering ? -5 : 0,
+                      scale: isAboutHovering ? 1.05 : 1,
+                      transition: { duration: 0.3, ease: "easeOut" },
+                    }}
+                    className={`w-[185px] rounded-xl h-[290px] border-[1px] flex items-center justify-center ${borderColor.primary} absolute  translate-x-[-50%]  left-[50%] top-0  overflow-hidden max-md:w-[150px] max-md:h-[255px]`}
+                  >
+                    {" "}
+                    <div className="w-full h-full relative overflow-hidden">
+                      {isAboutImageLoading ? (
+                        <div className="w-full h-full flex items-center justify-center bg-gray-200">
+                          <Loader2
+                            className="animate-spin text-gray-400"
+                            size={32}
+                          />
+                        </div>
+                      ) : (
+                        <Image
+                          src={
+                            aboutImagePreview || aboutImage || "/Profile.jpg"
+                          }
+                          alt="profileImage"
+                          layout="fill"
+                          objectFit="cover"
+                        />
+                      )}
+                    </div>
+                  </motion.div>
+                </div>
+                {/* arrow  */}
+                <motion.div
+                  animate={{
+                    display: isAboutHovering ? "flex" : "hidden",
+                    opacity: isAboutHovering ? 1 : 0,
+                    y: isAboutHovering ? 0 : 10,
+                    transition: { duration: 0.3 },
+                  }}
+                  className="absolute hidden  items-center justify-center w-[40px] h-[40px] rounded-full bottom-[10px] right-[10px] bg-[#C7D2FE] z-30"
+                >
+                  <ArrowUpRight className="text-[#4F46E5]" />
+                </motion.div>
+                {/* arrow  */}
 
-            {/* bluish overlay with gradient */}
-            <motion.div
-              animate={{
-                display: isAboutHovering ? "flex" : "hidden",
-                opacity: isAboutHovering ? 1 : 0,
+                {/* bluish overlay with gradient */}
+                <motion.div
+                  animate={{
+                    display: isAboutHovering ? "flex" : "hidden",
+                    opacity: isAboutHovering ? 1 : 0,
 
-                transition: { duration: 0.3 },
-              }}
-              className="absolute  w-full h-[100px] bottom-0 left-0 bg-gradient-to-br from-transparent via-[#EEF2FF]/6 to-[#C7D2FE]"
-            />
-            {/* bluish overlay with gradient */}
-          </motion.div>
+                    transition: { duration: 0.3 },
+                  }}
+                  className="absolute  w-full h-[100px] bottom-0 left-0 bg-gradient-to-br from-transparent via-[#EEF2FF]/6 to-[#C7D2FE]"
+                />
+                {/* bluish overlay with gradient */}
+              </motion.div>{" "}
+            </Link>
+          )}
+
           {/* div1 - child div(ii) */}
           <motion.div
-            onHoverStart={() => dispatch(homeAboutActions.setIsTechBoxHovering(true))}
-            onHoverEnd={() => dispatch(homeAboutActions.setIsTechBoxHovering(false))}
+            onHoverStart={() =>
+              dispatch(homeAboutActions.setIsTechBoxHovering(true))
+            }
+            onHoverEnd={() =>
+              dispatch(homeAboutActions.setIsTechBoxHovering(false))
+            }
             className={`w-full h-[300px] rounded-2xl  border-[1px] ${borderColor.primary} bg-[#ffffff] shadow-gray-300 py-[24px] flex flex-col justify-between cursor-pointer overflow-hidden relative max-md:flex-1 max-sm:w-full max-sm:text-center`}
           >
             <div className={` flex flex-col items-center text-[16px]`}>
@@ -394,7 +539,12 @@ const AboutSection = () => {
                   style={{ boxShadow: "0px 2px 1.5px 0px #A5AEB852 inset" }}
                 >
                   <div className="w-[40px] h-[40px] bg-white rounded-full relative">
-                    <Image src="/next.png" alt="next" layout="fill" objectFit="cover" />
+                    <Image
+                      src="/react.png"
+                      alt="next"
+                      layout="fill"
+                      objectFit="cover"
+                    />
                   </div>
                 </div>
               </motion.div>{" "}
@@ -411,7 +561,12 @@ const AboutSection = () => {
                   className={`w-[100px] h-[100px] flex-shrink-0 rounded-[10px] border-[1px] ${borderColor.primary} bg-[#E9EAF1] shadow-inner flex items-center justify-center`}
                 >
                   <div className="w-[40px] h-[40px] bg-white rounded-full relative">
-                    <Image src="/next.png" alt="next" layout="fill" objectFit="cover" />
+                    <Image
+                      src="/react.png"
+                      alt="next"
+                      layout="fill"
+                      objectFit="cover"
+                    />
                   </div>
                 </div>
               </motion.div>
@@ -429,7 +584,12 @@ const AboutSection = () => {
                   className={`w-[110px] h-[110px] flex-shrink-0 rounded-[10px] border-[1px] ${borderColor.primary} bg-[#E9EAF1] shadow-inner flex items-center justify-center`}
                 >
                   <div className="w-[50px] h-[50px] bg-white rounded-full relative">
-                    <Image src="/next.png" alt="next" layout="fill" objectFit="cover" />
+                    <Image
+                      src="/next.png"
+                      alt="next"
+                      layout="fill"
+                      objectFit="cover"
+                    />
                   </div>
                 </div>
               </motion.div>
@@ -446,8 +606,13 @@ const AboutSection = () => {
                 <div
                   className={`w-[100px] h-[100px] flex-shrink-0 rounded-[10px] border-[1px] ${borderColor.primary} bg-[#E9EAF1] shadow-inner flex items-center justify-center`}
                 >
-                  <div className="w-[40px] h-[40px] bg-white rounded-full relative">
-                    <Image src="/next.png" alt="next" layout="fill" objectFit="cover" />
+                  <div className="w-[40px] h-[40px] bg-white rounded-full relative overflow-hidden">
+                    <Image
+                      src="/mongo.jpg"
+                      alt="next"
+                      layout="fill"
+                      objectFit="cover"
+                    />
                   </div>
                 </div>
               </motion.div>
@@ -464,7 +629,12 @@ const AboutSection = () => {
                   className={`w-[100px] h-[100px] flex-shrink-0 rounded-[10px] border-[1px] ${borderColor.primary} bg-[#E9EAF1] shadow-inner flex items-center justify-center`}
                 >
                   <div className="w-[40px] h-[40px] bg-white rounded-full relative">
-                    <Image src="/next.png" alt="next" layout="fill" objectFit="cover" />
+                    <Image
+                      src="/next.png"
+                      alt="next"
+                      layout="fill"
+                      objectFit="cover"
+                    />
                   </div>
                 </div>
               </motion.div>{" "}
@@ -503,8 +673,12 @@ const AboutSection = () => {
           {/* div2 -child div(i) */}
 
           <motion.div
-            onHoverStart={() => dispatch(homeAboutActions.setIsConnectionBoxHovering(true))}
-            onHoverEnd={() => dispatch(homeAboutActions.setIsConnectionBoxHovering(false))}
+            onHoverStart={() =>
+              dispatch(homeAboutActions.setIsConnectionBoxHovering(true))
+            }
+            onHoverEnd={() =>
+              dispatch(homeAboutActions.setIsConnectionBoxHovering(false))
+            }
             className={`w-full h-[300px] rounded-2xl overflow-hidden border-[1px] ${borderColor.primary} relative flex flex-col items-center py-[20px] bg-[#ffffff] shadow-gray-300 cursor-pointer`}
           >
             {/* side blurs */}
@@ -526,11 +700,18 @@ const AboutSection = () => {
                 >
                   {isConnectionsImageLoading ? (
                     <div className="w-full h-full flex items-center justify-center bg-gray-200">
-                      <Loader2 className="animate-spin text-gray-400" size={24} />
+                      <Loader2
+                        className="animate-spin text-gray-400"
+                        size={24}
+                      />
                     </div>
                   ) : (
                     <Image
-                      src={connectionsImagePreview || connectionsImage || "/Profile.jpg"}
+                      src={
+                        connectionsImagePreview ||
+                        connectionsImage ||
+                        "/Profile.jpg"
+                      }
                       alt="profileImage"
                       layout="fill"
                       objectFit="cover"
@@ -544,8 +725,8 @@ const AboutSection = () => {
                     <div
                       className="w-[30px] h-[30px] rounded-full bg-blue-600 flex items-center justify-center cursor-pointer hover:bg-blue-700"
                       onClick={(e) => {
-                        e.stopPropagation()
-                        connectionsImageInputRef.current?.click()
+                        e.stopPropagation();
+                        connectionsImageInputRef.current?.click();
                       }}
                     >
                       {connectionsImage ? (
@@ -569,8 +750,8 @@ const AboutSection = () => {
                   <div className="absolute bottom-[-10px] right-[-10px] z-30">
                     <button
                       onClick={(e) => {
-                        e.stopPropagation()
-                        handleConnectionsImageUpload()
+                        e.stopPropagation();
+                        handleConnectionsImageUpload();
                       }}
                       disabled={isConnectionsImageLoading}
                       className="px-2 py-1 bg-green-600 text-white text-xs rounded hover:bg-green-700 disabled:opacity-50 flex items-center gap-1"
@@ -601,7 +782,12 @@ const AboutSection = () => {
                   <div
                     className={`w-[30px] shadow-inner h-[30px] rounded-full border-[1px] ${borderColor.primary} relative overflow-hidden`}
                   >
-                    <Image src="/Profile.jpg" alt="profileImage" layout="fill" objectFit="cover" />
+                    <Image
+                      src="/Profile.jpg"
+                      alt="profileImage"
+                      layout="fill"
+                      objectFit="cover"
+                    />
                   </div>
                 </motion.div>
                 {/* small connections div */}
@@ -624,7 +810,12 @@ const AboutSection = () => {
                   <div
                     className={`w-[40px] shadow-inner h-[40px] rounded-full border-[1px] ${borderColor.primary} relative overflow-hidden`}
                   >
-                    <Image src="/Profile.jpg" alt="profileImage" layout="fill" objectFit="cover" />
+                    <Image
+                      src="/Profile.jpg"
+                      alt="profileImage"
+                      layout="fill"
+                      objectFit="cover"
+                    />
                   </div>
                 </motion.div>
                 <motion.div
@@ -638,7 +829,12 @@ const AboutSection = () => {
                   <div
                     className={`w-[50px] shadow-inner h-[50px] rounded-full border-[1px] ${borderColor.primary} relative overflow-hidden`}
                   >
-                    <Image src="/Profile.jpg" alt="profileImage" layout="fill" objectFit="cover" />
+                    <Image
+                      src="/yash.jpg"
+                      alt="profileImage"
+                      layout="fill"
+                      objectFit="cover"
+                    />
                   </div>
                 </motion.div>
                 {/* small connections div */}
@@ -661,7 +857,12 @@ const AboutSection = () => {
                   <div
                     className={`w-[60px] shadow-inner h-[60px] rounded-full border-[1px] ${borderColor.primary} relative overflow-hidden`}
                   >
-                    <Image src="/Profile.jpg" alt="profileImage" layout="fill" objectFit="cover" />
+                    <Image
+                      src="/uday.jpeg"
+                      alt="profileImage"
+                      layout="fill"
+                      objectFit="cover"
+                    />
                   </div>
                 </motion.div>
                 {/* small connections div */}
@@ -684,7 +885,12 @@ const AboutSection = () => {
                   <div
                     className={`w-[35px] shadow-inner h-[35px] rounded-full border-[1px] ${borderColor.primary} relative overflow-hidden`}
                   >
-                    <Image src="/Profile.jpg" alt="profileImage" layout="fill" objectFit="cover" />
+                    <Image
+                      src="/Profile.jpg"
+                      alt="profileImage"
+                      layout="fill"
+                      objectFit="cover"
+                    />
                   </div>
                 </motion.div>
                 {/* small connections div */}
@@ -694,8 +900,12 @@ const AboutSection = () => {
               </div>{" "}
             </div>
             <div className="w-full flex flex-col  items-center">
-              <p className={`text-[#000000] mb-[8px] font-semibold`}>Connections</p>
-              <p className={`${fontColor.secondry}  max-sm:px-16 max-sm:text-center `}>
+              <p className={`text-[#000000] mb-[8px] font-semibold`}>
+                Connections
+              </p>
+              <p
+                className={`${fontColor.secondry}  max-sm:px-16 max-sm:text-center `}
+              >
                 Check out my favorite tech and spots around the globe.
               </p>
             </div>
@@ -726,12 +936,18 @@ const AboutSection = () => {
           </motion.div>
           {/* div2 -child div(ii) */}
           <motion.div
-            onHoverStart={() => dispatch(homeAboutActions.setIsCallBoxHovering(true))}
-            onHoverEnd={() => dispatch(homeAboutActions.setIsCallBoxHovering(false))}
+            onHoverStart={() =>
+              dispatch(homeAboutActions.setIsCallBoxHovering(true))
+            }
+            onHoverEnd={() =>
+              dispatch(homeAboutActions.setIsCallBoxHovering(false))
+            }
             className={`w-full h-[220px] rounded-2xl  border-[1px] ${borderColor.primary} bg-[#ffffff] shadow-gray-300  flex justify-between pl-[24px]  cursor-pointer relative overflow-hidden`}
           >
             <div className="flex flex-col text-[16px] py-5 w-[180px] max-small-l:text-[14px]">
-              <p className={`text-[#000000] mb-[16px] font-semibold`}>Book a call with me</p>
+              <p className={`text-[#000000] mb-[16px] font-semibold`}>
+                Book a call with me
+              </p>
               <div className={`${fontColor.secondry}`}>
                 <p>
                   I&apos;d love to chat even
@@ -755,9 +971,15 @@ const AboutSection = () => {
               border-l-[1px] rounded-tl-[10px] ${borderColor.primary} shadow-inner overflow-hidden bg-[#E9EAF1] flex flex-col flex-shrink-0  max-small-l:w-[390px] max-small-l:h-[150px] max-md:w-[98%]`}
                 >
                   <div className="w-full h-[40px] px-[10px] flex items-center justify-start gap-2.5 flex-shrink-0">
-                    <p className={`${fontColor.secondry} font-semibold text-[14px]`}>April, 2025</p>
+                    <p
+                      className={`${fontColor.secondry} font-semibold text-[14px]`}
+                    >
+                      April, 2025
+                    </p>
                     <span className="h-1 w-1 rounded-full bg-[#a5aeb8]"></span>
-                    <p className={`  text-[#a5aeb8] text-[12px]`}>30 minute call</p>
+                    <p className={`  text-[#a5aeb8] text-[12px]`}>
+                      30 minute call
+                    </p>
                   </div>
                   <div className="flex-1  pl-[20px]  grid grid-cols-7 grid-rows-5 gap-2 px-4">
                     {calenderElements.map((item, index) => {
@@ -770,7 +992,7 @@ const AboutSection = () => {
                         >
                           <p>{item}</p>
                         </div>
-                      )
+                      );
                     })}
                   </div>
                 </div>
@@ -804,7 +1026,7 @@ const AboutSection = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default AboutSection
+export default AboutSection;

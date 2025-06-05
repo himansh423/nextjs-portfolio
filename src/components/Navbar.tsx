@@ -7,9 +7,9 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { CiLinkedin } from "react-icons/ci";
 import { useDispatch, useSelector } from "react-redux";
-import {  useEffect } from "react";
+import { useEffect } from "react";
 import clsx from "clsx";
-
+import Image from "next/image";
 
 const NAV_LINKS = [
   { href: "/", label: "Home" },
@@ -22,7 +22,7 @@ const NAV_LINKS = [
 
 const Navbar = () => {
   const { tab, IsMobNav } = useSelector((store: RootState) => store.navbar);
-  
+
   const dispatch = useDispatch();
   const pathname = usePathname();
 
@@ -34,8 +34,6 @@ const Navbar = () => {
       dispatch(navbarActions.setTab(""));
     }
   }, [pathname, dispatch]);
-
-  
 
   return (
     <>
@@ -95,7 +93,14 @@ const Navbar = () => {
             className={`w-screen h-screen bg-[#f7f7f8]  top-0 left-0 z-50 fixed flex flex-col gap-6 items-start px-3`}
           >
             <div className="w-full h-[64px] flex justify-between items-center">
-              <div className="w-[32px] h-[32px] bg-black"></div>
+              <div className="w-[32px] h-[32px] relative">
+                <Image
+                  src={"/logo.png"}
+                  alt="logo"
+                  layout="fill"
+                  objectFit="cover"
+                />
+              </div>
               <div
                 onClick={() => dispatch(navbarActions.setIsMobNav(false))}
                 className={`w-[38px] h-[38px] rounded-full flex justify-center items-center border-[1px] ${borderColor.primary}`}
@@ -129,7 +134,9 @@ const Navbar = () => {
         )}
       >
         {/* Logo */}
-        <div className="Logo w-[30px] h-[30px] bg-black" />
+        <div className="Logo w-[30px] h-[30px] relative">
+          <Image src={"/logo.png"} alt="logo" layout="fill" objectFit="cover" />
+        </div>
 
         {/* Center Navigation */}
         <div
@@ -154,7 +161,6 @@ const Navbar = () => {
           ))}
         </div>
 
-      
         {/* Social Icons */}
         <div className="Links w-[103px] rounded-[30px] h-[37px] bg-[#3c3c3f] flex items-center gap-2 justify-center">
           <a

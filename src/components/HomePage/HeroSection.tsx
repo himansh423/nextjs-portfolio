@@ -202,9 +202,7 @@ const HeroSection = () => {
             ease: "easeOut",
           }}
         >
-          I&apos;m a Full Stack Developer with a love for design and a knack for
-          tinkering. This site is intentionally over-engineered and serves as my
-          playground for experimenting with new ideas and seeing what sticks!
+        I'm a Full Stack Developer who loves design and enjoys experimenting. This site is my creative lab—intentionally overbuilt to test ideas, explore concepts, and break things just to see what works!
         </motion.p>
       </div>
       {/* description box */}
