@@ -1,5 +1,4 @@
 "use client"
-
 import type React from "react"
 import { useState, useRef, useEffect } from "react"
 import { motion, useMotionValue, useSpring, AnimatePresence } from "framer-motion"
@@ -24,7 +23,7 @@ export default function PhotoGallery() {
   const [loading, setLoading] = useState(true)
   const [uploadingImages, setUploadingImages] = useState<Set<string>>(new Set())
   const [selectedFiles, setSelectedFiles] = useState<Map<string, File>>(new Map())
-
+  const [imageLoadingStates, setImageLoadingStates] = useState<Map<string, boolean>>(new Map())
   // Initial upload states
   const [initialUploadFiles, setInitialUploadFiles] = useState<File[]>([])
   const [isInitialUploading, setIsInitialUploading] = useState(false)
@@ -38,14 +37,11 @@ export default function PhotoGallery() {
     const timer = setTimeout(() => {
       setIsInitialAnimation(false)
     }, 1000)
-
     const handleResize = () => {
       setWindowWidth(window.innerWidth)
     }
-
     window.addEventListener("resize", handleResize)
     fetchImages()
-
     return () => {
       clearTimeout(timer)
       window.removeEventListener("resize", handleResize)
@@ -58,6 +54,12 @@ export default function PhotoGallery() {
       const response = await axios.get("/api/home-page/get-photo-gallery")
       if (response.data.success) {
         setImages(response.data.images)
+        // Initialize loading states for all images
+        const loadingStates = new Map()
+        response.data.images.forEach((img: GalleryImage) => {
+          loadingStates.set(img._id, true)
+        })
+        setImageLoadingStates(loadingStates)
       }
     } catch (error) {
       console.error("Error fetching images:", error)
@@ -66,6 +68,22 @@ export default function PhotoGallery() {
     } finally {
       setLoading(false)
     }
+  }
+
+  const handleImageLoad = (imageId: string) => {
+    setImageLoadingStates((prev) => {
+      const newStates = new Map(prev)
+      newStates.set(imageId, false)
+      return newStates
+    })
+  }
+
+  const handleImageError = (imageId: string) => {
+    setImageLoadingStates((prev) => {
+      const newStates = new Map(prev)
+      newStates.set(imageId, false)
+      return newStates
+    })
   }
 
   const handleFileSelect = (imageId: string, file: File) => {
@@ -77,9 +95,7 @@ export default function PhotoGallery() {
   const handleImageUpdate = async (imageId: string) => {
     const file = selectedFiles.get(imageId)
     if (!file) return
-
     setUploadingImages((prev) => new Set(prev).add(imageId))
-
     try {
       // Get presigned URL for update (this now also returns old file key)
       const { data: urlData } = await axios.post("/api/home-page/update-gallery-image", {
@@ -87,27 +103,22 @@ export default function PhotoGallery() {
         fileName: file.name,
         fileType: file.type,
       })
-
       // Upload new image to S3
       await axios.put(urlData.uploadUrl, file, {
         headers: { "Content-Type": file.type },
       })
-
       // Save to database and delete old image from S3
       await axios.patch("/api/home-page/save-updated-gallery-image", {
         imageId,
         newFileKey: urlData.newFileKey,
         oldFileKey: urlData.oldFileKey,
       })
-
       // Refresh images
       await fetchImages()
-
       // Clear selected file
       const newSelectedFiles = new Map(selectedFiles)
       newSelectedFiles.delete(imageId)
       setSelectedFiles(newSelectedFiles)
-
       alert("Image updated successfully! Old image has been removed from storage.")
     } catch (error) {
       console.error("Error updating image:", error)
@@ -123,9 +134,7 @@ export default function PhotoGallery() {
 
   const handleBulkUpdate = async () => {
     if (selectedFiles.size === 0) return
-
     const uploadPromises = Array.from(selectedFiles.entries()).map(([imageId]) => handleImageUpdate(imageId))
-
     try {
       await Promise.all(uploadPromises)
       alert(`Successfully updated ${selectedFiles.size} image(s)! Old images have been removed from storage.`)
@@ -147,21 +156,17 @@ export default function PhotoGallery() {
 
   const handleInitialUpload = async () => {
     if (initialUploadFiles.length === 0) return
-
     setIsInitialUploading(true)
-
     try {
       // Prepare files data for presigned URL generation
       const filesData = initialUploadFiles.map((file) => ({
         fileName: file.name,
         fileType: file.type,
       }))
-
       // Get presigned URLs
       const { data: urlData } = await axios.post("/api/home-page/get-presigned-url-to-upload-photo-gallery-pictures", {
         files: filesData,
       })
-
       // Upload each file to S3
       const uploadPromises = urlData.uploads.map(async (uploadInfo: any, index: number) => {
         const file = initialUploadFiles[index]
@@ -170,14 +175,11 @@ export default function PhotoGallery() {
         })
         return uploadInfo.fileKey
       })
-
       const uploadedKeys = await Promise.all(uploadPromises)
-
       // Save to database
       await axios.post("/api/home-page/save-gallery-images", {
         imageUrls: uploadedKeys,
       })
-
       // Refresh images
       await fetchImages()
       setInitialUploadFiles([])
@@ -216,7 +218,6 @@ export default function PhotoGallery() {
             <h3 className="text-xl font-semibold mb-2">No Gallery Images Found</h3>
             <p className="text-gray-600 mb-6">Upload up to 5 images to create your photo gallery</p>
           </div>
-
           <div className="flex flex-col items-center gap-4">
             <button
               onClick={() => initialUploadRef.current?.click()}
@@ -225,7 +226,6 @@ export default function PhotoGallery() {
               <Plus size={20} />
               Select Images (Max 5)
             </button>
-
             <input
               type="file"
               ref={initialUploadRef}
@@ -234,7 +234,6 @@ export default function PhotoGallery() {
               className="hidden"
               onChange={handleInitialFileSelect}
             />
-
             {initialUploadFiles.length > 0 && (
               <div className="w-full max-w-md">
                 <div className="mb-4">
@@ -253,7 +252,6 @@ export default function PhotoGallery() {
                     ))}
                   </div>
                 </div>
-
                 <button
                   onClick={handleInitialUpload}
                   disabled={isInitialUploading}
@@ -301,7 +299,6 @@ export default function PhotoGallery() {
           </button>
         </div>
       )}
-
       {/* Gallery */}
       <div
         className={`w-full h-[500px] flex items-center justify-center overflow-hidden border-b-[1px] ${borderColor.primary} max-md:h-[300px]`}
@@ -323,7 +320,10 @@ export default function PhotoGallery() {
                 onUpdate={handleImageUpdate}
                 isUploading={uploadingImages.has(imageData._id)}
                 hasSelectedFile={selectedFiles.has(imageData._id)}
-                showUpdateControls={hasFullGallery} // Only show update controls when gallery is full
+                showUpdateControls={hasFullGallery}
+                isImageLoading={imageLoadingStates.get(imageData._id) || false}
+                onImageLoad={() => handleImageLoad(imageData._id)}
+                onImageError={() => handleImageError(imageData._id)}
               />
             ))}
           </AnimatePresence>
@@ -346,6 +346,9 @@ function PhotoCard({
   isUploading,
   hasSelectedFile,
   showUpdateControls,
+  isImageLoading,
+  onImageLoad,
+  onImageError,
 }: {
   imageData: GalleryImage
   index: number
@@ -359,6 +362,9 @@ function PhotoCard({
   isUploading: boolean
   hasSelectedFile: boolean
   showUpdateControls: boolean
+  isImageLoading: boolean
+  onImageLoad: () => void
+  onImageError: () => void
 }) {
   const [responsivePos, setResponsivePos] = useState({ x: 0, rotation: 0 })
   const fileInputRef = useRef<HTMLInputElement>(null)
@@ -370,13 +376,11 @@ function PhotoCard({
       const step = total > 1 ? maxOffset / ((total - 1) / 2) : 0
       const midIndex = Math.floor(total / 2)
       const relativeIndex = index - midIndex
-
       setResponsivePos({
         x: relativeIndex * step,
         rotation: isSmallScreen ? relativeIndex * 2 : relativeIndex * 3,
       })
     }
-
     updatePosition()
     window.addEventListener("resize", updatePosition)
     return () => window.removeEventListener("resize", updatePosition)
@@ -384,16 +388,13 @@ function PhotoCard({
 
   const baseX = responsivePos.x
   const baseRotation = responsivePos.rotation
-
   const x = useMotionValue(isInitialAnimation ? 0 : baseX)
   const y = useMotionValue(0)
   const rotation = useMotionValue(isInitialAnimation ? 0 : baseRotation)
-
   const springConfig = { damping: 30, stiffness: 350 }
   const xSpring = useSpring(x, springConfig)
   const ySpring = useSpring(y, springConfig)
   const rotationSpring = useSpring(rotation, springConfig)
-
   const [isDragging, setIsDragging] = useState(false)
 
   useEffect(() => {
@@ -471,6 +472,16 @@ function PhotoCard({
           transform: "translateX(-50%)",
         }}
       >
+        {/* Image Loading Overlay */}
+        {isImageLoading && (
+          <div
+            className="absolute inset-0 flex items-center justify-center bg-gray-100 z-30"
+            style={{ borderRadius: "18px" }}
+          >
+            <Loader2 className="animate-spin text-gray-400" size={isSmallScreen ? 24 : 32} />
+          </div>
+        )}
+
         <Image
           src={imageData.image || "/placeholder.svg"}
           alt={`Photo ${index + 1}`}
@@ -478,6 +489,8 @@ function PhotoCard({
           className="object-cover"
           sizes={isSmallScreen ? "140px" : "280px"}
           priority={index < 3}
+          onLoad={onImageLoad}
+          onError={onImageError}
         />
 
         {/* Admin Controls Overlay - Only show when gallery is full */}
@@ -504,9 +517,7 @@ function PhotoCard({
                 <Edit className="text-white" size={16} />
               )}
             </div>
-
             <input type="file" ref={fileInputRef} accept="image/*" className="hidden" onChange={handleFileChange} />
-
             {hasSelectedFile && (
               <div className="absolute bottom-2 right-2 z-20">
                 <button
@@ -530,7 +541,6 @@ function PhotoCard({
             )}
           </>
         )}
-
         <div
           className="absolute inset-0 bg-transparent bg-opacity-10 z-10 pointer-events-none"
           style={{
