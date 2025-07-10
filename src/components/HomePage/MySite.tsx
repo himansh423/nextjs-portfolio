@@ -411,7 +411,7 @@ const MySite = () => {
             {/* bluish overlay */}
           </motion.div>
         </Link>
-        <Link href={"/community-wall"} className="w-1/3 h-full">
+        <Link href={"/community-wall"} className="w-1/3 h-full max-md:w-1/2 max-sm:h-[280px] max-sm:w-full">
           <motion.div
             onHoverStart={() =>
               dispatch(homeMySiteActions.setIsCommunityBoxHovering(true))
@@ -419,7 +419,7 @@ const MySite = () => {
             onHoverEnd={() =>
               dispatch(homeMySiteActions.setIsCommunityBoxHovering(false))
             }
-            className={`w-full h-full  px-2 py-2 flex flex-col items-center rounded-3xl ${borderColor.primary} border-[1px] relative bg-[#ffffff] overflow-hidden max-md:w-1/2 max-sm:h-[280px] max-sm:w-full`}
+            className={`w-full h-full  px-2 py-2 flex flex-col items-center rounded-3xl ${borderColor.primary} border-[1px] relative bg-[#ffffff] overflow-hidden `}
           >
             {/* background with cards */}
             <div className="w-full h-full absolute top-0 left-0  ">

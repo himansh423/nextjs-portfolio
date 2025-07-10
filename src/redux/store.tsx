@@ -8,6 +8,7 @@ import forgotPasswordSlice from "./forgotPasswordSlice";
 import resetPasswordSlice from "./ResetPasswordSlice";
 import loggedInSlice from "./LoggedInSlice";
 import homeHeroSlice from "./homeHeroSlice";
+import subscribeSlice from "./subscribeSlice";
 
 export const store = configureStore({
   reducer: {
@@ -20,6 +21,7 @@ export const store = configureStore({
     resetPassword: resetPasswordSlice.reducer,
     loggedIn: loggedInSlice.reducer,
     homeHero: homeHeroSlice.reducer,
+    subscribe: subscribeSlice.reducer,
   },
 });
 
