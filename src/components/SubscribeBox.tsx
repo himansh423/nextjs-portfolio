@@ -20,6 +20,7 @@ const SubscribeBox = () => {
   const {
     register,
     setError,
+    reset,
     handleSubmit,
     formState: { errors, isSubmitting },
   } = useForm<SubscribeData>({
@@ -34,8 +35,9 @@ const SubscribeBox = () => {
   ) => {
     const email = data.email;
     try {
-      const { data } = await axios.post("/api/subscribe", {email});
+      const { data } = await axios.post("/api/subscribe", { email });
       dispatch(subscribeAction.setMessage({ data: data.message }));
+      reset();
     } catch (error: unknown) {
       dispatch(subscribeAction.setMessage("Something went wrong"));
       if (error instanceof Error)
@@ -93,14 +95,44 @@ const SubscribeBox = () => {
                 <p className="text-[#d1d5db] text-[14px] mt-2">
                   {message && message}
                 </p>
-                <button className="absolute w-[100px] bg-[#ffffff] h-[45] top-[50%] translate-y-[-50%] right-1 rounded-[80px] font-semibold text-[14px] z-10  max-m:w-[50px] max-m:text-[9px] max-m:flex max-m:justify-center max-m:items-center">
-                  <p className={` ${fontColor.primary} max-m:hidden`}>
-                    Subscribe
-                  </p>
-                  <p className={` ${fontColor.primary} m:hidden`}>
-                    <Send />
-                  </p>
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="absolute w-[100px] bg-[#ffffff] h-[45px] top-[50%] translate-y-[-50%] right-1 rounded-[80px] font-semibold text-[14px] z-10 max-m:w-[50px] max-m:text-[9px] max-m:flex max-m:justify-center max-m:items-center"
+                >
+                  {isSubmitting ? (
+                    <svg
+                      className="animate-spin h-5 w-5 text-black"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                    >
+                      <circle
+                        className="opacity-25"
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        strokeWidth="4"
+                      ></circle>
+                      <path
+                        className="opacity-75"
+                        fill="currentColor"
+                        d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+                      ></path>
+                    </svg>
+                  ) : (
+                    <>
+                      <p className={`${fontColor.primary} max-m:hidden`}>
+                        Subscribe
+                      </p>
+                      <p className={`${fontColor.primary} m:hidden`}>
+                        <Send />
+                      </p>
+                    </>
+                  )}
                 </button>
+                
               </form>
 
               <p
