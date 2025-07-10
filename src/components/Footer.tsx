@@ -8,6 +8,8 @@ import { LoggedInActions } from "@/redux/LoggedInSlice";
 import { RootState } from "@/redux/store";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
+import Image from "next/image";
+import Link from "next/link";
 
 const Footer = () => {
   const { isAdminLoggedIn, isUserLoggedIn } = useSelector(
@@ -49,7 +51,11 @@ const Footer = () => {
           className={`w-1/2 h-full px-20 py-9 flex justify-between border-r-[1px] ${borderColor.primary} max-md:border-r-0 max-md: w-full max-md:border-b-[1px] max-sm:px-2`}
         >
           <div className={`flex flex-col gap-6 max-small-l:gap-2`}>
-            <div className="Logo w-[40px] h-[40px] bg-black"></div>
+            <Link href={"/"}>
+              <div className="Logo relative w-[50px] h-[60px] ">
+                <Image src="/logo.png" alt="logo" fill />
+              </div>
+            </Link>
             <p className={`text-[14px] ${fontColor.secondry} font-semibold`}>
               I&apos;m Himanshu - a senior Full-Stack <br /> Developer, blogger
               and <br /> Streamer. Thanks for checking out my site!
@@ -97,11 +103,11 @@ const Footer = () => {
             <div
               className={`text-[14px] flex flex-col gap-2 ${fontColor.secondry}`}
             >
-              <p>Home</p>
-              <p>About</p>
-              <p>Projects</p>
-              <p>Contact</p>
-              <p>Blog</p>
+              <Link href={"/"} className="hover:text-black">Home</Link>
+              <Link href={"/about"} className="hover:text-black">About</Link>
+              <Link href={"/projects"} className="hover:text-black">Projects</Link>
+              <Link href={"/contact"} className="hover:text-black">Contact</Link>
+              <Link href={"/blog"} className="hover:text-black">Blog</Link>
               {isAdminLoggedIn && (
                 <p onClick={handleLogout} className="cursor-pointer">
                   Logout
@@ -118,8 +124,8 @@ const Footer = () => {
             <div
               className={`text-[14px] flex flex-col gap-2 ${fontColor.secondry}`}
             >
-              <p>Techbox</p>
-              <p>Community Wall</p>
+              <Link href={"/techbox"} className="hover:text-black">Techbox</Link>
+              <Link href={"/community-wall"} className="hover:text-black" >Community Wall</Link>
             </div>
           </div>
           <div
@@ -131,8 +137,8 @@ const Footer = () => {
             <div
               className={`text-[14px] flex flex-col gap-2 ${fontColor.secondry}`}
             >
-              <p>Changelog</p>
-              <p>Connections</p>
+              <Link href={"/changelog"} className="hover:text-black">Changelog</Link>
+              <Link href={"/connections"} className="hover:text-black">Connections</Link>
             </div>
           </div>
         </div>

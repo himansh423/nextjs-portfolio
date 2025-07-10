@@ -41,7 +41,16 @@ const Navbar = () => {
       <nav
         className={`sm:hidden w-full h-[64px] border-b-[1px] relative ${borderColor.primary} px-3 flex justify-between items-center`}
       >
-        <div className="w-[32px] h-[32px] bg-black"></div>
+        <Link href={"/"}>
+          <div className="w-[32px] relative h-[32px]">
+            <Image
+              src={"/logo.png"}
+              alt="logo"
+              layout="fill"
+              objectFit="cover"
+            />
+          </div>
+        </Link>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="38"
@@ -134,9 +143,16 @@ const Navbar = () => {
         )}
       >
         {/* Logo */}
-        <div className="Logo w-[30px] h-[30px] relative">
-          <Image src={"/logo.png"} alt="logo" layout="fill" objectFit="cover" />
-        </div>
+        <Link href={"/"}>
+          <div className="Logo w-[30px] h-[30px] relative">
+            <Image
+              src={"/logo.png"}
+              alt="logo"
+              layout="fill"
+              objectFit="cover"
+            />
+          </div>
+        </Link>
 
         {/* Center Navigation */}
         <div

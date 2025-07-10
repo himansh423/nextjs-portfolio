@@ -583,7 +583,7 @@ const AboutSection = () => {
                   Techbox
                 </p>
                 <p className={`${fontColor.secondry}  max-sm:px-4 `}>
-                  Check out my favorite tech and spots around the globe.
+                  Check out my favorite tech and languages around the globe.
                 </p>
               </div>
               <div className="flex w-full h-[150px] items-end justify-center gap-3  overflow-hidden">
@@ -1063,7 +1063,7 @@ const AboutSection = () => {
                 <p
                   className={`${fontColor.secondry}  max-sm:px-16 max-sm:text-center `}
                 >
-                  Check out my favorite tech and spots around the globe.
+                 An evolving list of people I've met and those I wish to meet.
                 </p>
               </div>
               {/* arrow  */}
@@ -1368,7 +1368,7 @@ const AboutSection = () => {
           )}
 
           {/* div2 -child div(ii) */}
-          <Link href={"/book-a-call"}  className={`w-full h-[220px]`}>
+          <Link href={"/book-a-call"} className={`w-full h-[220px]`}>
             <motion.div
               onHoverStart={() =>
                 dispatch(homeAboutActions.setIsCallBoxHovering(true))
@@ -1403,14 +1403,19 @@ const AboutSection = () => {
                     className={`w-[480px] h-[180px] border-t-[1px]              border-l-[1px] rounded-tl-[10px] ${borderColor.primary} shadow-inner overflow-hidden bg-[#E9EAF1] flex flex-col flex-shrink-0  max-small-l:w-[390px] max-small-l:h-[150px] max-md:w-[98%]`}
                   >
                     <div className="w-full h-[40px] px-[10px] flex items-center justify-start gap-2.5 flex-shrink-0">
-  <p className={`${fontColor.secondry} font-semibold text-[14px]`}>
-    {new Date().toLocaleString('en-US', { month: 'long', year: 'numeric' })}
-  </p>
-  <span className="h-1 w-1 rounded-full bg-[#a5aeb8]"></span>
-  <p className="text-[#a5aeb8] text-[12px]">
-    30 minute call
-  </p>
-</div>
+                      <p
+                        className={`${fontColor.secondry} font-semibold text-[14px]`}
+                      >
+                        {new Date().toLocaleString("en-US", {
+                          month: "long",
+                          year: "numeric",
+                        })}
+                      </p>
+                      <span className="h-1 w-1 rounded-full bg-[#a5aeb8]"></span>
+                      <p className="text-[#a5aeb8] text-[12px]">
+                        30 minute call
+                      </p>
+                    </div>
 
                     <div className="flex-1  pl-[20px]  grid grid-cols-7 grid-rows-5 gap-2 px-4">
                       {calenderElements.map((item, index) => {

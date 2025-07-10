@@ -6,12 +6,15 @@ import { RootState } from "@/redux/store";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 const MySite = () => {
   const { isChangelogBoxHovering, isMusicBoxHovering, isCommunityBoxHovering } =
     useSelector((store: RootState) => store.homeMySite);
   const dispatch = useDispatch();
   const bars = new Array(16).fill(0);
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
   return (
     <div className="w-full mt-14">
@@ -45,8 +48,25 @@ const MySite = () => {
           onHoverEnd={() =>
             dispatch(homeMySiteActions.setIsChangeLogBoxHovering(false))
           }
+          onMouseMove={(e) =>
+            setMousePos({ x: e.nativeEvent.offsetX, y: e.nativeEvent.offsetY })
+          }
           className={`w-1/3 h-full  overflow-hidden   rounded-3xl ${borderColor.primary} border-[1px] relative max-md:hidden`}
         >
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{
+              opacity: isChangelogBoxHovering ? 1 : 0,
+              x: mousePos.x,
+              y: mousePos.y,
+            }}
+            transition={{ type: "spring", stiffness: 300, damping: 30 }}
+            className={`absolute pointer-events-none px-4 py-2 text-white bg-gray-500 z-40 flex items-center justify-center rounded-md`}
+          >
+            <p>COMING SOON</p>
+            <div className="w-[20px] absolute -bottom-2 h-[20px] bg-gray-500 rounded-full"></div>
+          </motion.div>
+
           {/* changelog background */}
           <motion.div
             animate={{
@@ -155,166 +175,170 @@ const MySite = () => {
           {/* bluish overlay with gradient */}
           {/* bluish overlay */}
         </motion.div>
-        <motion.div
-          onHoverStart={() =>
-            dispatch(homeMySiteActions.setIsMusicBoxHovering(true))
-          }
-          onHoverEnd={() =>
-            dispatch(homeMySiteActions.setIsMusicBoxHovering(false))
-          }
+        <Link
           className={`w-1/3 h-full  px-2 py-2 rounded-3xl ${borderColor.primary} border-[1px] relative overflow-hidden bg-[#ffffff] cursor-pointer max-md:w-1/2 max-sm:h-[280px] max-sm:w-full`}
+          href="/fav-music"
         >
-          {/* circle background */}
+          <motion.div
+            onHoverStart={() =>
+              dispatch(homeMySiteActions.setIsMusicBoxHovering(true))
+            }
+            onHoverEnd={() =>
+              dispatch(homeMySiteActions.setIsMusicBoxHovering(false))
+            }
+            className={`w-full h-full`}
+          >
+            {/* circle background */}
 
-          <div className="w-full h-full overflow-hidden absolute top-0 left-0">
-            <motion.div
-              animate={{
-                borderColor: isMusicBoxHovering ? "#4F46E5" : "#D6DADE",
-              }}
-              transition={{
-                duration: 0.7,
-                delay: isMusicBoxHovering ? 0.4 : 0.4,
-              }}
-              className={`w-[450px] h-[450px] border-[1px] rounded-full absolute -translate-x-[50%] left-[50%] top-[40px] flex items-center justify-center`}
-            >
+            <div className="w-full h-full overflow-hidden absolute top-0 left-0">
               <motion.div
                 animate={{
                   borderColor: isMusicBoxHovering ? "#4F46E5" : "#D6DADE",
                 }}
                 transition={{
-                  duration: 0.6,
-                  delay: isMusicBoxHovering ? 0.2 : 0.5,
+                  duration: 0.7,
+                  delay: isMusicBoxHovering ? 0.4 : 0.4,
                 }}
-                className={`w-[370px] h-[370px] border-[1px] rounded-full flex items-center justify-center`}
+                className={`w-[450px] h-[450px] border-[1px] rounded-full absolute -translate-x-[50%] left-[50%] top-[40px] flex items-center justify-center`}
               >
                 <motion.div
                   animate={{
                     borderColor: isMusicBoxHovering ? "#4F46E5" : "#D6DADE",
                   }}
                   transition={{
-                    duration: 0.5,
-                    delay: isMusicBoxHovering ? 0.2 : 0.6,
+                    duration: 0.6,
+                    delay: isMusicBoxHovering ? 0.2 : 0.5,
                   }}
-                  className={`w-[280px] h-[280px] border-[1px] rounded-full flex items-center justify-center`}
+                  className={`w-[370px] h-[370px] border-[1px] rounded-full flex items-center justify-center`}
                 >
                   <motion.div
                     animate={{
                       borderColor: isMusicBoxHovering ? "#4F46E5" : "#D6DADE",
                     }}
                     transition={{
-                      duration: 0.4,
-                      delay: isMusicBoxHovering ? 0.1 : 0.7,
+                      duration: 0.5,
+                      delay: isMusicBoxHovering ? 0.2 : 0.6,
                     }}
-                    className={`w-[180px] h-[180px] border-[1px] rounded-full`}
-                  ></motion.div>
+                    className={`w-[280px] h-[280px] border-[1px] rounded-full flex items-center justify-center`}
+                  >
+                    <motion.div
+                      animate={{
+                        borderColor: isMusicBoxHovering ? "#4F46E5" : "#D6DADE",
+                      }}
+                      transition={{
+                        duration: 0.4,
+                        delay: isMusicBoxHovering ? 0.1 : 0.7,
+                      }}
+                      className={`w-[180px] h-[180px] border-[1px] rounded-full`}
+                    ></motion.div>
+                  </motion.div>
                 </motion.div>
               </motion.div>
-            </motion.div>
-          </div>
-
-          {/* circle background */}
-
-          {/* images */}
-          <div className={`w-full h-full absolute top-0 left-0 `}>
-            <div className="w-full flex justify-around">
-              <motion.div
-                animate={{
-                  y: isMusicBoxHovering ? -10 : 0,
-                }}
-                transition={{
-                  delay: 0.2,
-                }}
-                className={`w-[76px] h-[76px] rounded-full  border-[1px] ${borderColor.primary} flex items-center justify-center mt-20 `}
-              >
-                <div
-                  className={`w-[70px] h-[70px] rounded-full border-[1px] ${borderColor.primary} shadow-inner relative overflow-hidden`}
-                >
-                  <Image
-                    src={"/profile.jpg"}
-                    alt={"musicSmallDiv"}
-                    layout="fill"
-                    objectFit="cover"
-                  />
-                </div>
-              </motion.div>
-              <motion.div
-                animate={{
-                  y: isMusicBoxHovering ? -10 : 0,
-                }}
-                transition={{
-                  duration: 0.2,
-                }}
-                className={`w-[117px] h-[117px] rounded-full   border-[1px] ${borderColor.primary} flex items-center justify-center mt-6 `}
-              >
-                <div
-                  className={`w-[110px] h-[110px] rounded-full   border-[1px] ${borderColor.primary} relative shadow-inner overflow-hidden`}
-                >
-                  <Image
-                    src={"/profile.jpg"}
-                    alt={"musicSmallDiv"}
-                    layout="fill"
-                    objectFit="cover"
-                  />
-                </div>
-              </motion.div>
-              <motion.div
-                animate={{
-                  y: isMusicBoxHovering ? -10 : 0,
-                }}
-                transition={{
-                  duration: 0.289,
-                }}
-                className={`w-[76px] h-[76px] rounded-full  border-[1px] ${borderColor.primary} flex items-center justify-center mt-20 `}
-              >
-                <div
-                  className={`w-[70px] h-[70px] rounded-full border-[1px] ${borderColor.primary} shadow-inner relative overflow-hidden`}
-                >
-                  <Image
-                    src={"/profile.jpg"}
-                    alt={"musicSmallDiv"}
-                    layout="fill"
-                    objectFit="cover"
-                  />
-                </div>
-              </motion.div>
             </div>
-          </div>
-          {/* images */}
-          {/* overlay */}
-          <div
-            className="absolute top-0
-          left-0 w-full h-full z-20 bg-gradient-to-tr from-[#ffffff] via-[#ffffff]/10 to-transparent overflow-hidden "
-          ></div>
-          <div
-            className="absolute top-0
-          left-0 w-full h-full z-30 bg-gradient-to-tl from-[#ffffff] via-[#ffffff]/10 to-transparent overflow-hidden "
-          ></div>
-          {/* overlay */}
-          {/* music animation div */}
-          <div className="absolute top-0 z-40 left-0 h-full w-full flex justify-center items-end py-20">
-            <div className="w-[105px] h-[35px] rounded-3xl bg-[#F5F5F8] shadow-lg shadow-black/15 border border-gray-200 flex gap-[3px] items-center py-2 px-2 overflow-hidden justify-center">
-              {bars.map((_, i) => (
-                <div
-                  key={i}
-                  className="bar"
-                  style={{
-                    height: "90%",
-                    width: "2px",
-                    backgroundColor: "#a0a0a0",
-                    borderRadius: "1rem",
-                    animation: isMusicBoxHovering
-                      ? `scaleBar 1s ease-in-out infinite, waveColor 2s linear infinite`
-                      : "",
-                    animationDelay: isMusicBoxHovering
-                      ? `${i * 0.1}s, ${i * 0.15}s`
-                      : "",
-                    transformOrigin: isMusicBoxHovering ? "center" : "",
+
+            {/* circle background */}
+
+            {/* images */}
+            <div className={`w-full h-full absolute top-0 left-0 `}>
+              <div className="w-full flex justify-around">
+                <motion.div
+                  animate={{
+                    y: isMusicBoxHovering ? -10 : 0,
                   }}
-                ></div>
-              ))}
+                  transition={{
+                    delay: 0.2,
+                  }}
+                  className={`w-[76px] h-[76px] rounded-full  border-[1px] ${borderColor.primary} flex items-center justify-center mt-20 `}
+                >
+                  <div
+                    className={`w-[70px] h-[70px] rounded-full border-[1px] ${borderColor.primary} shadow-inner relative overflow-hidden`}
+                  >
+                    <Image
+                      src={"/kendric.jpg"}
+                      alt={"musicSmallDiv"}
+                      layout="fill"
+                      objectFit="cover"
+                    />
+                  </div>
+                </motion.div>
+                <motion.div
+                  animate={{
+                    y: isMusicBoxHovering ? -10 : 0,
+                  }}
+                  transition={{
+                    duration: 0.2,
+                  }}
+                  className={`w-[117px] h-[117px] rounded-full   border-[1px] ${borderColor.primary} flex items-center justify-center mt-6 `}
+                >
+                  <div
+                    className={`w-[110px] h-[110px] rounded-full   border-[1px] ${borderColor.primary} relative shadow-inner overflow-hidden`}
+                  >
+                    <Image
+                      src={"/seedhemaut.jpg"}
+                      alt={"musicSmallDiv"}
+                      layout="fill"
+                      objectFit="cover"
+                    />
+                  </div>
+                </motion.div>
+                <motion.div
+                  animate={{
+                    y: isMusicBoxHovering ? -10 : 0,
+                  }}
+                  transition={{
+                    duration: 0.289,
+                  }}
+                  className={`w-[76px] h-[76px] rounded-full  border-[1px] ${borderColor.primary} flex items-center justify-center mt-20 `}
+                >
+                  <div
+                    className={`w-[70px] h-[70px] rounded-full border-[1px] ${borderColor.primary} shadow-inner relative overflow-hidden`}
+                  >
+                    <Image
+                      src={"/krsna.jpg"}
+                      alt={"musicSmallDiv"}
+                      layout="fill"
+                      objectFit="cover"
+                    />
+                  </div>
+                </motion.div>
+              </div>
             </div>
+            {/* images */}
+            {/* overlay */}
+            <div
+              className="absolute top-0
+          left-0 w-full h-full z-20 bg-gradient-to-tr from-[#ffffff] via-[#ffffff]/10 to-transparent overflow-hidden "
+            ></div>
+            <div
+              className="absolute top-0
+          left-0 w-full h-full z-30 bg-gradient-to-tl from-[#ffffff] via-[#ffffff]/10 to-transparent overflow-hidden "
+            ></div>
+            {/* overlay */}
+            {/* music animation div */}
+            <div className="absolute top-0 z-40 left-0 h-full w-full flex justify-center items-end py-20">
+              <div className="w-[105px] h-[35px] rounded-3xl bg-[#F5F5F8] shadow-lg shadow-black/15 border border-gray-200 flex gap-[3px] items-center py-2 px-2 overflow-hidden justify-center">
+                {bars.map((_, i) => (
+                  <div
+                    key={i}
+                    className="bar"
+                    style={{
+                      height: "90%",
+                      width: "2px",
+                      backgroundColor: "#a0a0a0",
+                      borderRadius: "1rem",
+                      animation: isMusicBoxHovering
+                        ? `scaleBar 1s ease-in-out infinite, waveColor 2s linear infinite`
+                        : "",
+                      animationDelay: isMusicBoxHovering
+                        ? `${i * 0.1}s, ${i * 0.15}s`
+                        : "",
+                      transformOrigin: isMusicBoxHovering ? "center" : "",
+                    }}
+                  ></div>
+                ))}
+              </div>
 
-            <style>{`
+              <style>{`
         @keyframes scaleBar {
           0%, 100% {
             transform: scaleY(1);
@@ -339,164 +363,166 @@ const MySite = () => {
           }
         }
       `}</style>
-          </div>
-          {/* music animation div */}
-
-          {/* music text */}
-          <div
-            className={`w-full h-full absolute top-0 left-0 z-30 bg-transparent flex justify-start items-end px-6 py-6`}
-          >
-            <div className="flex flex-col gap-2">
-              <p className={`${fontColor.primary} text-[16px] font-semibold`}>
-                Music
-              </p>
-              <p className={`${fontColor.secondry} text-[16px]`}>
-                Here&apos;s my Fav Artists <br />
-                and Songs
-              </p>
             </div>
-          </div>
-          {/* music text */}
+            {/* music animation div */}
 
-          {/* bluish overlay */}
-          {/* arrow  */}
-          <motion.div
-            animate={{
-              display: isMusicBoxHovering ? "flex" : "hidden",
-              opacity: isMusicBoxHovering ? 1 : 0,
-              y: isMusicBoxHovering ? 0 : 10,
-              transition: { duration: 0.3 },
-            }}
-            className="absolute hidden  items-center justify-center w-[40px] h-[40px] rounded-full bottom-[20px] right-[15px] bg-[#C7D2FE] z-70"
-          >
-            <ArrowUpRight className="text-[#4F46E5]" />
-          </motion.div>
-          {/* arrow  */}
+            {/* music text */}
+            <div
+              className={`w-full h-full absolute top-0 left-0 z-30 bg-transparent flex justify-start items-end px-6 py-6`}
+            >
+              <div className="flex flex-col gap-2">
+                <p className={`${fontColor.primary} text-[16px] font-semibold`}>
+                  Music
+                </p>
+                <p className={`${fontColor.secondry} text-[16px]`}>
+                  Here&apos;s my Fav Artists <br />
+                  and Songs
+                </p>
+              </div>
+            </div>
+            {/* music text */}
 
-          {/* bluish overlay with gradient */}
-          <motion.div
-            animate={{
-              display: isMusicBoxHovering ? "flex" : "hidden",
-              opacity: isMusicBoxHovering ? 1 : 0,
-
-              transition: { duration: 0.3 },
-            }}
-            className="absolute  w-full h-[100px] bottom-0 left-0 bg-gradient-to-br z-60 from-transparent via-[#EEF2FF]/6 to-[#C7D2FE]"
-          />
-          {/* bluish overlay with gradient */}
-          {/* bluish overlay */}
-        </motion.div>
-
-        <motion.div
-          onHoverStart={() =>
-            dispatch(homeMySiteActions.setIsCommunityBoxHovering(true))
-          }
-          onHoverEnd={() =>
-            dispatch(homeMySiteActions.setIsCommunityBoxHovering(false))
-          }
-          className={`w-1/3 h-full  px-2 py-2 flex flex-col items-center rounded-3xl ${borderColor.primary} border-[1px] relative bg-[#ffffff] overflow-hidden max-md:w-1/2 max-sm:h-[280px] max-sm:w-full`}
-        >
-          {/* background with cards */}
-          <div className="w-full h-full absolute top-0 left-0  ">
+            {/* bluish overlay */}
+            {/* arrow  */}
             <motion.div
               animate={{
-                rotate: isCommunityBoxHovering ? -6 : -15,
+                display: isMusicBoxHovering ? "flex" : "hidden",
+                opacity: isMusicBoxHovering ? 1 : 0,
+                y: isMusicBoxHovering ? 0 : 10,
+                transition: { duration: 0.3 },
               }}
-              transition={{
-                duration: 0.289,
-              }}
-              className={`w-[115px] h-[140px] bg-white overflow-hidden rounded-md ${borderColor.primary} border-[1px] shadow-xl p-2  absolute top-[-20px] left-10`}
+              className="absolute hidden  items-center justify-center w-[40px] h-[40px] rounded-full bottom-[20px] right-[15px] bg-[#C7D2FE] z-70"
             >
-              <div className="w-full h-[100px] bg-gradient-to-tr from-pink-500 via-purple-500/80 to-red-500 rounded-sm flex flex-col gap-1 items-center justify-center">
-                <div className="flex gap-1">
-                  <div className="w-[40px] h-[10px] rounded-[20px] bg-[#ffffff]/40"></div>
-                  <div className="w-[20px] rounded-[20px] h-[10px] bg-[#ffffff]/40"></div>
-                </div>
-                <div className="flex  gap-1">
-                  <div className="w-[20px] rounded-[20px] h-[10px] bg-[#ffffff]/40"></div>
-                  <div className="w-[40px] rounded-[20px] h-[10px] bg-[#ffffff]/40"></div>
-                </div>
-                <div className="flex  gap-1">
-                  <div className="w-[40px] rounded-[20px] h-[10px] bg-[#ffffff]/40"></div>
-                  <div className="w-[20px] rounded-[20px] h-[10px] bg-[#ffffff]/40"></div>
-                </div>
-              </div>
-              <div className="w-[20px] h-[20px] rounded-full bg-[#000]/20 mt-1 "></div>
+              <ArrowUpRight className="text-[#4F46E5]" />
             </motion.div>
+            {/* arrow  */}
+
+            {/* bluish overlay with gradient */}
             <motion.div
               animate={{
-                rotate: isCommunityBoxHovering ? 6 : 12,
-              }}
-              transition={{
-                delay: 0.15,
-                duration: 0.289,
-              }}
-              className={`w-[135px] h-[160px] bg-white overflow-hidden rounded-md ${borderColor.primary} border-[1px] shadow-xl p-2 rotate-12 absolute top-[30px] right-10`}
-            >
-              <div className="w-full h-[120px] bg-gradient-to-tr from-pink-500 via-purple-500/80 to-red-500 rounded-sm flex flex-col gap-1 items-center justify-center">
-                <div className="flex gap-1">
-                  <div className="w-[40px] h-[10px] rounded-[20px] bg-[#ffffff]/40"></div>
-                  <div className="w-[20px] rounded-[20px] h-[10px] bg-[#ffffff]/40"></div>
-                </div>
-                <div className="flex  gap-1">
-                  <div className="w-[20px] rounded-[20px] h-[10px] bg-[#ffffff]/40"></div>
-                  <div className="w-[40px] rounded-[20px] h-[10px] bg-[#ffffff]/40"></div>
-                </div>
-                <div className="flex  gap-1">
-                  <div className="w-[40px] rounded-[20px] h-[10px] bg-[#ffffff]/40"></div>
-                  <div className="w-[20px] rounded-[20px] h-[10px] bg-[#ffffff]/40"></div>
-                </div>
-              </div>
-              <div className="w-[20px] h-[20px] rounded-full bg-[#000]/20 mt-1 "></div>
-            </motion.div>{" "}
-          </div>
-          {/* background with cards */}
-          {/* overlay */}
-          <div className="w-full h-full absolute top-0 left-0 z-10 bg-gradient-to-tr from-[#ffffff] via-[#ffffff]/40 to-transparent"></div>
-          {/* overlay */}
-          {/* text */}
-          <div
-            className={`w-full h-full absolute top-0 left-0 z-30 bg-transparent flex justify-start items-end px-6 py-6`}
-          >
-            <div className="flex flex-col gap-2">
-              <p className={`${fontColor.primary} text-[16px] font-semibold`}>
-                Community Wall
-              </p>
-              <p className={`${fontColor.secondry} text-[16px]`}>
-                Let everyone know
-                <br />
-                you were here
-              </p>
-            </div>
-          </div>{" "}
-          {/* text */}
-          {/* bluish overlay */}
-          {/* arrow  */}
-          <motion.div
-            animate={{
-              display: isCommunityBoxHovering ? "flex" : "hidden",
-              opacity: isCommunityBoxHovering ? 1 : 0,
-              y: isCommunityBoxHovering ? 0 : 10,
-              transition: { duration: 0.3 },
-            }}
-            className="absolute hidden  items-center justify-center w-[40px] h-[40px] rounded-full bottom-[20px] right-[15px] bg-[#C7D2FE] z-70"
-          >
-            <ArrowUpRight className="text-[#4F46E5]" />
-          </motion.div>
-          {/* arrow  */}
-          {/* bluish overlay with gradient */}
-          <motion.div
-            animate={{
-              display: isCommunityBoxHovering ? "flex" : "hidden",
-              opacity: isCommunityBoxHovering ? 1 : 0,
+                display: isMusicBoxHovering ? "flex" : "hidden",
+                opacity: isMusicBoxHovering ? 1 : 0,
 
-              transition: { duration: 0.3 },
-            }}
-            className="absolute  w-full h-[100px] bottom-0 left-0 bg-gradient-to-br z-60 from-transparent via-[#EEF2FF]/6 to-[#C7D2FE]"
-          />
-          {/* bluish overlay with gradient */}
-          {/* bluish overlay */}
-        </motion.div>
+                transition: { duration: 0.3 },
+              }}
+              className="absolute  w-full h-[100px] bottom-0 left-0 bg-gradient-to-br z-60 from-transparent via-[#EEF2FF]/6 to-[#C7D2FE]"
+            />
+            {/* bluish overlay with gradient */}
+            {/* bluish overlay */}
+          </motion.div>
+        </Link>
+        <Link href={"/community-wall"} className="w-1/3 h-full">
+          <motion.div
+            onHoverStart={() =>
+              dispatch(homeMySiteActions.setIsCommunityBoxHovering(true))
+            }
+            onHoverEnd={() =>
+              dispatch(homeMySiteActions.setIsCommunityBoxHovering(false))
+            }
+            className={`w-full h-full  px-2 py-2 flex flex-col items-center rounded-3xl ${borderColor.primary} border-[1px] relative bg-[#ffffff] overflow-hidden max-md:w-1/2 max-sm:h-[280px] max-sm:w-full`}
+          >
+            {/* background with cards */}
+            <div className="w-full h-full absolute top-0 left-0  ">
+              <motion.div
+                animate={{
+                  rotate: isCommunityBoxHovering ? -6 : -15,
+                }}
+                transition={{
+                  duration: 0.289,
+                }}
+                className={`w-[115px] h-[140px] bg-white overflow-hidden rounded-md ${borderColor.primary} border-[1px] shadow-xl p-2  absolute top-[-20px] left-10`}
+              >
+                <div className="w-full h-[100px] bg-gradient-to-tr from-pink-500 via-purple-500/80 to-red-500 rounded-sm flex flex-col gap-1 items-center justify-center">
+                  <div className="flex gap-1">
+                    <div className="w-[40px] h-[10px] rounded-[20px] bg-[#ffffff]/40"></div>
+                    <div className="w-[20px] rounded-[20px] h-[10px] bg-[#ffffff]/40"></div>
+                  </div>
+                  <div className="flex  gap-1">
+                    <div className="w-[20px] rounded-[20px] h-[10px] bg-[#ffffff]/40"></div>
+                    <div className="w-[40px] rounded-[20px] h-[10px] bg-[#ffffff]/40"></div>
+                  </div>
+                  <div className="flex  gap-1">
+                    <div className="w-[40px] rounded-[20px] h-[10px] bg-[#ffffff]/40"></div>
+                    <div className="w-[20px] rounded-[20px] h-[10px] bg-[#ffffff]/40"></div>
+                  </div>
+                </div>
+                <div className="w-[20px] h-[20px] rounded-full bg-[#000]/20 mt-1 "></div>
+              </motion.div>
+              <motion.div
+                animate={{
+                  rotate: isCommunityBoxHovering ? 6 : 12,
+                }}
+                transition={{
+                  delay: 0.15,
+                  duration: 0.289,
+                }}
+                className={`w-[135px] h-[160px] bg-white overflow-hidden rounded-md ${borderColor.primary} border-[1px] shadow-xl p-2 rotate-12 absolute top-[30px] right-10`}
+              >
+                <div className="w-full h-[120px] bg-gradient-to-tr from-pink-500 via-purple-500/80 to-red-500 rounded-sm flex flex-col gap-1 items-center justify-center">
+                  <div className="flex gap-1">
+                    <div className="w-[40px] h-[10px] rounded-[20px] bg-[#ffffff]/40"></div>
+                    <div className="w-[20px] rounded-[20px] h-[10px] bg-[#ffffff]/40"></div>
+                  </div>
+                  <div className="flex  gap-1">
+                    <div className="w-[20px] rounded-[20px] h-[10px] bg-[#ffffff]/40"></div>
+                    <div className="w-[40px] rounded-[20px] h-[10px] bg-[#ffffff]/40"></div>
+                  </div>
+                  <div className="flex  gap-1">
+                    <div className="w-[40px] rounded-[20px] h-[10px] bg-[#ffffff]/40"></div>
+                    <div className="w-[20px] rounded-[20px] h-[10px] bg-[#ffffff]/40"></div>
+                  </div>
+                </div>
+                <div className="w-[20px] h-[20px] rounded-full bg-[#000]/20 mt-1 "></div>
+              </motion.div>{" "}
+            </div>
+            {/* background with cards */}
+            {/* overlay */}
+            <div className="w-full h-full absolute top-0 left-0 z-10 bg-gradient-to-tr from-[#ffffff] via-[#ffffff]/40 to-transparent"></div>
+            {/* overlay */}
+            {/* text */}
+            <div
+              className={`w-full h-full absolute top-0 left-0 z-30 bg-transparent flex justify-start items-end px-6 py-6`}
+            >
+              <div className="flex flex-col gap-2">
+                <p className={`${fontColor.primary} text-[16px] font-semibold`}>
+                  Community Wall
+                </p>
+                <p className={`${fontColor.secondry} text-[16px]`}>
+                  Let everyone know
+                  <br />
+                  you were here
+                </p>
+              </div>
+            </div>{" "}
+            {/* text */}
+            {/* bluish overlay */}
+            {/* arrow  */}
+            <motion.div
+              animate={{
+                display: isCommunityBoxHovering ? "flex" : "hidden",
+                opacity: isCommunityBoxHovering ? 1 : 0,
+                y: isCommunityBoxHovering ? 0 : 10,
+                transition: { duration: 0.3 },
+              }}
+              className="absolute hidden  items-center justify-center w-[40px] h-[40px] rounded-full bottom-[20px] right-[15px] bg-[#C7D2FE] z-70"
+            >
+              <ArrowUpRight className="text-[#4F46E5]" />
+            </motion.div>
+            {/* arrow  */}
+            {/* bluish overlay with gradient */}
+            <motion.div
+              animate={{
+                display: isCommunityBoxHovering ? "flex" : "hidden",
+                opacity: isCommunityBoxHovering ? 1 : 0,
+
+                transition: { duration: 0.3 },
+              }}
+              className="absolute  w-full h-[100px] bottom-0 left-0 bg-gradient-to-br z-60 from-transparent via-[#EEF2FF]/6 to-[#C7D2FE]"
+            />
+            {/* bluish overlay with gradient */}
+            {/* bluish overlay */}
+          </motion.div>
+        </Link>
       </div>
     </div>
   );
