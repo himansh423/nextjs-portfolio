@@ -132,7 +132,6 @@ const SubscribeBox = () => {
                     </>
                   )}
                 </button>
-                
               </form>
 
               <p

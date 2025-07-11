@@ -1,7 +1,6 @@
 "use client"
 import { borderColor, fontColor } from "@/library/constants/colors"
 import type React from "react"
-
 import Image from "next/image"
 import PhotoGallery from "./PhotoCards"
 import { racingSans } from "@/library/constants/fonts"
