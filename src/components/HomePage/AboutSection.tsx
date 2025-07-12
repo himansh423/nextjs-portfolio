@@ -22,6 +22,19 @@ const AboutSection = () => {
   } = useSelector((store: RootState) => store.homeAbout);
   const { isAdminLoggedIn } = useSelector((store: RootState) => store.loggedIn);
   const dispatch = useDispatch();
+  const [greeting, setGreeting] = useState("Hello");
+
+  useEffect(() => {
+    const hour = new Date().getHours();
+
+    if (hour >= 5 && hour < 12) {
+      setGreeting("Good morning");
+    } else if (hour >= 12 && hour < 18) {
+      setGreeting("Good afternoon");
+    } else {
+      setGreeting("Good evening");
+    }
+  }, []);
 
   // State for about image
   const [aboutImage, setAboutImage] = useState<string | null>(null);
@@ -346,8 +359,8 @@ const AboutSection = () => {
                   Learn more about me
                 </p>
                 <div className={`${fontColor.secondry}`}>
-                  <p>Good afternoon!</p>
-                  <p>I&apos;m Himanshu, a Experienced Full Stack Developer.</p>
+                  <p>{greeting}!</p>
+                  <p>I&apos;m Himanshu, an Experienced Full Stack Developer.</p>
                 </div>
               </div>
               <div className="flex-1 flex justify-center text-center relative">
@@ -1063,7 +1076,8 @@ const AboutSection = () => {
                 <p
                   className={`${fontColor.secondry}  max-sm:px-16 max-sm:text-center `}
                 >
-                 An evolving list of people I&apos;ve met and those I wish to meet.
+                  An evolving list of people I&apos;ve met and those I wish to
+                  meet.
                 </p>
               </div>
               {/* arrow  */}

@@ -35,7 +35,7 @@ const MySite = () => {
             ease: "easeOut",
           }}
         >
-          My site is a playful sandbox. Explore, experiment, && say hello{" "}
+         Welcome to my digital playground — tinker, explore, and drop a hello!{" "}
         </motion.p>
       </div>
       <div
@@ -86,9 +86,9 @@ const MySite = () => {
               className={`w-[160px] h-[54px] rounded-[10px] bg-[#F7F7F8] absolute left-[20px] top-[-10px] flex flex-col items-start justify-center px-3 ${borderColor.primary} border-[1px]`}
             >
               <p className={`${fontColor.secondry} text-[12px]`}>
-                Blogfolio V5 is Now Live!
+                Bytefolio V1 is Now Live!
               </p>
-              <p className={`${fontColor.secondry} text-[12px]`}>April, 2025</p>
+              <p className={`${fontColor.secondry} text-[12px]`}>July, 2025</p>
               <span className="absolute right-[-25px] h-[1px] w-[25px] bg-gray-300"></span>
             </div>
 
@@ -96,9 +96,9 @@ const MySite = () => {
               className={`w-[160px] h-[54px] rounded-[10px] bg-[#F7F7F8] absolute left-[20px] top-[110px] flex flex-col items-start justify-center px-3 ${borderColor.primary} border-[1px]`}
             >
               <p className={`${fontColor.secondry} text-[12px]`}>
-                Blogfolio V5 is Now Live!
+                Bytefolio V1 is Now Live!
               </p>
-              <p className={`${fontColor.secondry} text-[12px]`}>April, 2025</p>
+              <p className={`${fontColor.secondry} text-[12px]`}>July, 2025</p>
               <span className="absolute right-[-25px] h-[1px] w-[25px] bg-gray-300"></span>
             </div>
             {/* -------------------------- */}
@@ -106,9 +106,9 @@ const MySite = () => {
               className={`w-[160px] h-[54px] rounded-[10px] bg-[#F7F7F8] absolute right-[20px] top-[50px] flex flex-col items-start justify-center px-3 ${borderColor.primary} border-[1px]`}
             >
               <p className={`${fontColor.secondry} text-[12px]`}>
-                Blogfolio V5 is Now Live!
+                Bytefolio V1 is Now Live!
               </p>
-              <p className={`${fontColor.secondry} text-[12px]`}>April, 2025</p>
+              <p className={`${fontColor.secondry} text-[12px]`}>July, 2025</p>
               <span className="absolute left-[-25px] h-[1px] w-[25px] bg-gray-300"></span>
             </div>
 
@@ -116,9 +116,9 @@ const MySite = () => {
               className={`w-[160px] h-[54px] rounded-[10px] bg-[#F7F7F8] absolute right-[20px] top-[160px] flex flex-col items-start justify-center px-3 ${borderColor.primary} border-[1px] max-small-l:top-[170px]`}
             >
               <p className={`${fontColor.secondry} text-[12px]`}>
-                Blogfolio V5 is Now Live!
+                Bytefolio V1 is Now Live!
               </p>
-              <p className={`${fontColor.secondry} text-[12px]`}>April, 2025</p>
+              <p className={`${fontColor.secondry} text-[12px]`}>July, 2025</p>
               <span className="absolute left-[-25px] h-[1px] w-[25px] bg-gray-300"></span>
             </div>
 

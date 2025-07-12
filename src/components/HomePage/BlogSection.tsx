@@ -41,7 +41,7 @@ const BlogSection = () => {
           <div className="innerContent flex-1 mt-4 w-full p-[10px] px-[20px]">
             <div className="w-full h-full  flex flex-col gap-3">
               <p className={`text-[18px] ${fontColor.primary} font-semibold`}>
-                Introducing Blogfolio V5
+                Introducing Bytefolio V1
               </p>
               <p className={`text-[16px] ${fontColor.secondry} `}>
                 I&apos;ve been working hard on my website, and I&apos;m pumped to show you
@@ -63,7 +63,7 @@ const BlogSection = () => {
           <div className="innerContent flex-1 mt-4 w-full p-[10px] px-[20px]">
             <div className="w-full h-full  flex flex-col gap-3">
               <p className={`text-[18px] ${fontColor.primary} font-semibold`}>
-                Introducing Blogfolio V5
+                Introducing Bytefolio V1
               </p>
               <p className={`text-[16px] ${fontColor.secondry} `}>
                 I&apos;ve been working hard on my website, and I&apos;m pumped to show you
@@ -85,7 +85,7 @@ const BlogSection = () => {
           <div className="innerContent flex-1 mt-4 w-full p-[10px] px-[20px]">
             <div className="w-full h-full  flex flex-col gap-3">
               <p className={`text-[18px] ${fontColor.primary} font-semibold`}>
-                Introducing Blogfolio V5
+                Introducing Bytefolio V1
               </p>
               <p className={`text-[16px] ${fontColor.secondry} `}>
                 I&apos;ve been working hard on my website, and I&apos;m pumped to show you

@@ -83,7 +83,7 @@ const SubscribeBox = () => {
                 <input
                   {...register("email")}
                   type="text"
-                  placeholder="himanshuchau423@gmail.com"
+                  placeholder="Your email address"
                   className="w-full h-full focus:outline-none border-[1px] border-[#d4d4d6]  px-[12px] placeholder:text-[#d4d4d6] rounded-[80px] text-[#faf8fc] focus:border-[2px] focus:border-[#faf8fc] max-m:pr-[20px]"
                 />
                 {errors.email && (

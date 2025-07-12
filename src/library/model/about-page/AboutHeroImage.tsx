@@ -13,6 +13,6 @@ const aboutHeroImageSchema = new Schema<IAboutHeroImage>({
 });
 
 const AboutHeroImage: Model<IAboutHeroImage> =
-  mongoose.models.AboutHeroImage ||
-  mongoose.model("AboutHeroImage", aboutHeroImageSchema);
+  mongoose.models.AboutHeroImages ||
+  mongoose.model("AboutHeroImages", aboutHeroImageSchema);
 export default AboutHeroImage;
