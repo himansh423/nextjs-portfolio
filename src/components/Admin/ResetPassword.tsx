@@ -48,11 +48,9 @@ const ResetPasswordForm = () => {
       if (res.data.success) {
         dispatch(resetPasswordActions.setIsShowModal(true));
       }
-    } catch (error: any) {
+    } catch (error: unknown) {
       const message =
-        error.response?.data?.message ||
-        error.message ||
-        "Something went wrong";
+        error instanceof Error ? error.message : "Something went wrong";
 
       if (message.toLowerCase().includes("invalid")) {
         setError("confirmPassword", {

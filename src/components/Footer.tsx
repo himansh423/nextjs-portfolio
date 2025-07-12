@@ -12,7 +12,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 const Footer = () => {
-  const { isAdminLoggedIn, isUserLoggedIn } = useSelector(
+  const { isAdminLoggedIn } = useSelector(
     (store: RootState) => store.loggedIn
   );
   const dispatch = useDispatch();

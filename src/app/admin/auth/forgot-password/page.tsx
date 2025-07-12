@@ -2,7 +2,6 @@
 import ForgotPassword from "@/components/Admin/ForgotPassword";
 import sideLines from "../../../../../public/sideLines.jpg";
 
-import Login from "@/components/Admin/Login";
 
 const page = () => {
   return (

@@ -1,88 +1,96 @@
-"use client"
-import { borderColor, fontColor } from "@/library/constants/colors"
-import type React from "react"
-import Image from "next/image"
-import PhotoGallery from "./PhotoCards"
-import { racingSans } from "@/library/constants/fonts"
-import { motion } from "framer-motion"
-import { Plus, Loader2 } from "lucide-react"
-import type { RootState } from "@/redux/store"
-import { useDispatch, useSelector } from "react-redux"
-import { useEffect, useRef, useState } from "react"
-import axios from "axios"
-import { homeHeroActions } from "@/redux/homeHeroSlice"
+"use client";
+import { borderColor, fontColor } from "@/library/constants/colors";
+import type React from "react";
+import Image from "next/image";
+import PhotoGallery from "./PhotoCards";
+import { racingSans } from "@/library/constants/fonts";
+import { motion } from "framer-motion";
+import { Plus, Loader2 } from "lucide-react";
+import type { RootState } from "@/redux/store";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useRef, useState } from "react";
+import axios from "axios";
+import { homeHeroActions } from "@/redux/homeHeroSlice";
 
 const HeroSection = () => {
-  const { isAdminLoggedIn } = useSelector((store: RootState) => store.loggedIn)
-  const { picture, loading } = useSelector((store: RootState) => store.homeHero)
-  const dispatch = useDispatch()
-  const [image, setImage] = useState<string | null>(null)
-  const [file, setFile] = useState<File | null>(null)
-  const [profileImageLoading, setProfileImageLoading] = useState(true)
-  const fileInputRef = useRef<HTMLInputElement>(null)
+  const { isAdminLoggedIn } = useSelector((store: RootState) => store.loggedIn);
+  const { picture, loading } = useSelector(
+    (store: RootState) => store.homeHero
+  );
+  const dispatch = useDispatch();
+  const [image, setImage] = useState<string | null>(null);
+  const [file, setFile] = useState<File | null>(null);
+  const [profileImageLoading, setProfileImageLoading] = useState(true);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     if (file) {
-      const reader = new FileReader()
+      const reader = new FileReader();
       reader.onloadend = () => {
-        setImage(reader.result as string)
-      }
-      reader.readAsDataURL(file)
+        setImage(reader.result as string);
+      };
+      reader.readAsDataURL(file);
     }
-  }, [file])
+  }, [file]);
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const selectedFile = e.target.files?.[0]
+    const selectedFile = e.target.files?.[0];
     if (selectedFile) {
-      setFile(selectedFile)
+      setFile(selectedFile);
     }
-  }
+  };
 
   const handleUpload = async () => {
-    if (!file) return
-    dispatch(homeHeroActions.setLoading(true))
+    if (!file) return;
+    dispatch(homeHeroActions.setLoading(true));
     try {
-      const dpFileName = file.name
-      const dpFileType = file.type
-      const { data } = await axios.post("/api/home-page/get-presigned-url-to-upload-display-picture-on-s3", {
-        dpFileName,
-        dpFileType,
-      })
-      const { dpUploadUrl, dpFileKey } = data
+      const dpFileName = file.name;
+      const dpFileType = file.type;
+      const { data } = await axios.post(
+        "/api/home-page/get-presigned-url-to-upload-display-picture-on-s3",
+        {
+          dpFileName,
+          dpFileType,
+        }
+      );
+      const { dpUploadUrl, dpFileKey } = data;
       await axios.put(dpUploadUrl, file, {
         headers: { "Content-Type": dpFileType },
-      })
-      const res = await axios.patch(`/api/home-page/save-display-picture-on-database`, {
-        dpFileKey,
-      })
+      });
+      const res = await axios.patch(
+        `/api/home-page/save-display-picture-on-database`,
+        {
+          dpFileKey,
+        }
+      );
       if (res.data.success) {
-        await getDisplayPicture()
-        setImage(null)
-        setFile(null)
-        alert("Profile picture updated!")
+        await getDisplayPicture();
+        setImage(null);
+        setFile(null);
+        alert("Profile picture updated!");
       }
     } catch (error) {
-      console.error("Upload failed:", error)
-      alert("Failed to upload profile picture.")
+      console.error("Upload failed:", error);
+      alert("Failed to upload profile picture.");
     } finally {
-      dispatch(homeHeroActions.setLoading(false))
+      dispatch(homeHeroActions.setLoading(false));
     }
-  }
+  };
 
   const getDisplayPicture = async () => {
     try {
-      const res = await axios.get("/api/home-page/get-display-picture")
+      const res = await axios.get("/api/home-page/get-display-picture");
       if (res.data.success) {
-        dispatch(homeHeroActions.setPicture(res.data.image))
+        dispatch(homeHeroActions.setPicture(res.data.image));
       }
     } catch (error: unknown) {
-      console.error("Something went Wrong")
+      console.error("Something went Wrong", error);
     }
-  }
+  };
 
   useEffect(() => {
-    getDisplayPicture()
-  }, [])
+    getDisplayPicture();
+  }, []);
 
   return (
     <div className="w-full flex flex-col">
@@ -193,8 +201,9 @@ const HeroSection = () => {
             ease: "easeOut",
           }}
         >
-          I'm a Full Stack Developer who loves design and enjoys experimenting. This site is my creative
-          lab—intentionally overbuilt to test ideas, explore concepts, and break things just to see what works!
+          I&apos;m a Full Stack Developer who loves design and enjoys experimenting.
+          This site is my creative lab—intentionally overbuilt to test ideas,
+          explore concepts, and break things just to see what works!
         </motion.p>
       </div>
       {/* description box */}
@@ -204,7 +213,7 @@ const HeroSection = () => {
       </div>
       {/* Images Box */}
     </div>
-  )
-}
+  );
+};
 
-export default HeroSection
+export default HeroSection;

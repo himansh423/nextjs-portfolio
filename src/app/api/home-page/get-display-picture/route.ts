@@ -13,7 +13,7 @@ const s3Client = new S3Client({
   },
 });
 
-export async function GET(req: Request) {
+export async function GET() {
   try {
     // Connect to MongoDB
     await connectToDatabase();

@@ -49,7 +49,7 @@ export async function POST(req: Request) {
       oldFileKey,
       imageId,
     })
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Error generating update URL:", error)
     return NextResponse.json({ error: "Failed to generate update URL" }, { status: 500 })
   }

@@ -2,8 +2,6 @@
 import VerifyOtp from "@/components/Admin/VerifyOtp";
 import sideLines from "../../../../../public/sideLines.jpg";
 
-import Login from "@/components/Admin/Login";
-
 const page = () => {
   return (
     <div className="w-full min-h-screen flex justify-between">

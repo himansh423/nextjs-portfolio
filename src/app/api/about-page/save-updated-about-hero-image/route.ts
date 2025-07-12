@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server"
 import { S3Client, DeleteObjectCommand } from "@aws-sdk/client-s3"
 import connectToDatabase from "@/library/database/db"
-import HomePhotoGallery from "@/library/model/home-page/HomePhotoGallerySchema"
 import AboutHeroImage from "@/library/model/about-page/AboutHeroImage"
 
 const s3Client = new S3Client({

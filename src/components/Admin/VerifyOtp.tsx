@@ -37,11 +37,9 @@ const VerifyOtp = () => {
       if (res.data.success) {
         router.push("/");
       }
-    } catch (error: any) {
+    } catch (error: unknown) {
       const message =
-        error.response?.data?.message ||
-        error.message ||
-        "Something went wrong";
+        error instanceof Error ? error.message : "Something went wrong";
 
       if (message.toLowerCase().includes("email")) {
         setError("otp", {
@@ -78,7 +76,7 @@ const VerifyOtp = () => {
             Enter Verification Code
           </p>
           <p className={` text-[14px] ${fontColor.secondry}`}>
-            We've sent a 6-digit code to Admin Registered Email
+            We&apos;ve sent a 6-digit code to Admin Registered Email
           </p>
         </div>
         <div className="mt-5 flex flex-col gap-2">

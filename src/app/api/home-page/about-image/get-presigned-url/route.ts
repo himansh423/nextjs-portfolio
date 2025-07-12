@@ -36,7 +36,7 @@ export async function POST(req: Request) {
       uploadUrl,
       fileKey,
     })
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Error generating pre-signed URL:", error)
     return NextResponse.json({ error: "Failed to generate pre-signed URL" }, { status: 500 })
   }

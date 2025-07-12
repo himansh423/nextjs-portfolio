@@ -1,8 +1,5 @@
-
-import VerifyOtp from "@/components/Admin/VerifyOtp";
 import sideLines from "../../../../../public/sideLines.jpg";
 
-import Login from "@/components/Admin/Login";
 import ResetPassword from "@/components/Admin/ResetPassword";
 
 const page = () => {

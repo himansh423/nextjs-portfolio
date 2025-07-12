@@ -49,12 +49,13 @@ export async function POST(req: Request) {
       success: true,
       uploads: uploadData,
     });
-  } catch (error: any) {
-    console.error(
-      "Error generating pre-signed upload URLs:",
-      error.message,
-      error.stack
-    );
+  } catch (error: unknown) {
+    if (error instanceof Error)
+      console.error(
+        "Error generating pre-signed upload URLs:",
+        error.message,
+        error.stack
+      );
     return NextResponse.json(
       { error: "Failed to generate pre-signed upload URLs." },
       { status: 500 }

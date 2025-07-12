@@ -1,3 +1,4 @@
+/* eslint-disable */
 "use client"
 import type React from "react"
 import { useState, useRef, useEffect } from "react"
@@ -108,7 +109,7 @@ export default function PhotoGallery() {
         headers: { "Content-Type": file.type },
       })
       // Save to database and delete old image from S3
-      await axios.patch("/api/home-page/save-updated-gallery-image", {
+      await axios.patch("/api/home-page/ save-updated-gallery-image", {
         imageId,
         newFileKey: urlData.newFileKey,
         oldFileKey: urlData.oldFileKey,

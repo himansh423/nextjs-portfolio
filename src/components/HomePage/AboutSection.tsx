@@ -1063,7 +1063,7 @@ const AboutSection = () => {
                 <p
                   className={`${fontColor.secondry}  max-sm:px-16 max-sm:text-center `}
                 >
-                 An evolving list of people I've met and those I wish to meet.
+                 An evolving list of people I&apos;ve met and those I wish to meet.
                 </p>
               </div>
               {/* arrow  */}

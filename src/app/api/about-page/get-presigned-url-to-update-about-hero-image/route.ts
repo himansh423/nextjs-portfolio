@@ -3,7 +3,6 @@ import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3"
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner"
 import { nanoid } from "nanoid"
 import connectToDatabase from "@/library/database/db"
-import HomePhotoGallery from "@/library/model/home-page/HomePhotoGallerySchema"
 import AboutHeroImage from "@/library/model/about-page/AboutHeroImage"
 
 const s3Client = new S3Client({
@@ -50,7 +49,7 @@ export async function POST(req: Request) {
       oldFileKey,
       imageId,
     })
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Error generating update URL:", error)
     return NextResponse.json({ error: "Failed to generate update URL" }, { status: 500 })
   }

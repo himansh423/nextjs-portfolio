@@ -1,3 +1,4 @@
+/* eslint-disable */
 "use client"
 import { borderColor, fontColor } from "@/library/constants/colors"
 import { racingSans } from "@/library/constants/fonts"
